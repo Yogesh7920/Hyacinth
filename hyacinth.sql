@@ -2,7 +2,7 @@ drop database if exists Hyacinth;
 create database if not exists Hyacinth;
 use Hyacinth;
 
-# ISA
+
 create table Employee
 (
     ID       int primary key,
@@ -14,7 +14,6 @@ create table Employee
     sex      varchar(20) not null
 );
 
-# E
 create table Nurse
 (
     ID            int primary key,
@@ -25,7 +24,6 @@ create table Nurse
         on delete cascade
 );
 
-# E
 create table Admin
 (
     ID int primary key,
@@ -34,7 +32,6 @@ create table Admin
         on delete cascade
 );
 
-# E
 create table Doctor
 (
     ID             int primary key,
@@ -48,7 +45,6 @@ create table Doctor
         on delete cascade
 );
 
-# E
 create table Driver
 (
     ID          int primary key,
@@ -60,7 +56,6 @@ create table Driver
         on delete cascade
 );
 
-# E
 create table Patient
 (
     ID             int primary key,
@@ -74,14 +69,12 @@ create table Patient
     marital        bool
 );
 
-# E
 create table Prescription
 (
-    ID            int primary key,
-    timeStamp     timestamp not null
+    ID        int primary key,
+    timeStamp timestamp not null
 );
 
-# E
 create table Diagnostics
 (
     ID       int primary key,
@@ -89,7 +82,6 @@ create table Diagnostics
     name     varchar(20) not null
 );
 
-# E
 create table Vendor
 (
     ID      int primary key,
@@ -99,7 +91,6 @@ create table Vendor
     Email   varchar(20)  not null
 );
 
-# E
 create table Pharmacy
 (
     ID       int primary key,
@@ -107,15 +98,13 @@ create table Pharmacy
     category varchar(20) not null
 );
 
-# E
 create table Invoice
 (
-    ID            int primary key,
-    amount        float not null,
-    isPaid        bool  not null
+    ID     int primary key,
+    amount float not null,
+    isPaid bool  not null
 );
 
-# E
 create table Ambulance
 (
     ID              int primary key,
@@ -123,22 +112,20 @@ create table Ambulance
     totalDistance   float
 );
 
-# E
 create table Consultation
 (
     ID        int primary key,
     problem   varchar(40),
     doctorID  int unique,
-    patientID  int unique,
+    patientID int unique,
     constraint FK_Doctor_Consultation foreign key (doctorID)
-        references Doctor(ID)
+        references Doctor (ID)
         on delete cascade,
     constraint FK_Patient_Consultation foreign key (patientID)
-        references Patient(ID)
+        references Patient (ID)
         on delete cascade
 );
 
-# E
 create table Appointment
 (
     ID             int primary key,
@@ -146,20 +133,19 @@ create table Appointment
     endTime        timestamp,
     remarks        varchar(40),
     invoiceId      int unique,
-    prescriptionId      int unique,
-    consultationId      int unique,
+    prescriptionId int unique,
+    consultationId int,
     constraint FK_Consultation_Appointment foreign key (consultationId)
-        references Appointment (ID)
+        references Consultation (ID)
         on delete cascade,
     constraint FK_Invoice_Appointment foreign key (invoiceId)
-        references Invoice(ID)
+        references Invoice (ID)
         on delete cascade,
     constraint FK_Prescription_Appointment foreign key (prescriptionId)
-        references Prescription(ID)
+        references Prescription (ID)
         on delete cascade
 );
 
-# M:M
 create table Supplies
 (
     drugID     int      not null,
@@ -177,7 +163,6 @@ create table Supplies
 );
 
 
-# M:M
 create table Drugs
 (
     prescriptionID int not null,
@@ -191,7 +176,6 @@ create table Drugs
     primary key (prescriptionID, pharmacyID)
 );
 
-# M:M
 create table Contains
 (
     diagnosticsID  int not null,
@@ -205,7 +189,6 @@ create table Contains
     primary key (diagnosticsID, prescriptionID)
 );
 
-# M:M
 create table Assists
 (
     nurseId       int,
@@ -219,7 +202,6 @@ create table Assists
     primary key (nurseId, diagnosticsID)
 );
 
-# M:M
 create table Journey
 (
     driverID    int,
@@ -242,7 +224,7 @@ create table Journey
 # create database if not exists Hyacinth;
 # use Hyacinth;
 #
-# # ISA
+# 
 # create table Employees
 # (
 #     ID       int primary key,
