@@ -1,11 +1,10 @@
 ﻿--
--- Before you run this, make sure that the create.sql is run.
+-- Run the create.sql file before this to create
+-- all the tables.
 --
-
 
 SET NAMES 'utf8';
 USE Hyacinth;
-
 --
 -- Inserting data into table Ambulance
 --
@@ -119,57 +118,57 @@ INSERT INTO Diagnostics(ID, category, name) VALUES
 --
 -- Inserting data into table Employee
 --
-INSERT INTO Employee(ID, name, password, phone, email, address, sex) VALUES
-(1, 'Abdul Franz', 'MJ/H07xTu2OsQuNZJgrHQA==', '+91 65263-18990', 'Sherry_XFranz94@nowh', 'Railway Arch 7', 'Male'),
-(2, 'Dana Bethea', 'LUJLGxAFBZfeAhy8OBPwkw==', '+91 02768-98343', 'Bud.Albrecht@nowhere', 'Railway Arch 27C', 'Female'),
-(3, 'Jeromy Vanburen', 'pdwGEoMSRw5/BJ46rQFMlw==', '+91 24204-24783', 'Russell@example.com', 'Flats 1-9', 'Male'),
-(4, 'Adan May', 'Q6ozdL7Lb25yWVKxoMBL6g==', '+91 37716-82515', 'AbelLott@example.com', 'Suite 94', 'Male'),
-(5, 'Charline Berman', 'oWIYH6vVWOQrJzqE1BwJYQ==', '+91 01815-20021', 'Harvey@example.com', 'Arch 3', 'Male'),
-(6, 'Roosevelt Lloyd', 'J8PzIxVyebBlI8d6mImZ1g==', '+91 63501-66022', 'MargotCroft43@exampl', 'Flat 64', 'Male'),
-(7, 'Carson Burley', 'xBTVDGItYZox6p4tjt/K4A==', '+91 83395-04219', 'exmq9758@example.com', 'Flat 9', 'Male'),
-(8, 'Gabriel Cheatham', 'jGpcljmOgpgW+e5/sxfllw==', '+91 50257-66020', 'Ocampo@example.com', 'Suite 6', 'Male'),
-(9, 'Elfrieda Fennell', 'iHWRdNgH+XzOnxeQHfK2cw==', '+91 55216-13486', 'Ellis_Batiste76@exam', 'Railway Arch 91', 'Male'),
-(10, 'Antone Coles', 'UiYX2cz28eSmNL5F3zZcTQ==', '+91 76208-02624', 'AbbyCreamer@example.', 'Flat 6', 'Male'),
-(11, 'Adelaida Mcfall', 'VnaAWmWke8MIqDXnN1ElIg==', '+91 19807-96493', 'BelindaCAtchison@exa', 'Railway Arch 5', 'Female'),
-(12, 'Annemarie Bess', 'hYmxOxhx5Qh3tXNMbW1dtw==', '+91 76948-57053', 'Annett.Ahmed@example', 'Suite 72', 'Female'),
-(13, 'Vincenzo Pugh', 'fy7fL6ghvibafwQGwQ/8lw==', '+91 58855-57017', 'izwgel258@example.co', 'Railway Arch 8', 'Male'),
-(14, 'Shon Abbott', 'Nf6IBfJAjqm0BIgW3DVWAg==', '+91 67947-11169', 'AlaneAldrich24@examp', 'Railway Arch 62', 'Male'),
-(15, 'Rickie Gamble', 't+o6mvEj5FjdNd5TAZ1THA==', '+91 48909-92975', 'Valdez2@nowhere.com', 'Flats B-D', 'Female'),
-(16, 'Darwin Warden', 'r9ISK1F8bKjdIESOmuspUw==', '+91 74637-52861', 'Williemae_S.Arroyo77', 'Unit 24-37', 'Female'),
-(17, 'Mario Wilde', 'D47PkLPuidX2N7FYClUUAQ==', '+91 66795-69443', 'Addie_Mullins@exampl', 'Flats 1-8', 'Male'),
-(18, 'Wilburn Copeland', 'agxLUhkk/Tucww1VqorMKw==', '+91 85236-28901', 'Burks943@example.com', 'Arch 9', 'Male'),
-(19, 'Madison Aguirre', 'CWh4nsoG+qVOS1tU7cn5cg==', '+91 22280-68632', 'Adam.Thomson6@nowher', 'Railway Arch 57', 'Male'),
-(20, 'Carmelita Piper', '/MDNLo7V/Req32AqzlYcLQ==', '+91 61193-47111', 'Bartholomew@nowhere.', 'Railway Arch 1', 'Female'),
-(21, 'Edwin Minor', 'ih2UcRG9z/vRkkm/vIewmg==', '+91 43664-61837', 'Ackerman294@example.', 'Arch 16', 'Female'),
-(22, 'Delisa Dejesus', 'GWiR6lzWh1CenFJOdlWF4w==', '+91 07228-74593', 'Sammons293@example.c', 'Railway Arch 5', 'Male'),
-(23, 'Alonzo Buckley', 'jXMsqRT2U20O/xbd26/AYg==', '+91 55746-96466', 'JulesI.Slone@example', 'Flats 1-7', 'Female'),
-(24, 'Analisa Crowder', '5gFWaYJpSHD3vDZJRicGtA==', '+91 54353-62758', 'HenryLloyd@nowhere.c', 'Railway Arch 22A', 'Female'),
-(25, 'Rose Counts', 'gmIbLqDxHDOz0TqgPVlAJQ==', '+91 61409-08662', 'GaylordKnapp@example', 'Flats 2-7', 'Female'),
-(26, 'Adam Burrows', '3t8V/0Oh7JDhYQnuAev0AQ==', '+91 78909-45150', 'booowtxk_ppghdzzueq@', 'Railway Arch 7', 'Male'),
-(27, 'Sanda Mattison', 'qERZSa3Z7pWcS57G1W9L+Q==', '+91 43933-79559', 'DudleyKnapp@example.', 'Arch 58', 'Female'),
-(28, 'Jarrod Crowley', 'C8qcloLZmFzdvZsg06Fq+Q==', '+91 64878-35253', 'AnitraHCade793@examp', 'Arch 8', 'Male'),
-(29, 'Aide Abrams', 'r5RxcOBxZHC/UecwcAUgnA==', '+91 98428-41417', 'toivfefs.zbud@nowher', 'Railway Arch 27', 'Male'),
-(30, 'Monroe Castaneda', 'JFkte1hijrzELmlnyWQ32w==', '+91 94716-07132', 'EmmittMDewey@nowhere', 'Unit 5, Block C', 'Male'),
-(31, 'Dorthey Abernathy', 'wUYUcdhkeCoajceYrr+S6Q==', '+91 03270-83885', 'RickWarren@nowhere.c', 'Railway Arch 38C', 'Female'),
-(32, 'Tomas Acker', '0HdxK+9brlyOGbVU7thT+A==', '+91 75013-04783', 'LianaMattingly43@exa', 'Arch 24', 'Male'),
-(33, 'Wyatt Blackburn', 'qMBy8QdjUHqqgWGpvp54Vw==', '+91 68777-01659', 'Natalya_Donaldson74@', 'Railway Arch 7', 'Male'),
-(34, 'Alberta Beavers', '7Uz3IXLXfilz2HhFliDDOA==', '+91 85045-59610', 'Jordan.PVenable@exam', 'Railway Arch 9', 'Female'),
-(35, 'Adah Chesser', 'cJrXjgO/1vaCFvvolEM/MA==', '+91 70197-62662', 'CoraParr@example.com', 'Railway Arch 4', 'Female'),
-(36, 'Major Kimmel', 'l6Z4tltAhF595VVlNKP+xQ==', '+91 64640-93484', 'John_FGregg@example.', 'Railway Arch 65', 'Male'),
-(37, 'Abraham Amador', 'NPG8/GR8+ikx9bHnjYAR0g==', '+91 89691-12680', 'LowellNavarrete28@ex', 'Flats 1-8', 'Male'),
-(38, 'Sergio Acosta', 'wUYUcdhkeCoajceYrr+S6Q==', '+91 68212-15084', 'KareyChisolm@example', 'Railway Arch 1', 'Male'),
-(39, 'Britt Treadway', 'bI4KAKwxJnm+zVfI0ERpJQ==', '+91 37893-84031', 'xwrrh5@example.com', 'Railway Arch 5', 'Male'),
-(40, 'Gregory Leeper', 'pGw7VPLJhxzYHa96kySZwA==', '+91 28008-74197', 'Camp@nowhere.com', 'Railway Arch 4', 'Male'),
-(41, 'Glynis Valdez', 'RROgb6kmGjuoT3ttBa1CCg==', '+91 77066-64320', 'ntcxqcgw_xzmypko@exa', 'Arch 30B', 'Male'),
-(42, 'Fairy Obrien', 'Pa8bhfttbPsnCa9H6U3pEg==', '+91 51454-67847', 'McginnisY@nowhere.co', 'Arch 26', 'Female'),
-(43, 'Daniela Alcorn', 'ECiSLXjmTLR0jxtukZ/y3A==', '+91 00947-50644', 'Monty.Dewey7@example', 'Arch 9', 'Female'),
-(44, 'Lenny Alcala', 'XoBRJI6cJiBWnzCn7Z6jmg==', '+91 92625-34029', 'Krueger@example.com', 'Flats 4-8', 'Male'),
-(45, 'Kamala Abernathy', 'GrJfZZjEMim7CxEBWPkNpQ==', '+91 75848-80274', 'LeighDelong@example.', 'Railway Arch 3', 'Male'),
-(46, 'Naomi Hibbard', '0Qy2EMBK6VADjClgSENzfw==', '+91 89630-05438', 'obultsi6@nowhere.com', 'Flat 29', 'Male'),
-(47, 'Milford Dodd', 'ArorzvfkZi5YHiQoZ1mtNA==', '+91 02262-71707', 'AbdulSwan4@example.c', 'Railway Arch 3', 'Female'),
-(48, 'Cindy Shores', 'bBOyi09Fk6X2uHhqlR92PA==', '+91 47597-70265', 'Keenan.Crandall8@exa', 'Flats 1-7', 'Male'),
-(49, 'Devin Holiday', 'hCtZdFvZBkKW6y6a8GPPLQ==', '+91 84521-09716', 'Alford839@nowhere.co', 'Unit 21-49', 'Male'),
-(50, 'Jann Navarrete', '9P2MoQMy4rRD09fSPI7RFg==', '+91 16252-16243', 'Sherley_Hyland187@ex', 'Suite 5', 'Male');
+INSERT INTO Employee(ID, name, password, phone, email, address, sex, salary) VALUES
+(1, 'Abdul Franz', 'MJ/H07xTu2OsQuNZJgrHQA==', '+91 65263-18990', 'Sherry_XFranz94@nowh', 'Railway Arch 7', 'Male', 3397522),
+(2, 'Dana Bethea', 'LUJLGxAFBZfeAhy8OBPwkw==', '+91 02768-98343', 'Bud.Albrecht@nowhere', 'Railway Arch 27C', 'Female', 3984551),
+(3, 'Jeromy Vanburen', 'pdwGEoMSRw5/BJ46rQFMlw==', '+91 24204-24783', 'Russell@example.com', 'Flats 1-9', 'Male', 1828164),
+(4, 'Adan May', 'Q6ozdL7Lb25yWVKxoMBL6g==', '+91 37716-82515', 'AbelLott@example.com', 'Suite 94', 'Male', 5806368),
+(5, 'Charline Berman', 'oWIYH6vVWOQrJzqE1BwJYQ==', '+91 01815-20021', 'Harvey@example.com', 'Arch 3', 'Male', 3892884),
+(6, 'Roosevelt Lloyd', 'J8PzIxVyebBlI8d6mImZ1g==', '+91 63501-66022', 'MargotCroft43@exampl', 'Flat 64', 'Male', 341191),
+(7, 'Carson Burley', 'xBTVDGItYZox6p4tjt/K4A==', '+91 83395-04219', 'exmq9758@example.com', 'Flat 9', 'Male', 1091397),
+(8, 'Gabriel Cheatham', 'jGpcljmOgpgW+e5/sxfllw==', '+91 50257-66020', 'Ocampo@example.com', 'Suite 6', 'Male', 585477),
+(9, 'Elfrieda Fennell', 'iHWRdNgH+XzOnxeQHfK2cw==', '+91 55216-13486', 'Ellis_Batiste76@exam', 'Railway Arch 91', 'Male', 4128323),
+(10, 'Antone Coles', 'UiYX2cz28eSmNL5F3zZcTQ==', '+91 76208-02624', 'AbbyCreamer@example.', 'Flat 6', 'Male', 4432160),
+(11, 'Adelaida Mcfall', 'VnaAWmWke8MIqDXnN1ElIg==', '+91 19807-96493', 'BelindaCAtchison@exa', 'Railway Arch 5', 'Female', 3613662),
+(12, 'Annemarie Bess', 'hYmxOxhx5Qh3tXNMbW1dtw==', '+91 76948-57053', 'Annett.Ahmed@example', 'Suite 72', 'Female', 5453680),
+(13, 'Vincenzo Pugh', 'fy7fL6ghvibafwQGwQ/8lw==', '+91 58855-57017', 'izwgel258@example.co', 'Railway Arch 8', 'Male', 1371042),
+(14, 'Shon Abbott', 'Nf6IBfJAjqm0BIgW3DVWAg==', '+91 67947-11169', 'AlaneAldrich24@examp', 'Railway Arch 62', 'Male', 3062983),
+(15, 'Rickie Gamble', 't+o6mvEj5FjdNd5TAZ1THA==', '+91 48909-92975', 'Valdez2@nowhere.com', 'Flats B-D', 'Female', 5303608),
+(16, 'Darwin Warden', 'r9ISK1F8bKjdIESOmuspUw==', '+91 74637-52861', 'Williemae_S.Arroyo77', 'Unit 24-37', 'Female', 5267955),
+(17, 'Mario Wilde', 'D47PkLPuidX2N7FYClUUAQ==', '+91 66795-69443', 'Addie_Mullins@exampl', 'Flats 1-8', 'Male', 2078984),
+(18, 'Wilburn Copeland', 'agxLUhkk/Tucww1VqorMKw==', '+91 85236-28901', 'Burks943@example.com', 'Arch 9', 'Male', 1619309),
+(19, 'Madison Aguirre', 'CWh4nsoG+qVOS1tU7cn5cg==', '+91 22280-68632', 'Adam.Thomson6@nowher', 'Railway Arch 57', 'Male', 594445),
+(20, 'Carmelita Piper', '/MDNLo7V/Req32AqzlYcLQ==', '+91 61193-47111', 'Bartholomew@nowhere.', 'Railway Arch 1', 'Female', 3619084),
+(21, 'Edwin Minor', 'ih2UcRG9z/vRkkm/vIewmg==', '+91 43664-61837', 'Ackerman294@example.', 'Arch 16', 'Female', 5163556),
+(22, 'Delisa Dejesus', 'GWiR6lzWh1CenFJOdlWF4w==', '+91 07228-74593', 'Sammons293@example.c', 'Railway Arch 5', 'Male', 5830293),
+(23, 'Alonzo Buckley', 'jXMsqRT2U20O/xbd26/AYg==', '+91 55746-96466', 'JulesI.Slone@example', 'Flats 1-7', 'Female', 2174279),
+(24, 'Analisa Crowder', '5gFWaYJpSHD3vDZJRicGtA==', '+91 54353-62758', 'HenryLloyd@nowhere.c', 'Railway Arch 22A', 'Female', 4560461),
+(25, 'Rose Counts', 'gmIbLqDxHDOz0TqgPVlAJQ==', '+91 61409-08662', 'GaylordKnapp@example', 'Flats 2-7', 'Female', 2182116),
+(26, 'Adam Burrows', '3t8V/0Oh7JDhYQnuAev0AQ==', '+91 78909-45150', 'booowtxk_ppghdzzueq@', 'Railway Arch 7', 'Male', 2651907),
+(27, 'Sanda Mattison', 'qERZSa3Z7pWcS57G1W9L+Q==', '+91 43933-79559', 'DudleyKnapp@example.', 'Arch 58', 'Female', 404629),
+(28, 'Jarrod Crowley', 'C8qcloLZmFzdvZsg06Fq+Q==', '+91 64878-35253', 'AnitraHCade793@examp', 'Arch 8', 'Male', 1932554),
+(29, 'Aide Abrams', 'r5RxcOBxZHC/UecwcAUgnA==', '+91 98428-41417', 'toivfefs.zbud@nowher', 'Railway Arch 27', 'Male', 3437497),
+(30, 'Monroe Castaneda', 'JFkte1hijrzELmlnyWQ32w==', '+91 94716-07132', 'EmmittMDewey@nowhere', 'Unit 5, Block C', 'Male', 4005081),
+(31, 'Dorthey Abernathy', 'wUYUcdhkeCoajceYrr+S6Q==', '+91 03270-83885', 'RickWarren@nowhere.c', 'Railway Arch 38C', 'Female', 613631),
+(32, 'Tomas Acker', '0HdxK+9brlyOGbVU7thT+A==', '+91 75013-04783', 'LianaMattingly43@exa', 'Arch 24', 'Male', 4189683),
+(33, 'Wyatt Blackburn', 'qMBy8QdjUHqqgWGpvp54Vw==', '+91 68777-01659', 'Natalya_Donaldson74@', 'Railway Arch 7', 'Male', 4230510),
+(34, 'Alberta Beavers', '7Uz3IXLXfilz2HhFliDDOA==', '+91 85045-59610', 'Jordan.PVenable@exam', 'Railway Arch 9', 'Female', 1369217),
+(35, 'Adah Chesser', 'cJrXjgO/1vaCFvvolEM/MA==', '+91 70197-62662', 'CoraParr@example.com', 'Railway Arch 4', 'Female', 3758703),
+(36, 'Major Kimmel', 'l6Z4tltAhF595VVlNKP+xQ==', '+91 64640-93484', 'John_FGregg@example.', 'Railway Arch 65', 'Male', 527829),
+(37, 'Abraham Amador', 'NPG8/GR8+ikx9bHnjYAR0g==', '+91 89691-12680', 'LowellNavarrete28@ex', 'Flats 1-8', 'Male', 4112840),
+(38, 'Sergio Acosta', 'wUYUcdhkeCoajceYrr+S6Q==', '+91 68212-15084', 'KareyChisolm@example', 'Railway Arch 1', 'Male', 3745465),
+(39, 'Britt Treadway', 'bI4KAKwxJnm+zVfI0ERpJQ==', '+91 37893-84031', 'xwrrh5@example.com', 'Railway Arch 5', 'Male', 3048236),
+(40, 'Gregory Leeper', 'pGw7VPLJhxzYHa96kySZwA==', '+91 28008-74197', 'Camp@nowhere.com', 'Railway Arch 4', 'Male', 3882049),
+(41, 'Glynis Valdez', 'RROgb6kmGjuoT3ttBa1CCg==', '+91 77066-64320', 'ntcxqcgw_xzmypko@exa', 'Arch 30B', 'Male', 5980911),
+(42, 'Fairy Obrien', 'Pa8bhfttbPsnCa9H6U3pEg==', '+91 51454-67847', 'McginnisY@nowhere.co', 'Arch 26', 'Female', 2875465),
+(43, 'Daniela Alcorn', 'ECiSLXjmTLR0jxtukZ/y3A==', '+91 00947-50644', 'Monty.Dewey7@example', 'Arch 9', 'Female', 799893),
+(44, 'Lenny Alcala', 'XoBRJI6cJiBWnzCn7Z6jmg==', '+91 92625-34029', 'Krueger@example.com', 'Flats 4-8', 'Male', 5502444),
+(45, 'Kamala Abernathy', 'GrJfZZjEMim7CxEBWPkNpQ==', '+91 75848-80274', 'LeighDelong@example.', 'Railway Arch 3', 'Male', 3747436),
+(46, 'Naomi Hibbard', '0Qy2EMBK6VADjClgSENzfw==', '+91 89630-05438', 'obultsi6@nowhere.com', 'Flat 29', 'Male', 3581121),
+(47, 'Milford Dodd', 'ArorzvfkZi5YHiQoZ1mtNA==', '+91 02262-71707', 'AbdulSwan4@example.c', 'Railway Arch 3', 'Female', 856857),
+(48, 'Cindy Shores', 'bBOyi09Fk6X2uHhqlR92PA==', '+91 47597-70265', 'Keenan.Crandall8@exa', 'Flats 1-7', 'Male', 2830784),
+(49, 'Devin Holiday', 'hCtZdFvZBkKW6y6a8GPPLQ==', '+91 84521-09716', 'Alford839@nowhere.co', 'Unit 21-49', 'Male', 5591433),
+(50, 'Jann Navarrete', '9P2MoQMy4rRD09fSPI7RFg==', '+91 16252-16243', 'Sherley_Hyland187@ex', 'Suite 5', 'Male', 5966941);
 
 --
 -- Inserting data into table Invoice

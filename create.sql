@@ -10,7 +10,8 @@ create table Employee
     phone    varchar(20) not null,
     email    varchar(20) not null,
     address  varchar(20) not null,
-    sex      varchar(20) not null
+    sex      varchar(20) not null,
+    salary   int         not null
 );
 
 create table Nurse
