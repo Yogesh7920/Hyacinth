@@ -377,6 +377,27 @@
           <GeneratorCategory>Personal</GeneratorCategory>
           <Length>20</Length>
         </Column>
+        <Column Name="salary">
+          <Checked>true</Checked>
+          <DataType>INT</DataType>
+          <GeneratorOptions p6:type="MySqlIntegerGeneratorOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
+            <AllowNulls>false</AllowNulls>
+            <NullProportion>0</NullProportion>
+            <Unique>false</Unique>
+            <IsAlwaysUnique>false</IsAlwaysUnique>
+            <Increment xmlns:q7="http://www.w3.org/2001/XMLSchema" p6:type="q7:int">1</Increment>
+            <ValueDistributionMode>Seed</ValueDistributionMode>
+            <SeedValue>20</SeedValue>
+            <MinValue>300000</MinValue>
+            <MaxValue>6000000</MaxValue>
+            <UseDefault>false</UseDefault>
+          </GeneratorOptions>
+          <GeneratorType>MySqlIntegerGenerator</GeneratorType>
+          <GeneratorName>US Annual Salary</GeneratorName>
+          <GeneratorDescription>23500, 44600, 35800, 110000, ...</GeneratorDescription>
+          <GeneratorCategory>Personal</GeneratorCategory>
+          <Precision>11</Precision>
+        </Column>
       </Columns>
     </Table>
     <Table Name="Invoice">
@@ -401,7 +422,7 @@
             <NullProportion>0</NullProportion>
             <Unique>true</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
-            <Increment xmlns:q7="http://www.w3.org/2001/XMLSchema" p6:type="q7:int">1</Increment>
+            <Increment xmlns:q8="http://www.w3.org/2001/XMLSchema" p6:type="q8:int">1</Increment>
             <ValueDistributionMode>Sequential</ValueDistributionMode>
             <SeedValue>21</SeedValue>
             <MinValue>1</MinValue>
@@ -422,7 +443,7 @@
             <NullProportion>0</NullProportion>
             <Unique>false</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
-            <Increment xmlns:q8="http://www.w3.org/2001/XMLSchema" p6:type="q8:float">1</Increment>
+            <Increment xmlns:q9="http://www.w3.org/2001/XMLSchema" p6:type="q9:float">1</Increment>
             <ValueDistributionMode>Seed</ValueDistributionMode>
             <SeedValue>21</SeedValue>
             <MinValue>0</MinValue>
@@ -475,7 +496,7 @@
             <NullProportion>0</NullProportion>
             <Unique>true</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
-            <Increment xmlns:q9="http://www.w3.org/2001/XMLSchema" p6:type="q9:int">1</Increment>
+            <Increment xmlns:q10="http://www.w3.org/2001/XMLSchema" p6:type="q10:int">1</Increment>
             <ValueDistributionMode>Sequential</ValueDistributionMode>
             <SeedValue>26</SeedValue>
             <MinValue>1</MinValue>
@@ -606,11 +627,11 @@
             <IsAlwaysUnique>false</IsAlwaysUnique>
             <Values>
               <WeightedListItem>
-                <Value xmlns:q10="http://www.w3.org/2001/XMLSchema" p6:type="q10:string">Male</Value>
+                <Value xmlns:q11="http://www.w3.org/2001/XMLSchema" p6:type="q11:string">Male</Value>
                 <Weight>100</Weight>
               </WeightedListItem>
               <WeightedListItem>
-                <Value xmlns:q11="http://www.w3.org/2001/XMLSchema" p6:type="q11:string">Female</Value>
+                <Value xmlns:q12="http://www.w3.org/2001/XMLSchema" p6:type="q12:string">Female</Value>
                 <Weight>70</Weight>
               </WeightedListItem>
             </Values>
@@ -697,7 +718,7 @@
             <NullProportion>0</NullProportion>
             <Unique>true</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
-            <Increment xmlns:q12="http://www.w3.org/2001/XMLSchema" p6:type="q12:int">1</Increment>
+            <Increment xmlns:q13="http://www.w3.org/2001/XMLSchema" p6:type="q13:int">1</Increment>
             <ValueDistributionMode>Sequential</ValueDistributionMode>
             <SeedValue>27</SeedValue>
             <MinValue>1</MinValue>
@@ -773,7 +794,7 @@
             <NullProportion>0</NullProportion>
             <Unique>true</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
-            <Increment xmlns:q13="http://www.w3.org/2001/XMLSchema" p6:type="q13:int">1</Increment>
+            <Increment xmlns:q14="http://www.w3.org/2001/XMLSchema" p6:type="q14:int">1</Increment>
             <ValueDistributionMode>Sequential</ValueDistributionMode>
             <SeedValue>28</SeedValue>
             <MinValue>1</MinValue>
@@ -845,7 +866,7 @@
             <NullProportion>0</NullProportion>
             <Unique>true</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
-            <Increment xmlns:q14="http://www.w3.org/2001/XMLSchema" p6:type="q14:int">1</Increment>
+            <Increment xmlns:q15="http://www.w3.org/2001/XMLSchema" p6:type="q15:int">1</Increment>
             <ValueDistributionMode>Sequential</ValueDistributionMode>
             <SeedValue>31</SeedValue>
             <MinValue>1</MinValue>
@@ -962,7 +983,7 @@
             <NullProportion>0</NullProportion>
             <Unique>true</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
-            <Increment xmlns:q15="http://www.w3.org/2001/XMLSchema" p6:type="q15:int">1</Increment>
+            <Increment xmlns:q16="http://www.w3.org/2001/XMLSchema" p6:type="q16:int">1</Increment>
             <ValueDistributionMode>Sequential</ValueDistributionMode>
             <SeedValue>13</SeedValue>
             <MinValue>1</MinValue>
@@ -1109,7 +1130,7 @@
             <NullProportion>0</NullProportion>
             <Unique>true</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
-            <Increment xmlns:q16="http://www.w3.org/2001/XMLSchema" p6:type="q16:int">1</Increment>
+            <Increment xmlns:q17="http://www.w3.org/2001/XMLSchema" p6:type="q17:int">1</Increment>
             <ValueDistributionMode>Sequential</ValueDistributionMode>
             <SeedValue>17</SeedValue>
             <MinValue>40</MinValue>
@@ -1131,7 +1152,7 @@
             <NullProportion>0</NullProportion>
             <Unique>false</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
-            <Increment xmlns:q17="http://www.w3.org/2001/XMLSchema" p6:type="q17:int">1</Increment>
+            <Increment xmlns:q18="http://www.w3.org/2001/XMLSchema" p6:type="q18:int">1</Increment>
             <ValueDistributionMode>Seed</ValueDistributionMode>
             <SeedValue>17</SeedValue>
             <MinValue>0</MinValue>
@@ -1170,7 +1191,7 @@
             <NullProportion>10</NullProportion>
             <Unique>false</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
-            <Increment xmlns:q18="http://www.w3.org/2001/XMLSchema" p6:type="q18:float">1</Increment>
+            <Increment xmlns:q19="http://www.w3.org/2001/XMLSchema" p6:type="q19:float">1</Increment>
             <ValueDistributionMode>Seed</ValueDistributionMode>
             <SeedValue>17</SeedValue>
             <MinValue>0</MinValue>
@@ -1206,7 +1227,7 @@
             <NullProportion>0</NullProportion>
             <Unique>true</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
-            <Increment xmlns:q19="http://www.w3.org/2001/XMLSchema" p6:type="q19:int">1</Increment>
+            <Increment xmlns:q20="http://www.w3.org/2001/XMLSchema" p6:type="q20:int">1</Increment>
             <ValueDistributionMode>Sequential</ValueDistributionMode>
             <SeedValue>24</SeedValue>
             <MinValue>30</MinValue>
@@ -1282,7 +1303,7 @@
             <NullProportion>0</NullProportion>
             <Unique>true</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
-            <Increment xmlns:q20="http://www.w3.org/2001/XMLSchema" p6:type="q20:int">1</Increment>
+            <Increment xmlns:q21="http://www.w3.org/2001/XMLSchema" p6:type="q21:int">1</Increment>
             <ValueDistributionMode>Sequential</ValueDistributionMode>
             <SeedValue>8</SeedValue>
             <MinValue>1</MinValue>
@@ -1397,7 +1418,7 @@
             <NullProportion>0</NullProportion>
             <Unique>true</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
-            <Increment xmlns:q21="http://www.w3.org/2001/XMLSchema" p6:type="q21:int">1</Increment>
+            <Increment xmlns:q22="http://www.w3.org/2001/XMLSchema" p6:type="q22:int">1</Increment>
             <ValueDistributionMode>Seed</ValueDistributionMode>
             <SeedValue>1</SeedValue>
             <MinValue>50</MinValue>
@@ -1434,7 +1455,7 @@
             <NullProportion>0</NullProportion>
             <Unique>true</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
-            <Increment xmlns:q22="http://www.w3.org/2001/XMLSchema" p6:type="q22:int">1</Increment>
+            <Increment xmlns:q23="http://www.w3.org/2001/XMLSchema" p6:type="q23:int">1</Increment>
             <ValueDistributionMode>Sequential</ValueDistributionMode>
             <SeedValue>3</SeedValue>
             <MinValue>1</MinValue>
@@ -2016,7 +2037,7 @@
             <NullProportion>0</NullProportion>
             <Unique>false</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
-            <Increment xmlns:q23="http://www.w3.org/2001/XMLSchema" p6:type="q23:float">1</Increment>
+            <Increment xmlns:q24="http://www.w3.org/2001/XMLSchema" p6:type="q24:float">1</Increment>
             <ValueDistributionMode>Seed</ValueDistributionMode>
             <SeedValue>29</SeedValue>
             <MinValue>0</MinValue>
@@ -2103,7 +2124,6 @@
   </Tables>
   <SynchronizationOptions p2:type="DataSyncOptionGroup" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance">
     <SynchronizeType>File</SynchronizeType>
-    <OpenScriptInEditor>true</OpenScriptInEditor>
     <SynchronizationFileName>C:\Users\subha\Documents\git\Hyacinth\datagen.sql</SynchronizationFileName>
     <ExecuteCustomScriptTypeBefore>UseExternalScript</ExecuteCustomScriptTypeBefore>
     <ExternalScriptBefore>C:\Users\subha\Documents\git\Hyacinth\hyacinth.sql</ExternalScriptBefore>
