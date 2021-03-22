@@ -1,7 +1,7 @@
 drop database if exists Hyacinth;
 create database if not exists Hyacinth;
-use Hyacinth;
 
+use Hyacinth;
 
 create table Employee
 (
@@ -116,8 +116,8 @@ create table Consultation
 (
     ID        int primary key,
     problem   varchar(40),
-    doctorID  int unique,
-    patientID int unique,
+    doctorID  int,
+    patientID int,
     constraint FK_Doctor_Consultation foreign key (doctorID)
         references Doctor (ID)
         on delete cascade,
@@ -132,9 +132,9 @@ create table Appointment
     startTime      timestamp,
     endTime        timestamp,
     remarks        varchar(40),
-    invoiceId      int unique,
-    prescriptionId int unique,
-    consultationId int,
+    invoiceId      int unique not null,
+    prescriptionId int unique not null,
+    consultationId int not null,
     constraint FK_Consultation_Appointment foreign key (consultationId)
         references Consultation (ID)
         on delete cascade,
