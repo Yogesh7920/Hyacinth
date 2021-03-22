@@ -299,12 +299,12 @@
             <SeedValue>20</SeedValue>
             <Unique>false</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
-            <Expression>\+91 \d{5}\-\d{5}</Expression>
+            <Expression>\+91 [6-9]\d{9}</Expression>
           </GeneratorOptions>
-          <GeneratorType>MySqlRegularExpressionGenerator</GeneratorType>
-          <GeneratorName>Phone Number (domestic)</GeneratorName>
-          <GeneratorDescription>(102) 136-0584, (462) 681-9028, (252) 889-1273, ...</GeneratorDescription>
-          <GeneratorCategory>Personal</GeneratorCategory>
+          <GeneratorType>MySqlStringRegularExpressionGenerator</GeneratorType>
+          <GeneratorName>Reg Exp</GeneratorName>
+          <GeneratorDescription>values based on a regular expression</GeneratorDescription>
+          <HasCheckConstraint>true</HasCheckConstraint>
           <Length>20</Length>
         </Column>
         <Column Name="email">
@@ -325,7 +325,7 @@
           <GeneratorName>Email</GeneratorName>
           <GeneratorDescription>Danica.Foley@example.com, fstu@nowhere.com, CurtK_Burton@example.com, LaroseM696@nowhere.com, ...</GeneratorDescription>
           <GeneratorCategory>Personal</GeneratorCategory>
-          <Length>20</Length>
+          <Length>255</Length>
         </Column>
         <Column Name="address">
           <Checked>true</Checked>
@@ -350,31 +350,19 @@
         <Column Name="sex">
           <Checked>true</Checked>
           <DataType>VARCHAR</DataType>
-          <GeneratorOptions p6:type="MySqlWeightedListGeneratorRegexValuesOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
-            <AllowEmptyStrings>false</AllowEmptyStrings>
-            <EmptyStringProportion>10</EmptyStringProportion>
-            <MaxSize>20</MaxSize>
+          <GeneratorOptions p6:type="CheckConstraintGeneratorOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
+            <Unique>false</Unique>
+            <IsAlwaysUnique>false</IsAlwaysUnique>
             <AllowNulls>false</AllowNulls>
             <NullProportion>0</NullProportion>
             <ValueDistributionMode>Seed</ValueDistributionMode>
-            <SeedValue>20</SeedValue>
-            <Unique>false</Unique>
-            <IsAlwaysUnique>false</IsAlwaysUnique>
-            <Values>
-              <WeightedListItem>
-                <Value xmlns:q5="http://www.w3.org/2001/XMLSchema" p6:type="q5:string">Male</Value>
-                <Weight>100</Weight>
-              </WeightedListItem>
-              <WeightedListItem>
-                <Value xmlns:q6="http://www.w3.org/2001/XMLSchema" p6:type="q6:string">Female</Value>
-                <Weight>70</Weight>
-              </WeightedListItem>
-            </Values>
+            <SeedValue>22</SeedValue>
+            <IsApplyMeaningfulBounds>true</IsApplyMeaningfulBounds>
           </GeneratorOptions>
-          <GeneratorType>MySqlWeightedListGeneratorRegexValues</GeneratorType>
-          <GeneratorName>Gender</GeneratorName>
-          <GeneratorDescription>Male, Female</GeneratorDescription>
-          <GeneratorCategory>Personal</GeneratorCategory>
+          <GeneratorType>CheckConstraintGenerator</GeneratorType>
+          <GeneratorName>Check Constraint (auto assigned)</GeneratorName>
+          <GeneratorDescription>fill with values within the value range of the check constraint expression</GeneratorDescription>
+          <HasCheckConstraint>true</HasCheckConstraint>
           <Length>20</Length>
         </Column>
         <Column Name="salary">
@@ -385,7 +373,7 @@
             <NullProportion>0</NullProportion>
             <Unique>false</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
-            <Increment xmlns:q7="http://www.w3.org/2001/XMLSchema" p6:type="q7:int">1</Increment>
+            <Increment xmlns:q5="http://www.w3.org/2001/XMLSchema" p6:type="q5:int">1</Increment>
             <ValueDistributionMode>Seed</ValueDistributionMode>
             <SeedValue>20</SeedValue>
             <MinValue>300000</MinValue>
@@ -422,7 +410,7 @@
             <NullProportion>0</NullProportion>
             <Unique>true</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
-            <Increment xmlns:q8="http://www.w3.org/2001/XMLSchema" p6:type="q8:int">1</Increment>
+            <Increment xmlns:q6="http://www.w3.org/2001/XMLSchema" p6:type="q6:int">1</Increment>
             <ValueDistributionMode>Sequential</ValueDistributionMode>
             <SeedValue>21</SeedValue>
             <MinValue>1</MinValue>
@@ -443,7 +431,7 @@
             <NullProportion>0</NullProportion>
             <Unique>false</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
-            <Increment xmlns:q9="http://www.w3.org/2001/XMLSchema" p6:type="q9:float">1</Increment>
+            <Increment xmlns:q7="http://www.w3.org/2001/XMLSchema" p6:type="q7:float">1</Increment>
             <ValueDistributionMode>Seed</ValueDistributionMode>
             <SeedValue>21</SeedValue>
             <MinValue>0</MinValue>
@@ -496,7 +484,7 @@
             <NullProportion>0</NullProportion>
             <Unique>true</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
-            <Increment xmlns:q10="http://www.w3.org/2001/XMLSchema" p6:type="q10:int">1</Increment>
+            <Increment xmlns:q8="http://www.w3.org/2001/XMLSchema" p6:type="q8:int">1</Increment>
             <ValueDistributionMode>Sequential</ValueDistributionMode>
             <SeedValue>26</SeedValue>
             <MinValue>1</MinValue>
@@ -561,15 +549,15 @@
             <AllowNulls>false</AllowNulls>
             <NullProportion>0</NullProportion>
             <ValueDistributionMode>Seed</ValueDistributionMode>
-            <SeedValue>26</SeedValue>
+            <SeedValue>28</SeedValue>
             <Unique>false</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
-            <Expression>\+91\ \d{5}\-\d{5}</Expression>
+            <Expression>\+91 [6-9]\d{9}</Expression>
           </GeneratorOptions>
-          <GeneratorType>MySqlRegularExpressionGenerator</GeneratorType>
-          <GeneratorName>Phone Number (domestic)</GeneratorName>
-          <GeneratorDescription>(102) 136-0584, (462) 681-9028, (252) 889-1273, ...</GeneratorDescription>
-          <GeneratorCategory>Personal</GeneratorCategory>
+          <GeneratorType>MySqlStringRegularExpressionGenerator</GeneratorType>
+          <GeneratorName>Reg Exp</GeneratorName>
+          <GeneratorDescription>values based on a regular expression</GeneratorDescription>
+          <HasCheckConstraint>true</HasCheckConstraint>
           <Length>20</Length>
         </Column>
         <Column Name="email">
@@ -581,7 +569,7 @@
             <AllowNulls>false</AllowNulls>
             <NullProportion>0</NullProportion>
             <ValueDistributionMode>Seed</ValueDistributionMode>
-            <SeedValue>26</SeedValue>
+            <SeedValue>27</SeedValue>
             <Unique>false</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
             <Expression>(((((($"FirstNamesMale.txt")|($"FirstNamesFemale.txt"))[_.]?)?($"LastNames.txt"))|(($"LastNames.txt")\C?)|(((($"FirstNamesMale.txt")|($"FirstNamesFemale.txt"))[_.]?(\C[_.]?)?)?($"LastNames.txt")))(\D{,3})?|\c{4,8}(\d{1,4}|[_.]\c{4,10}))@(example$"7"|nowhere$"3").com</Expression>
@@ -615,31 +603,19 @@
         <Column Name="sex">
           <Checked>true</Checked>
           <DataType>VARCHAR</DataType>
-          <GeneratorOptions p6:type="MySqlWeightedListGeneratorRegexValuesOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
-            <AllowEmptyStrings>false</AllowEmptyStrings>
-            <EmptyStringProportion>10</EmptyStringProportion>
-            <MaxSize>20</MaxSize>
+          <GeneratorOptions p6:type="CheckConstraintGeneratorOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
+            <Unique>false</Unique>
+            <IsAlwaysUnique>false</IsAlwaysUnique>
             <AllowNulls>false</AllowNulls>
             <NullProportion>0</NullProportion>
             <ValueDistributionMode>Seed</ValueDistributionMode>
-            <SeedValue>26</SeedValue>
-            <Unique>false</Unique>
-            <IsAlwaysUnique>false</IsAlwaysUnique>
-            <Values>
-              <WeightedListItem>
-                <Value xmlns:q11="http://www.w3.org/2001/XMLSchema" p6:type="q11:string">Male</Value>
-                <Weight>100</Weight>
-              </WeightedListItem>
-              <WeightedListItem>
-                <Value xmlns:q12="http://www.w3.org/2001/XMLSchema" p6:type="q12:string">Female</Value>
-                <Weight>70</Weight>
-              </WeightedListItem>
-            </Values>
+            <SeedValue>30</SeedValue>
+            <IsApplyMeaningfulBounds>true</IsApplyMeaningfulBounds>
           </GeneratorOptions>
-          <GeneratorType>MySqlWeightedListGeneratorRegexValues</GeneratorType>
-          <GeneratorName>Gender</GeneratorName>
-          <GeneratorDescription>Male, Female</GeneratorDescription>
-          <GeneratorCategory>Personal</GeneratorCategory>
+          <GeneratorType>CheckConstraintGenerator</GeneratorType>
+          <GeneratorName>Check Constraint (auto assigned)</GeneratorName>
+          <GeneratorDescription>fill with values within the value range of the check constraint expression</GeneratorDescription>
+          <HasCheckConstraint>true</HasCheckConstraint>
           <Length>20</Length>
         </Column>
         <Column Name="medicalHistory">
@@ -718,7 +694,7 @@
             <NullProportion>0</NullProportion>
             <Unique>true</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
-            <Increment xmlns:q13="http://www.w3.org/2001/XMLSchema" p6:type="q13:int">1</Increment>
+            <Increment xmlns:q9="http://www.w3.org/2001/XMLSchema" p6:type="q9:int">1</Increment>
             <ValueDistributionMode>Sequential</ValueDistributionMode>
             <SeedValue>27</SeedValue>
             <MinValue>1</MinValue>
@@ -794,7 +770,7 @@
             <NullProportion>0</NullProportion>
             <Unique>true</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
-            <Increment xmlns:q14="http://www.w3.org/2001/XMLSchema" p6:type="q14:int">1</Increment>
+            <Increment xmlns:q10="http://www.w3.org/2001/XMLSchema" p6:type="q10:int">1</Increment>
             <ValueDistributionMode>Sequential</ValueDistributionMode>
             <SeedValue>28</SeedValue>
             <MinValue>1</MinValue>
@@ -866,7 +842,7 @@
             <NullProportion>0</NullProportion>
             <Unique>true</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
-            <Increment xmlns:q15="http://www.w3.org/2001/XMLSchema" p6:type="q15:int">1</Increment>
+            <Increment xmlns:q11="http://www.w3.org/2001/XMLSchema" p6:type="q11:int">1</Increment>
             <ValueDistributionMode>Sequential</ValueDistributionMode>
             <SeedValue>31</SeedValue>
             <MinValue>1</MinValue>
@@ -879,7 +855,7 @@
           <GeneratorCategory>Business</GeneratorCategory>
           <Precision>11</Precision>
         </Column>
-        <Column Name="Name">
+        <Column Name="name">
           <Checked>true</Checked>
           <DataType>VARCHAR</DataType>
           <GeneratorOptions p6:type="MySqlRegularExpressionGeneratorOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
@@ -888,7 +864,7 @@
             <AllowNulls>false</AllowNulls>
             <NullProportion>0</NullProportion>
             <ValueDistributionMode>Seed</ValueDistributionMode>
-            <SeedValue>31</SeedValue>
+            <SeedValue>35</SeedValue>
             <Unique>false</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
             <Expression>(((American|Australian|Canadian|Pacific|Federal|Global|Domestic|First|General|(West((ern)?|( Coast)))|North|East|South|Flexible|City|WorldWide|Home|Advanced|Beyond|Future|National|International|(Uni(on|ted))|Special|Professional|Smart|Creative) ))(Systems|((2|3|4|5)G )Wireless|(([A-Z]-)?Mobile)|Telecom(munications)?|(([2-7])D )Electronic|Entertainment|(Financial( Experts)?)|Services|Devices|(Logi(cs|stic))|(High-)?Technologies|(Renewable|Natural Gas|Fossil Fuel|Wave|Thermal|Solar|Wind|Green|Nuclear) (Energy|Resources|Power)|((Oil|Electricity)( &amp; Gas)?)|Investment|Insurance|Broadcasting|Trust|Tire &amp; Rubber|Engineering|Protection|Software|Cars( Battery)?|Equipment|Semiconductor|Business|Mining|Heating|Partners|Data|Computers|Security|Petroleum|Instruments|Laboratories|(Lasers &amp; )?Optics|Travel|(Space )?(Research|Explore)|Management|Consulting|Media|Telemetrics|Development|Materials|(F|G)oods|Transport(ation)?|Industry|Health( Care)?|Automotive|Products|Delivery) (((Inc|Co(rp)?).)|(Group|Corporation))</Expression>
@@ -899,7 +875,7 @@
           <GeneratorCategory>Business</GeneratorCategory>
           <Length>45</Length>
         </Column>
-        <Column Name="Phone">
+        <Column Name="phone">
           <Checked>true</Checked>
           <DataType>VARCHAR</DataType>
           <GeneratorOptions p6:type="MySqlRegularExpressionGeneratorOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
@@ -908,18 +884,18 @@
             <AllowNulls>false</AllowNulls>
             <NullProportion>0</NullProportion>
             <ValueDistributionMode>Seed</ValueDistributionMode>
-            <SeedValue>31</SeedValue>
+            <SeedValue>35</SeedValue>
             <Unique>false</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
-            <Expression>\+91 \d{5}\-\d{5}</Expression>
+            <Expression>\+91 [6-9]\d{9}</Expression>
           </GeneratorOptions>
-          <GeneratorType>MySqlRegularExpressionGenerator</GeneratorType>
-          <GeneratorName>Phone Number (local)</GeneratorName>
-          <GeneratorDescription>352-5422, 114-6587, 025-9635, 267-4128, 725-5250, ...</GeneratorDescription>
-          <GeneratorCategory>Personal</GeneratorCategory>
-          <Length>10</Length>
+          <GeneratorType>MySqlStringRegularExpressionGenerator</GeneratorType>
+          <GeneratorName>Reg Exp</GeneratorName>
+          <GeneratorDescription>values based on a regular expression</GeneratorDescription>
+          <HasCheckConstraint>true</HasCheckConstraint>
+          <Length>20</Length>
         </Column>
-        <Column Name="Address">
+        <Column Name="address">
           <Checked>true</Checked>
           <DataType>VARCHAR</DataType>
           <GeneratorOptions p6:type="MySqlRegularExpressionGeneratorOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
@@ -928,7 +904,7 @@
             <AllowNulls>false</AllowNulls>
             <NullProportion>0</NullProportion>
             <ValueDistributionMode>Seed</ValueDistributionMode>
-            <SeedValue>31</SeedValue>
+            <SeedValue>35</SeedValue>
             <Unique>false</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
             <Expression>(\D(\d(\d)?)?( (A-([B-E])))?|\D(\d(\d)?)?([A-E]?)?|[1-5]-[6-9]|[1-5][1-5]-[1-5][6-9]) ($"UKStreets.txt"), (($"UKTowns.txt")|($"UKCities.txt")), ($"UKCounties.txt") (AB|B|BA|BB|BD|BH|BL|BN|BR|BS|BT|CA|CB|CF|CH|CM|CO|CR|CT|CV|CW|DA|DE|DG|DH|DL|DN|DT|DY|E|EC|EH|EN|EX|FK|FY|G|GL|GU|H|HG|HP|HR|HS|HU|HX|IG|IM|IP|IV|KA|KT|KW|KY|L|LA|LD|LE|LL|LN|LS|LU|M|ME|MK|MK|N|NE|NG|NN|NP|NR|NW|OL|OX|PA|PE|PH|PL|PO|PR|RG|RH|RM|S|SA|SE|SG|SK|SL|SM|SN|SO|SP|SR|SS|ST|SW|SY|TA|TD|TF|TN|TQ|TR|TS|TW|UB|W|WA|WC|WD|WF|WN|WR|WS|WV|Y|ZE)(\D|\D\d) \D(A|B|D|E|F|G|H|J|N|P|Q|R|S|T|U|V|W|X|Y|Z){2}</Expression>
@@ -939,7 +915,7 @@
           <GeneratorCategory>Location</GeneratorCategory>
           <Length>100</Length>
         </Column>
-        <Column Name="Email">
+        <Column Name="email">
           <Checked>true</Checked>
           <DataType>VARCHAR</DataType>
           <GeneratorOptions p6:type="MySqlRegularExpressionGeneratorOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
@@ -948,7 +924,7 @@
             <AllowNulls>false</AllowNulls>
             <NullProportion>0</NullProportion>
             <ValueDistributionMode>Seed</ValueDistributionMode>
-            <SeedValue>31</SeedValue>
+            <SeedValue>33</SeedValue>
             <Unique>false</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
             <Expression>(((((($"FirstNamesMale.txt")|($"FirstNamesFemale.txt"))[_.]?)?($"LastNames.txt"))|(($"LastNames.txt")\C?)|(((($"FirstNamesMale.txt")|($"FirstNamesFemale.txt"))[_.]?(\C[_.]?)?)?($"LastNames.txt")))(\D{,3})?|\c{4,8}(\d{1,4}|[_.]\c{4,10}))@(example$"7"|nowhere$"3").com</Expression>
@@ -983,7 +959,7 @@
             <NullProportion>0</NullProportion>
             <Unique>true</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
-            <Increment xmlns:q16="http://www.w3.org/2001/XMLSchema" p6:type="q16:int">1</Increment>
+            <Increment xmlns:q12="http://www.w3.org/2001/XMLSchema" p6:type="q12:int">1</Increment>
             <ValueDistributionMode>Sequential</ValueDistributionMode>
             <SeedValue>13</SeedValue>
             <MinValue>1</MinValue>
@@ -1130,7 +1106,7 @@
             <NullProportion>0</NullProportion>
             <Unique>true</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
-            <Increment xmlns:q17="http://www.w3.org/2001/XMLSchema" p6:type="q17:int">1</Increment>
+            <Increment xmlns:q13="http://www.w3.org/2001/XMLSchema" p6:type="q13:int">1</Increment>
             <ValueDistributionMode>Sequential</ValueDistributionMode>
             <SeedValue>17</SeedValue>
             <MinValue>40</MinValue>
@@ -1152,7 +1128,7 @@
             <NullProportion>0</NullProportion>
             <Unique>false</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
-            <Increment xmlns:q18="http://www.w3.org/2001/XMLSchema" p6:type="q18:int">1</Increment>
+            <Increment xmlns:q14="http://www.w3.org/2001/XMLSchema" p6:type="q14:int">1</Increment>
             <ValueDistributionMode>Seed</ValueDistributionMode>
             <SeedValue>17</SeedValue>
             <MinValue>0</MinValue>
@@ -1191,7 +1167,7 @@
             <NullProportion>10</NullProportion>
             <Unique>false</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
-            <Increment xmlns:q19="http://www.w3.org/2001/XMLSchema" p6:type="q19:float">1</Increment>
+            <Increment xmlns:q15="http://www.w3.org/2001/XMLSchema" p6:type="q15:float">1</Increment>
             <ValueDistributionMode>Seed</ValueDistributionMode>
             <SeedValue>17</SeedValue>
             <MinValue>0</MinValue>
@@ -1227,7 +1203,7 @@
             <NullProportion>0</NullProportion>
             <Unique>true</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
-            <Increment xmlns:q20="http://www.w3.org/2001/XMLSchema" p6:type="q20:int">1</Increment>
+            <Increment xmlns:q16="http://www.w3.org/2001/XMLSchema" p6:type="q16:int">1</Increment>
             <ValueDistributionMode>Sequential</ValueDistributionMode>
             <SeedValue>24</SeedValue>
             <MinValue>30</MinValue>
@@ -1303,7 +1279,7 @@
             <NullProportion>0</NullProportion>
             <Unique>true</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
-            <Increment xmlns:q21="http://www.w3.org/2001/XMLSchema" p6:type="q21:int">1</Increment>
+            <Increment xmlns:q17="http://www.w3.org/2001/XMLSchema" p6:type="q17:int">1</Increment>
             <ValueDistributionMode>Sequential</ValueDistributionMode>
             <SeedValue>8</SeedValue>
             <MinValue>1</MinValue>
@@ -1418,7 +1394,7 @@
             <NullProportion>0</NullProportion>
             <Unique>true</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
-            <Increment xmlns:q22="http://www.w3.org/2001/XMLSchema" p6:type="q22:int">1</Increment>
+            <Increment xmlns:q18="http://www.w3.org/2001/XMLSchema" p6:type="q18:int">1</Increment>
             <ValueDistributionMode>Seed</ValueDistributionMode>
             <SeedValue>1</SeedValue>
             <MinValue>50</MinValue>
@@ -1455,7 +1431,7 @@
             <NullProportion>0</NullProportion>
             <Unique>true</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
-            <Increment xmlns:q23="http://www.w3.org/2001/XMLSchema" p6:type="q23:int">1</Increment>
+            <Increment xmlns:q19="http://www.w3.org/2001/XMLSchema" p6:type="q19:int">1</Increment>
             <ValueDistributionMode>Sequential</ValueDistributionMode>
             <SeedValue>3</SeedValue>
             <MinValue>1</MinValue>
@@ -1487,7 +1463,7 @@
             <OffsetFromColumnMinDays>0</OffsetFromColumnMinDays>
             <OffsetFromColumnMaxDays>7</OffsetFromColumnMaxDays>
             <MinDate>2018-01-01T00:00:00</MinDate>
-            <MaxDate>2021-03-17T00:00:00+05:30</MaxDate>
+            <MaxDate>2021-03-22T00:00:00+05:30</MaxDate>
             <IsRandomizeDate>true</IsRandomizeDate>
             <MinFraction>0</MinFraction>
             <MaxFraction>0</MaxFraction>
@@ -1502,6 +1478,7 @@
           <GeneratorType>MySqlTimestampGenerator</GeneratorType>
           <GeneratorName>timestamp</GeneratorName>
           <GeneratorDescription>fill with values that contain both date and time parts</GeneratorDescription>
+          <HasCheckConstraint>true</HasCheckConstraint>
         </Column>
         <Column Name="endTime">
           <Checked>true</Checked>
@@ -1521,9 +1498,9 @@
             <SelectedColumn>startTime</SelectedColumn>
             <UseOffsetDetails>true</UseOffsetDetails>
             <OffsetFromColumnMinDays>0</OffsetFromColumnMinDays>
-            <OffsetFromColumnMaxDays>3</OffsetFromColumnMaxDays>
-            <MinDate>2018-01-01T00:00:00</MinDate>
-            <MaxDate>2021-03-17T00:00:00+05:30</MaxDate>
+            <OffsetFromColumnMaxDays>4</OffsetFromColumnMaxDays>
+            <MinDate>1971-01-01T00:00:00</MinDate>
+            <MaxDate>2021-03-22T00:00:00+05:30</MaxDate>
             <IsRandomizeDate>true</IsRandomizeDate>
             <MinFraction>0</MinFraction>
             <MaxFraction>0</MaxFraction>
@@ -1538,6 +1515,7 @@
           <GeneratorType>MySqlTimestampGenerator</GeneratorType>
           <GeneratorName>timestamp</GeneratorName>
           <GeneratorDescription>fill with values that contain both date and time parts</GeneratorDescription>
+          <HasCheckConstraint>true</HasCheckConstraint>
         </Column>
         <Column Name="remarks">
           <Checked>true</Checked>
@@ -1908,7 +1886,7 @@
             <IsAlwaysUnique>false</IsAlwaysUnique>
             <UseDefault>false</UseDefault>
             <ValueDistributionMode>Seed</ValueDistributionMode>
-            <SeedValue>22</SeedValue>
+            <SeedValue>23</SeedValue>
             <SequentialValueTicks>864000000000</SequentialValueTicks>
             <OffsetFromColumnMaxTimeTicks>10000000</OffsetFromColumnMaxTimeTicks>
             <OffsetFromColumnMinTimeTicks>10000000</OffsetFromColumnMinTimeTicks>
@@ -1917,7 +1895,7 @@
             <OffsetFromColumnMinDays>0</OffsetFromColumnMinDays>
             <OffsetFromColumnMaxDays>7</OffsetFromColumnMaxDays>
             <MinDate>2018-01-01T00:00:00</MinDate>
-            <MaxDate>2021-03-17T00:00:00+05:30</MaxDate>
+            <MaxDate>2021-03-22T00:00:00+05:30</MaxDate>
             <IsRandomizeDate>true</IsRandomizeDate>
             <MinFraction>0</MinFraction>
             <MaxFraction>0</MaxFraction>
@@ -1932,6 +1910,7 @@
           <GeneratorType>MySqlDateTimeGenerator</GeneratorType>
           <GeneratorName>datetime</GeneratorName>
           <GeneratorDescription>fill with date and time with fractional seconds values</GeneratorDescription>
+          <HasCheckConstraint>true</HasCheckConstraint>
         </Column>
         <Column Name="endTime">
           <Checked>true</Checked>
@@ -1943,17 +1922,17 @@
             <IsAlwaysUnique>false</IsAlwaysUnique>
             <UseDefault>false</UseDefault>
             <ValueDistributionMode>Seed</ValueDistributionMode>
-            <SeedValue>23</SeedValue>
+            <SeedValue>24</SeedValue>
             <SequentialValueTicks>864000000000</SequentialValueTicks>
-            <OffsetFromColumnMaxTimeTicks>254410000000</OffsetFromColumnMaxTimeTicks>
+            <OffsetFromColumnMaxTimeTicks>10000000</OffsetFromColumnMaxTimeTicks>
             <OffsetFromColumnMinTimeTicks>10000000</OffsetFromColumnMinTimeTicks>
             <DateTimeRange>OffsetFromColumn</DateTimeRange>
             <SelectedColumn>startTime</SelectedColumn>
             <UseOffsetDetails>true</UseOffsetDetails>
             <OffsetFromColumnMinDays>0</OffsetFromColumnMinDays>
-            <OffsetFromColumnMaxDays>0</OffsetFromColumnMaxDays>
+            <OffsetFromColumnMaxDays>3</OffsetFromColumnMaxDays>
             <MinDate>1970-01-01T00:00:00</MinDate>
-            <MaxDate>2021-03-17T00:00:00+05:30</MaxDate>
+            <MaxDate>2021-03-22T00:00:00+05:30</MaxDate>
             <IsRandomizeDate>true</IsRandomizeDate>
             <MinFraction>0</MinFraction>
             <MaxFraction>0</MaxFraction>
@@ -1968,6 +1947,7 @@
           <GeneratorType>MySqlDateTimeGenerator</GeneratorType>
           <GeneratorName>datetime</GeneratorName>
           <GeneratorDescription>fill with date and time with fractional seconds values</GeneratorDescription>
+          <HasCheckConstraint>true</HasCheckConstraint>
         </Column>
       </Columns>
     </Table>
@@ -2037,7 +2017,7 @@
             <NullProportion>0</NullProportion>
             <Unique>false</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
-            <Increment xmlns:q24="http://www.w3.org/2001/XMLSchema" p6:type="q24:float">1</Increment>
+            <Increment xmlns:q20="http://www.w3.org/2001/XMLSchema" p6:type="q20:float">1</Increment>
             <ValueDistributionMode>Seed</ValueDistributionMode>
             <SeedValue>29</SeedValue>
             <MinValue>0</MinValue>
@@ -2058,7 +2038,7 @@
             <IsAlwaysUnique>false</IsAlwaysUnique>
             <UseDefault>false</UseDefault>
             <ValueDistributionMode>Seed</ValueDistributionMode>
-            <SeedValue>29</SeedValue>
+            <SeedValue>31</SeedValue>
             <SequentialValueTicks>864000000000</SequentialValueTicks>
             <OffsetFromColumnMaxTimeTicks>10000000</OffsetFromColumnMaxTimeTicks>
             <OffsetFromColumnMinTimeTicks>10000000</OffsetFromColumnMinTimeTicks>
@@ -2067,7 +2047,7 @@
             <OffsetFromColumnMinDays>0</OffsetFromColumnMinDays>
             <OffsetFromColumnMaxDays>7</OffsetFromColumnMaxDays>
             <MinDate>2018-01-01T00:00:00</MinDate>
-            <MaxDate>2021-03-17T00:00:00+05:30</MaxDate>
+            <MaxDate>2021-03-22T00:00:00+05:30</MaxDate>
             <IsRandomizeDate>true</IsRandomizeDate>
             <MinFraction>0</MinFraction>
             <MaxFraction>0</MaxFraction>
@@ -2082,28 +2062,29 @@
           <GeneratorType>MySqlDateTimeGenerator</GeneratorType>
           <GeneratorName>datetime</GeneratorName>
           <GeneratorDescription>fill with date and time with fractional seconds values</GeneratorDescription>
+          <HasCheckConstraint>true</HasCheckConstraint>
         </Column>
         <Column Name="supplyTime">
           <Checked>true</Checked>
           <DataType>DATETIME</DataType>
           <GeneratorOptions p6:type="MySqlDateTimeGeneratorOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
-            <AllowNulls>true</AllowNulls>
+            <AllowNulls>false</AllowNulls>
             <NullProportion>10</NullProportion>
             <Unique>false</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
             <UseDefault>false</UseDefault>
             <ValueDistributionMode>Seed</ValueDistributionMode>
-            <SeedValue>30</SeedValue>
+            <SeedValue>32</SeedValue>
             <SequentialValueTicks>864000000000</SequentialValueTicks>
             <OffsetFromColumnMaxTimeTicks>10000000</OffsetFromColumnMaxTimeTicks>
             <OffsetFromColumnMinTimeTicks>10000000</OffsetFromColumnMinTimeTicks>
             <DateTimeRange>OffsetFromColumn</DateTimeRange>
             <SelectedColumn>orderTime</SelectedColumn>
             <UseOffsetDetails>true</UseOffsetDetails>
-            <OffsetFromColumnMinDays>0</OffsetFromColumnMinDays>
+            <OffsetFromColumnMinDays>1</OffsetFromColumnMinDays>
             <OffsetFromColumnMaxDays>7</OffsetFromColumnMaxDays>
             <MinDate>1970-01-01T00:00:00</MinDate>
-            <MaxDate>2021-03-17T00:00:00+05:30</MaxDate>
+            <MaxDate>2021-03-22T00:00:00+05:30</MaxDate>
             <IsRandomizeDate>true</IsRandomizeDate>
             <MinFraction>0</MinFraction>
             <MaxFraction>0</MaxFraction>
@@ -2118,6 +2099,7 @@
           <GeneratorType>MySqlDateTimeGenerator</GeneratorType>
           <GeneratorName>datetime</GeneratorName>
           <GeneratorDescription>fill with date and time with fractional seconds values</GeneratorDescription>
+          <HasCheckConstraint>true</HasCheckConstraint>
         </Column>
       </Columns>
     </Table>
@@ -2125,7 +2107,7 @@
   <SynchronizationOptions p2:type="DataSyncOptionGroup" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance">
     <SynchronizeType>File</SynchronizeType>
     <SynchronizationFileName>C:\Users\subha\Documents\git\Hyacinth\datagen.sql</SynchronizationFileName>
-    <ExecuteCustomScriptTypeBefore>UseExternalScript</ExecuteCustomScriptTypeBefore>
+    <ExecuteCustomScriptTypeBefore>UseEmbeddedScript</ExecuteCustomScriptTypeBefore>
     <ExternalScriptBefore>C:\Users\subha\Documents\git\Hyacinth\hyacinth.sql</ExternalScriptBefore>
     <ExecuteCustomScriptTypeAfter>UseEmbeddedScript</ExecuteCustomScriptTypeAfter>
     <BulkInsert>false</BulkInsert>

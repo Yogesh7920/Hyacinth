@@ -8,13 +8,12 @@ create table Employee
     name     varchar(45) not null,
     password longtext    not null,
     phone    varchar(20) not null,
-    email    varchar(20) not null,
+    email    varchar(255) not null,
     address  varchar(20) not null,
     sex      varchar(20) not null,
     salary   int         not null,
-    check ( sex in ('Male', 'Female', 'Other') ),
-    check ( email regexp '^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$'),
-    check ( phone regexp '^[6-9]\d{9}$')
+    constraint SexCheck check ( sex in ('Male', 'Female', 'Other') ),
+    constraint PhoneCheck check ( phone regexp '^[\+]91 [6-9][[:digit:]]{9}$' )
 );
 
 create table Nurse
@@ -70,9 +69,8 @@ create table Patient
     sex            varchar(20) not null,
     medicalHistory varchar(300),
     marital        bool,
-    check ( sex in ('Male', 'Female', 'Other') ),
-    check ( email regexp '^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$'),
-    check ( phone regexp '^[6-9]\d{9}$')
+    constraint SexCheck check ( sex in ('Male', 'Female', 'Other') ),
+    constraint PhoneCheck check ( phone regexp '^[\+]91 [6-9][[:digit:]]{9}$' )
 );
 
 create table Prescription
@@ -92,11 +90,10 @@ create table Vendor
 (
     ID      int primary key,
     name    varchar(45)  not null,
-    phone   varchar(10)  not null,
+    phone   varchar(20)  not null,
     address varchar(100) not null,
-    email   varchar(20)  not null
-    check ( email regexp '^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$'),
-    check ( phone regexp '^[6-9]\d{9}$')
+    email   varchar(20)  not null,
+    constraint PhoneCheck check ( phone regexp '^[\+]91 [6-9][[:digit:]]{9}$' )
 
 );
 
@@ -144,6 +141,7 @@ create table Appointment
     invoiceId      int unique not null,
     prescriptionId int unique not null,
     consultationId int not null,
+    constraint DateTimeCheck check ( endTime > startTime ),
     constraint FK_Consultation_Appointment foreign key (consultationId)
         references Consultation (ID)
         on delete cascade,
@@ -162,6 +160,7 @@ create table Supplies
     price      float    not null,
     orderTime  datetime not null,
     supplyTime datetime,
+    constraint DateTimeCheck check ( supplyTime > orderTime ),
     constraint FK_Pharmacy_Supplies foreign key (drugID)
         references Pharmacy (ID)
         on delete cascade,
@@ -218,6 +217,7 @@ create table Journey
     address     varchar(100),
     startTime   datetime,
     endTime     datetime,
+    constraint DateTimeCheck check ( endTime > startTime ),
     constraint FK_Driver_Journey foreign key (driverID)
         references Driver (ID)
         on delete cascade,
