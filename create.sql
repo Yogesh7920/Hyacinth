@@ -11,7 +11,10 @@ create table Employee
     email    varchar(20) not null,
     address  varchar(20) not null,
     sex      varchar(20) not null,
-    salary   int         not null
+    salary   int         not null,
+    check ( sex in ('Male', 'Female', 'Other') ),
+    check ( email regexp '^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$'),
+    check ( phone regexp '^[6-9]\d{9}$')
 );
 
 create table Nurse
@@ -66,7 +69,10 @@ create table Patient
     address        varchar(20) not null,
     sex            varchar(20) not null,
     medicalHistory varchar(300),
-    marital        bool
+    marital        bool,
+    check ( sex in ('Male', 'Female', 'Other') ),
+    check ( email regexp '^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$'),
+    check ( phone regexp '^[6-9]\d{9}$')
 );
 
 create table Prescription
@@ -85,10 +91,13 @@ create table Diagnostics
 create table Vendor
 (
     ID      int primary key,
-    Name    varchar(45)  not null,
-    Phone   varchar(10)  not null,
-    Address varchar(100) not null,
-    Email   varchar(20)  not null
+    name    varchar(45)  not null,
+    phone   varchar(10)  not null,
+    address varchar(100) not null,
+    email   varchar(20)  not null
+    check ( email regexp '^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$'),
+    check ( phone regexp '^[6-9]\d{9}$')
+
 );
 
 create table Pharmacy
