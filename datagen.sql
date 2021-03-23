@@ -513,35 +513,35 @@ INSERT INTO Nurse(ID, qualification, license) VALUES
 -- Inserting data into table Consultation
 --
 INSERT INTO Consultation(ID, problem, doctorID, patientID) VALUES
-(1, 'Omnis et quis.\r\nNulla;', 20, 23),
+(1, 'Omnis et quis.\r\nNulla;', 2, 23),
 (2, 'Non omnis et; deleniti quae?', 7, 22),
-(3, 'Cumque qui recusandae;\r\n', 17, 17),
+(3, 'Cumque qui recusandae;\r\n', 7, 17),
 (4, 'Voluptatem vel enim. Vel.\r\n', 4, 12),
-(5, 'Nobis impedit quisquam. A.\r\n', 26, 43),
-(6, 'Culpa saepe facere.\r\n', 29, 47),
-(7, 'Dolor sit sint. Repellat quia.', 23, 29),
+(5, 'Nobis impedit quisquam. A.\r\n', 2, 43),
+(6, 'Culpa saepe facere.\r\n', 9, 47),
+(7, 'Dolor sit sint. Repellat quia.', 3, 29),
 (8, 'Ullam nihil ut. Saepe est;\r\n', 21, 38),
-(9, 'Illum cumque veritatis.\r\n', 27, 4),
-(10, 'Eum iste natus. Id.\r\n', 18, 24),
+(9, 'Illum cumque veritatis.\r\n', 2, 4),
+(10, 'Eum iste natus. Id.\r\n', 1, 24),
 (11, 'Voluptatem suscipit harum.\r\n', 1, 30),
 (12, 'Provident doloribus itaque.', 5, 45),
 (13, NULL, 24, 10),
 (14, 'Eos soluta autem;\r\n', 2, 18),
 (15, 'Iste sit nesciunt nam.', 15, 50),
-(16, 'Est architecto quas. Ut!\r\n', 28, 25),
+(16, 'Est architecto quas. Ut!\r\n', 8, 25),
 (17, 'Neque natus deleniti...\r\nMagnam.', 11, 48),
 (18, 'Qui error aspernatur. Earum.\r\n', 8, 46),
 (19, 'Ab molestias hic. Repellendus.', 12, 49),
 (20, 'Nam ut maxime.\r\nOdit quia.\r\n', 9, 44),
 (21, 'Et eum quod. Et provident!\r\n', 6, 39),
-(22, 'Cumque unde dolore. Odit;\r\n', 25, 34),
+(22, 'Cumque unde dolore. Odit;\r\n', 5, 34),
 (23, 'Magnam consequuntur beatae.\r\n', 3, 5),
-(24, 'Voluptas et veniam. Et ullam.', 22, 11),
+(24, 'Voluptas et veniam. Et ullam.', 2, 11),
 (25, 'Et vitae esse facere sed eos.', 19, 31),
-(26, 'Aut tempore maiores.\r\n', 16, 26),
+(26, 'Aut tempore maiores.\r\n', 1, 26),
 (27, 'Aliquid facere aliquam at.', 13, 13),
 (28, 'Sed et iure. Error eum placeat!', 10, 6),
-(29, 'Ut sed rerum. Voluptatem ipsum.', 14, 1);
+(29, 'Ut sed rerum. Voluptatem ipsum.', 4, 1);
 
 --
 -- Inserting data into table Admin
