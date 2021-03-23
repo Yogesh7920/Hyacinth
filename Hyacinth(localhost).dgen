@@ -216,7 +216,7 @@
         <RowsToGenerate>0</RowsToGenerate>
         <PopulationDetails>
           <PopulationType>RowsCount</PopulationType>
-          <RowsCount>1000</RowsCount>
+          <RowsCount>30</RowsCount>
           <LookupProportion>30</LookupProportion>
           <ProportionOfExistingData>10</ProportionOfExistingData>
           <TimeTicksToPopulate>100000000</TimeTicksToPopulate>
@@ -1397,8 +1397,8 @@
             <Increment xmlns:q18="http://www.w3.org/2001/XMLSchema" p6:type="q18:int">1</Increment>
             <ValueDistributionMode>Seed</ValueDistributionMode>
             <SeedValue>1</SeedValue>
-            <MinValue>40</MinValue>
-            <MaxValue>40</MaxValue>
+            <MinValue>30</MinValue>
+            <MaxValue>30</MaxValue>
             <UseDefault>false</UseDefault>
           </GeneratorOptions>
           <GeneratorType>MySqlIntegerGenerator</GeneratorType>
@@ -1697,7 +1697,7 @@
           <Checked>true</Checked>
           <DataType>INT</DataType>
           <GeneratorOptions p6:type="ForeignKeyGeneratorOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
-            <Unique>false</Unique>
+            <Unique>true</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
             <AllowNulls>false</AllowNulls>
             <NullProportion>0</NullProportion>
@@ -1779,7 +1779,7 @@
           <Checked>true</Checked>
           <DataType>INT</DataType>
           <GeneratorOptions p6:type="ForeignKeyGeneratorOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
-            <Unique>false</Unique>
+            <Unique>true</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
             <AllowNulls>false</AllowNulls>
             <NullProportion>0</NullProportion>
@@ -1880,7 +1880,7 @@
           <Checked>true</Checked>
           <DataType>DATETIME</DataType>
           <GeneratorOptions p6:type="MySqlDateTimeGeneratorOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
-            <AllowNulls>true</AllowNulls>
+            <AllowNulls>false</AllowNulls>
             <NullProportion>10</NullProportion>
             <Unique>false</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
@@ -1916,7 +1916,7 @@
           <Checked>true</Checked>
           <DataType>DATETIME</DataType>
           <GeneratorOptions p6:type="MySqlDateTimeGeneratorOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
-            <AllowNulls>true</AllowNulls>
+            <AllowNulls>false</AllowNulls>
             <NullProportion>10</NullProportion>
             <Unique>false</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
@@ -1969,7 +1969,7 @@
           <Checked>true</Checked>
           <DataType>INT</DataType>
           <GeneratorOptions p6:type="ForeignKeyGeneratorOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
-            <Unique>false</Unique>
+            <Unique>true</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
             <AllowNulls>false</AllowNulls>
             <NullProportion>0</NullProportion>
@@ -1991,7 +1991,7 @@
           <Checked>true</Checked>
           <DataType>INT</DataType>
           <GeneratorOptions p6:type="ForeignKeyGeneratorOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
-            <Unique>false</Unique>
+            <Unique>true</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
             <AllowNulls>false</AllowNulls>
             <NullProportion>0</NullProportion>
