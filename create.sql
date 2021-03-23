@@ -94,7 +94,6 @@ create table Vendor
     address varchar(100) not null,
     email   varchar(20)  not null,
     constraint PhoneCheck check ( phone regexp '^[\+]91 [6-9][[:digit:]]{9}$' )
-
 );
 
 create table Pharmacy
