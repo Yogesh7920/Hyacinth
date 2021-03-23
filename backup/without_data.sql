@@ -1,8 +1,8 @@
--- MariaDB dump 10.19  Distrib 10.5.9-MariaDB, for debian-linux-gnu (x86_64)
+-- MariaDB dump 10.18  Distrib 10.5.8-MariaDB, for Win64 (AMD64)
 --
--- Host: localhost    Database: Hyacinth
+-- Host: localhost    Database: hyacinth
 -- ------------------------------------------------------
--- Server version	10.5.9-MariaDB-1:10.5.9+maria~focal
+-- Server version	10.5.8-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -16,42 +16,42 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `Admin`
+-- Table structure for table `admin`
 --
 
-DROP TABLE IF EXISTS `Admin`;
+DROP TABLE IF EXISTS `admin`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Admin` (
+CREATE TABLE `admin` (
   `ID` int(11) NOT NULL,
   PRIMARY KEY (`ID`),
-  CONSTRAINT `FK_Employee_Admin` FOREIGN KEY (`ID`) REFERENCES `Employee` (`ID`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  CONSTRAINT `FK_Employee_Admin` FOREIGN KEY (`ID`) REFERENCES `employee` (`ID`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `Ambulance`
+-- Table structure for table `ambulance`
 --
 
-DROP TABLE IF EXISTS `Ambulance`;
+DROP TABLE IF EXISTS `ambulance`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Ambulance` (
+CREATE TABLE `ambulance` (
   `ID` int(11) NOT NULL,
   `lastMaintenance` datetime DEFAULT NULL,
   `totalDistance` float DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `Appointment`
+-- Table structure for table `appointment`
 --
 
-DROP TABLE IF EXISTS `Appointment`;
+DROP TABLE IF EXISTS `appointment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Appointment` (
+CREATE TABLE `appointment` (
   `ID` int(11) NOT NULL,
   `startTime` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `endTime` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
@@ -63,37 +63,38 @@ CREATE TABLE `Appointment` (
   UNIQUE KEY `invoiceId` (`invoiceId`),
   UNIQUE KEY `prescriptionId` (`prescriptionId`),
   KEY `FK_Consultation_Appointment` (`consultationId`),
-  CONSTRAINT `FK_Consultation_Appointment` FOREIGN KEY (`consultationId`) REFERENCES `Consultation` (`ID`) ON DELETE CASCADE,
-  CONSTRAINT `FK_Invoice_Appointment` FOREIGN KEY (`invoiceId`) REFERENCES `Invoice` (`ID`) ON DELETE CASCADE,
-  CONSTRAINT `FK_Prescription_Appointment` FOREIGN KEY (`prescriptionId`) REFERENCES `Prescription` (`ID`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  CONSTRAINT `FK_Consultation_Appointment` FOREIGN KEY (`consultationId`) REFERENCES `consultation` (`ID`) ON DELETE CASCADE,
+  CONSTRAINT `FK_Invoice_Appointment` FOREIGN KEY (`invoiceId`) REFERENCES `invoice` (`ID`) ON DELETE CASCADE,
+  CONSTRAINT `FK_Prescription_Appointment` FOREIGN KEY (`prescriptionId`) REFERENCES `prescription` (`ID`) ON DELETE CASCADE,
+  CONSTRAINT `DateTimeCheck` CHECK (`endTime` > `startTime`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `Assists`
+-- Table structure for table `assists`
 --
 
-DROP TABLE IF EXISTS `Assists`;
+DROP TABLE IF EXISTS `assists`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Assists` (
+CREATE TABLE `assists` (
   `nurseId` int(11) NOT NULL,
   `diagnosticsID` int(11) NOT NULL,
   PRIMARY KEY (`nurseId`,`diagnosticsID`),
   KEY `FK_Diagnostics_Assists` (`diagnosticsID`),
-  CONSTRAINT `FK_Diagnostics_Assists` FOREIGN KEY (`diagnosticsID`) REFERENCES `Diagnostics` (`ID`) ON DELETE CASCADE,
-  CONSTRAINT `FK_Nurse_Assists` FOREIGN KEY (`nurseId`) REFERENCES `Nurse` (`ID`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  CONSTRAINT `FK_Diagnostics_Assists` FOREIGN KEY (`diagnosticsID`) REFERENCES `diagnostics` (`ID`) ON DELETE CASCADE,
+  CONSTRAINT `FK_Nurse_Assists` FOREIGN KEY (`nurseId`) REFERENCES `nurse` (`ID`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `Consultation`
+-- Table structure for table `consultation`
 --
 
-DROP TABLE IF EXISTS `Consultation`;
+DROP TABLE IF EXISTS `consultation`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Consultation` (
+CREATE TABLE `consultation` (
   `ID` int(11) NOT NULL,
   `problem` varchar(40) DEFAULT NULL,
   `doctorID` int(11) DEFAULT NULL,
@@ -101,51 +102,51 @@ CREATE TABLE `Consultation` (
   PRIMARY KEY (`ID`),
   KEY `FK_Doctor_Consultation` (`doctorID`),
   KEY `FK_Patient_Consultation` (`patientID`),
-  CONSTRAINT `FK_Doctor_Consultation` FOREIGN KEY (`doctorID`) REFERENCES `Doctor` (`ID`) ON DELETE CASCADE,
-  CONSTRAINT `FK_Patient_Consultation` FOREIGN KEY (`patientID`) REFERENCES `Patient` (`ID`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  CONSTRAINT `FK_Doctor_Consultation` FOREIGN KEY (`doctorID`) REFERENCES `doctor` (`ID`) ON DELETE CASCADE,
+  CONSTRAINT `FK_Patient_Consultation` FOREIGN KEY (`patientID`) REFERENCES `patient` (`ID`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `Contains`
+-- Table structure for table `contains`
 --
 
-DROP TABLE IF EXISTS `Contains`;
+DROP TABLE IF EXISTS `contains`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Contains` (
+CREATE TABLE `contains` (
   `diagnosticsID` int(11) NOT NULL,
   `prescriptionID` int(11) NOT NULL,
   PRIMARY KEY (`diagnosticsID`,`prescriptionID`),
   KEY `FK_Prescription_Contains` (`prescriptionID`),
-  CONSTRAINT `FK_Diagnostics_Contains` FOREIGN KEY (`diagnosticsID`) REFERENCES `Diagnostics` (`ID`) ON DELETE CASCADE,
-  CONSTRAINT `FK_Prescription_Contains` FOREIGN KEY (`prescriptionID`) REFERENCES `Prescription` (`ID`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  CONSTRAINT `FK_Diagnostics_Contains` FOREIGN KEY (`diagnosticsID`) REFERENCES `diagnostics` (`ID`) ON DELETE CASCADE,
+  CONSTRAINT `FK_Prescription_Contains` FOREIGN KEY (`prescriptionID`) REFERENCES `prescription` (`ID`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `Diagnostics`
+-- Table structure for table `diagnostics`
 --
 
-DROP TABLE IF EXISTS `Diagnostics`;
+DROP TABLE IF EXISTS `diagnostics`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Diagnostics` (
+CREATE TABLE `diagnostics` (
   `ID` int(11) NOT NULL,
   `category` varchar(20) NOT NULL,
   `name` varchar(20) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `Doctor`
+-- Table structure for table `doctor`
 --
 
-DROP TABLE IF EXISTS `Doctor`;
+DROP TABLE IF EXISTS `doctor`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Doctor` (
+CREATE TABLE `doctor` (
   `ID` int(11) NOT NULL,
   `qualification` varchar(30) NOT NULL,
   `license` varchar(30) NOT NULL,
@@ -153,87 +154,89 @@ CREATE TABLE `Doctor` (
   `available` tinyint(1) NOT NULL,
   `specialization` varchar(30) NOT NULL,
   PRIMARY KEY (`ID`),
-  CONSTRAINT `FK_Employee_Doctor` FOREIGN KEY (`ID`) REFERENCES `Employee` (`ID`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  CONSTRAINT `FK_Employee_Doctor` FOREIGN KEY (`ID`) REFERENCES `employee` (`ID`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `Driver`
+-- Table structure for table `driver`
 --
 
-DROP TABLE IF EXISTS `Driver`;
+DROP TABLE IF EXISTS `driver`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Driver` (
+CREATE TABLE `driver` (
   `ID` int(11) NOT NULL,
   `experience` int(5) NOT NULL,
   `licenseNo` varchar(10) NOT NULL,
   `successRate` float DEFAULT NULL,
   PRIMARY KEY (`ID`),
-  CONSTRAINT `FK_Employee_Driver` FOREIGN KEY (`ID`) REFERENCES `Employee` (`ID`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  CONSTRAINT `FK_Employee_Driver` FOREIGN KEY (`ID`) REFERENCES `employee` (`ID`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `Drugs`
+-- Table structure for table `drugs`
 --
 
-DROP TABLE IF EXISTS `Drugs`;
+DROP TABLE IF EXISTS `drugs`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Drugs` (
+CREATE TABLE `drugs` (
   `prescriptionID` int(11) NOT NULL,
   `pharmacyID` int(11) NOT NULL,
   PRIMARY KEY (`prescriptionID`,`pharmacyID`),
   KEY `FK_Pharmacy_Drugs` (`pharmacyID`),
-  CONSTRAINT `FK_Pharmacy_Drugs` FOREIGN KEY (`pharmacyID`) REFERENCES `Pharmacy` (`ID`) ON DELETE CASCADE,
-  CONSTRAINT `FK_Prescription_Drugs` FOREIGN KEY (`prescriptionID`) REFERENCES `Prescription` (`ID`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  CONSTRAINT `FK_Pharmacy_Drugs` FOREIGN KEY (`pharmacyID`) REFERENCES `pharmacy` (`ID`) ON DELETE CASCADE,
+  CONSTRAINT `FK_Prescription_Drugs` FOREIGN KEY (`prescriptionID`) REFERENCES `prescription` (`ID`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `Employee`
+-- Table structure for table `employee`
 --
 
-DROP TABLE IF EXISTS `Employee`;
+DROP TABLE IF EXISTS `employee`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Employee` (
+CREATE TABLE `employee` (
   `ID` int(11) NOT NULL,
   `name` varchar(45) NOT NULL,
   `password` longtext NOT NULL,
   `phone` varchar(20) NOT NULL,
-  `email` varchar(20) NOT NULL,
+  `email` varchar(255) NOT NULL,
   `address` varchar(20) NOT NULL,
   `sex` varchar(20) NOT NULL,
   `salary` int(11) NOT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  PRIMARY KEY (`ID`),
+  CONSTRAINT `SexCheck` CHECK (`sex` in ('Male','Female','Other')),
+  CONSTRAINT `PhoneCheck` CHECK (`phone` regexp '^[+]91 [6-9][[:digit:]]{9}$')
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `Invoice`
+-- Table structure for table `invoice`
 --
 
-DROP TABLE IF EXISTS `Invoice`;
+DROP TABLE IF EXISTS `invoice`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Invoice` (
+CREATE TABLE `invoice` (
   `ID` int(11) NOT NULL,
   `amount` float NOT NULL,
   `isPaid` tinyint(1) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `Journey`
+-- Table structure for table `journey`
 --
 
-DROP TABLE IF EXISTS `Journey`;
+DROP TABLE IF EXISTS `journey`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Journey` (
+CREATE TABLE `journey` (
   `driverID` int(11) NOT NULL,
   `ambulanceId` int(11) NOT NULL,
   `address` varchar(100) DEFAULT NULL,
@@ -241,35 +244,36 @@ CREATE TABLE `Journey` (
   `endTime` datetime DEFAULT NULL,
   PRIMARY KEY (`driverID`,`ambulanceId`),
   KEY `FK_Ambulance_Journey` (`ambulanceId`),
-  CONSTRAINT `FK_Ambulance_Journey` FOREIGN KEY (`ambulanceId`) REFERENCES `Ambulance` (`ID`) ON DELETE CASCADE,
-  CONSTRAINT `FK_Driver_Journey` FOREIGN KEY (`driverID`) REFERENCES `Driver` (`ID`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  CONSTRAINT `FK_Ambulance_Journey` FOREIGN KEY (`ambulanceId`) REFERENCES `ambulance` (`ID`) ON DELETE CASCADE,
+  CONSTRAINT `FK_Driver_Journey` FOREIGN KEY (`driverID`) REFERENCES `driver` (`ID`) ON DELETE CASCADE,
+  CONSTRAINT `DateTimeCheck` CHECK (`endTime` > `startTime`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `Nurse`
+-- Table structure for table `nurse`
 --
 
-DROP TABLE IF EXISTS `Nurse`;
+DROP TABLE IF EXISTS `nurse`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Nurse` (
+CREATE TABLE `nurse` (
   `ID` int(11) NOT NULL,
   `qualification` varchar(30) NOT NULL,
   `license` varchar(30) NOT NULL,
   PRIMARY KEY (`ID`),
-  CONSTRAINT `FK_Employee_Nurse` FOREIGN KEY (`ID`) REFERENCES `Employee` (`ID`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  CONSTRAINT `FK_Employee_Nurse` FOREIGN KEY (`ID`) REFERENCES `employee` (`ID`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `Patient`
+-- Table structure for table `patient`
 --
 
-DROP TABLE IF EXISTS `Patient`;
+DROP TABLE IF EXISTS `patient`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Patient` (
+CREATE TABLE `patient` (
   `ID` int(11) NOT NULL,
   `name` varchar(45) NOT NULL,
   `password` longtext NOT NULL,
@@ -279,47 +283,49 @@ CREATE TABLE `Patient` (
   `sex` varchar(20) NOT NULL,
   `medicalHistory` varchar(300) DEFAULT NULL,
   `marital` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  PRIMARY KEY (`ID`),
+  CONSTRAINT `SexCheck` CHECK (`sex` in ('Male','Female','Other')),
+  CONSTRAINT `PhoneCheck` CHECK (`phone` regexp '^[+]91 [6-9][[:digit:]]{9}$')
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `Pharmacy`
+-- Table structure for table `pharmacy`
 --
 
-DROP TABLE IF EXISTS `Pharmacy`;
+DROP TABLE IF EXISTS `pharmacy`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Pharmacy` (
+CREATE TABLE `pharmacy` (
   `ID` int(11) NOT NULL,
   `name` varchar(45) NOT NULL,
   `category` varchar(20) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `Prescription`
+-- Table structure for table `prescription`
 --
 
-DROP TABLE IF EXISTS `Prescription`;
+DROP TABLE IF EXISTS `prescription`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Prescription` (
+CREATE TABLE `prescription` (
   `ID` int(11) NOT NULL,
   `timeStamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `Supplies`
+-- Table structure for table `supplies`
 --
 
-DROP TABLE IF EXISTS `Supplies`;
+DROP TABLE IF EXISTS `supplies`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Supplies` (
+CREATE TABLE `supplies` (
   `drugID` int(11) NOT NULL,
   `vendorID` int(11) NOT NULL,
   `price` float NOT NULL,
@@ -327,26 +333,28 @@ CREATE TABLE `Supplies` (
   `supplyTime` datetime DEFAULT NULL,
   PRIMARY KEY (`drugID`,`vendorID`),
   KEY `FK_Vendor_Supplies` (`vendorID`),
-  CONSTRAINT `FK_Pharmacy_Supplies` FOREIGN KEY (`drugID`) REFERENCES `Pharmacy` (`ID`) ON DELETE CASCADE,
-  CONSTRAINT `FK_Vendor_Supplies` FOREIGN KEY (`vendorID`) REFERENCES `Vendor` (`ID`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  CONSTRAINT `FK_Pharmacy_Supplies` FOREIGN KEY (`drugID`) REFERENCES `pharmacy` (`ID`) ON DELETE CASCADE,
+  CONSTRAINT `FK_Vendor_Supplies` FOREIGN KEY (`vendorID`) REFERENCES `vendor` (`ID`) ON DELETE CASCADE,
+  CONSTRAINT `DateTimeCheck` CHECK (`supplyTime` > `orderTime`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `Vendor`
+-- Table structure for table `vendor`
 --
 
-DROP TABLE IF EXISTS `Vendor`;
+DROP TABLE IF EXISTS `vendor`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Vendor` (
+CREATE TABLE `vendor` (
   `ID` int(11) NOT NULL,
-  `Name` varchar(45) NOT NULL,
-  `Phone` varchar(10) NOT NULL,
-  `Address` varchar(100) NOT NULL,
-  `Email` varchar(20) NOT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `name` varchar(45) NOT NULL,
+  `phone` varchar(20) NOT NULL,
+  `address` varchar(100) NOT NULL,
+  `email` varchar(20) NOT NULL,
+  PRIMARY KEY (`ID`),
+  CONSTRAINT `PhoneCheck` CHECK (`phone` regexp '^[+]91 [6-9][[:digit:]]{9}$')
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -358,4 +366,4 @@ CREATE TABLE `Vendor` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-03-22 10:42:11
+-- Dump completed on 2021-03-23 13:54:07
