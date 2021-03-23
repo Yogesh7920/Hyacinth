@@ -34,7 +34,7 @@
         <RowsToGenerate>0</RowsToGenerate>
         <PopulationDetails>
           <PopulationType>RowsCount</PopulationType>
-          <RowsCount>1000</RowsCount>
+          <RowsCount>30</RowsCount>
           <LookupProportion>30</LookupProportion>
           <ProportionOfExistingData>10</ProportionOfExistingData>
           <TimeTicksToPopulate>100000000</TimeTicksToPopulate>
@@ -53,7 +53,7 @@
             <ValueDistributionMode>Sequential</ValueDistributionMode>
             <SeedValue>2</SeedValue>
             <MinValue>1</MinValue>
-            <MaxValue>2147483647</MaxValue>
+            <MaxValue>30</MaxValue>
             <UseDefault>false</UseDefault>
           </GeneratorOptions>
           <GeneratorType>MySqlIntegerGenerator</GeneratorType>
@@ -126,7 +126,7 @@
         <RowsToGenerate>0</RowsToGenerate>
         <PopulationDetails>
           <PopulationType>RowsCount</PopulationType>
-          <RowsCount>1000</RowsCount>
+          <RowsCount>30</RowsCount>
           <LookupProportion>30</LookupProportion>
           <ProportionOfExistingData>10</ProportionOfExistingData>
           <TimeTicksToPopulate>100000000</TimeTicksToPopulate>
@@ -145,7 +145,7 @@
             <ValueDistributionMode>Sequential</ValueDistributionMode>
             <SeedValue>12</SeedValue>
             <MinValue>1</MinValue>
-            <MaxValue>2147483647</MaxValue>
+            <MaxValue>30</MaxValue>
             <UseDefault>false</UseDefault>
           </GeneratorOptions>
           <GeneratorType>MySqlIntegerGenerator</GeneratorType>
@@ -944,7 +944,7 @@
         <RowsToGenerate>0</RowsToGenerate>
         <PopulationDetails>
           <PopulationType>RowsCount</PopulationType>
-          <RowsCount>1000</RowsCount>
+          <RowsCount>15</RowsCount>
           <LookupProportion>30</LookupProportion>
           <ProportionOfExistingData>10</ProportionOfExistingData>
           <TimeTicksToPopulate>100000000</TimeTicksToPopulate>
@@ -963,7 +963,7 @@
             <ValueDistributionMode>Sequential</ValueDistributionMode>
             <SeedValue>13</SeedValue>
             <MinValue>1</MinValue>
-            <MaxValue>29</MaxValue>
+            <MaxValue>15</MaxValue>
             <UseDefault>false</UseDefault>
           </GeneratorOptions>
           <GeneratorType>MySqlIntegerGenerator</GeneratorType>
@@ -1091,7 +1091,7 @@
         <RowsToGenerate>0</RowsToGenerate>
         <PopulationDetails>
           <PopulationType>RowsCount</PopulationType>
-          <RowsCount>1000</RowsCount>
+          <RowsCount>4</RowsCount>
           <LookupProportion>30</LookupProportion>
           <ProportionOfExistingData>10</ProportionOfExistingData>
           <TimeTicksToPopulate>100000000</TimeTicksToPopulate>
@@ -1109,8 +1109,8 @@
             <Increment xmlns:q13="http://www.w3.org/2001/XMLSchema" p6:type="q13:int">1</Increment>
             <ValueDistributionMode>Sequential</ValueDistributionMode>
             <SeedValue>17</SeedValue>
-            <MinValue>40</MinValue>
-            <MaxValue>49</MaxValue>
+            <MinValue>26</MinValue>
+            <MaxValue>29</MaxValue>
             <UseDefault>false</UseDefault>
           </GeneratorOptions>
           <GeneratorType>MySqlIntegerGenerator</GeneratorType>
@@ -1188,7 +1188,7 @@
         <RowsToGenerate>0</RowsToGenerate>
         <PopulationDetails>
           <PopulationType>RowsCount</PopulationType>
-          <RowsCount>1000</RowsCount>
+          <RowsCount>10</RowsCount>
           <LookupProportion>30</LookupProportion>
           <ProportionOfExistingData>10</ProportionOfExistingData>
           <TimeTicksToPopulate>100000000</TimeTicksToPopulate>
@@ -1206,8 +1206,8 @@
             <Increment xmlns:q16="http://www.w3.org/2001/XMLSchema" p6:type="q16:int">1</Increment>
             <ValueDistributionMode>Sequential</ValueDistributionMode>
             <SeedValue>24</SeedValue>
-            <MinValue>30</MinValue>
-            <MaxValue>39</MaxValue>
+            <MinValue>16</MinValue>
+            <MaxValue>25</MaxValue>
             <UseDefault>false</UseDefault>
           </GeneratorOptions>
           <GeneratorType>MySqlIntegerGenerator</GeneratorType>
@@ -1330,15 +1330,15 @@
           <Checked>true</Checked>
           <DataType>INT</DataType>
           <GeneratorOptions p6:type="ForeignKeyGeneratorOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
-            <Unique>true</Unique>
+            <Unique>false</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
             <AllowNulls>false</AllowNulls>
             <NullProportion>10</NullProportion>
             <ValueDistributionMode>Seed</ValueDistributionMode>
             <SeedValue>8</SeedValue>
-            <RepeatValues>false</RepeatValues>
+            <RepeatValues>true</RepeatValues>
             <FromTimes>1</FromTimes>
-            <ToTimes>10</ToTimes>
+            <ToTimes>5</ToTimes>
             <ExcludeValues>false</ExcludeValues>
             <ExclusionValuesPercent>1</ExclusionValuesPercent>
           </GeneratorOptions>
@@ -1352,15 +1352,15 @@
           <Checked>true</Checked>
           <DataType>INT</DataType>
           <GeneratorOptions p6:type="ForeignKeyGeneratorOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
-            <Unique>true</Unique>
+            <Unique>false</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
             <AllowNulls>false</AllowNulls>
             <NullProportion>10</NullProportion>
             <ValueDistributionMode>Seed</ValueDistributionMode>
             <SeedValue>9</SeedValue>
-            <RepeatValues>false</RepeatValues>
+            <RepeatValues>true</RepeatValues>
             <FromTimes>1</FromTimes>
-            <ToTimes>10</ToTimes>
+            <ToTimes>2</ToTimes>
             <ExcludeValues>false</ExcludeValues>
             <ExclusionValuesPercent>1</ExclusionValuesPercent>
           </GeneratorOptions>
@@ -1379,7 +1379,7 @@
         <RowsToGenerate>0</RowsToGenerate>
         <PopulationDetails>
           <PopulationType>RowsCount</PopulationType>
-          <RowsCount>1000</RowsCount>
+          <RowsCount>1</RowsCount>
           <LookupProportion>30</LookupProportion>
           <ProportionOfExistingData>10</ProportionOfExistingData>
           <TimeTicksToPopulate>100000000</TimeTicksToPopulate>
@@ -1397,8 +1397,8 @@
             <Increment xmlns:q18="http://www.w3.org/2001/XMLSchema" p6:type="q18:int">1</Increment>
             <ValueDistributionMode>Seed</ValueDistributionMode>
             <SeedValue>1</SeedValue>
-            <MinValue>50</MinValue>
-            <MaxValue>50</MaxValue>
+            <MinValue>40</MinValue>
+            <MaxValue>40</MaxValue>
             <UseDefault>false</UseDefault>
           </GeneratorOptions>
           <GeneratorType>MySqlIntegerGenerator</GeneratorType>
@@ -1686,7 +1686,7 @@
         <RowsToGenerate>0</RowsToGenerate>
         <PopulationDetails>
           <PopulationType>RowsCount</PopulationType>
-          <RowsCount>1000</RowsCount>
+          <RowsCount>50</RowsCount>
           <LookupProportion>30</LookupProportion>
           <ProportionOfExistingData>10</ProportionOfExistingData>
           <TimeTicksToPopulate>100000000</TimeTicksToPopulate>
@@ -1697,15 +1697,15 @@
           <Checked>true</Checked>
           <DataType>INT</DataType>
           <GeneratorOptions p6:type="ForeignKeyGeneratorOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
-            <Unique>true</Unique>
+            <Unique>false</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
             <AllowNulls>false</AllowNulls>
             <NullProportion>0</NullProportion>
             <ValueDistributionMode>Seed</ValueDistributionMode>
             <SeedValue>10</SeedValue>
-            <RepeatValues>false</RepeatValues>
+            <RepeatValues>true</RepeatValues>
             <FromTimes>1</FromTimes>
-            <ToTimes>10</ToTimes>
+            <ToTimes>3</ToTimes>
             <ExcludeValues>false</ExcludeValues>
             <ExclusionValuesPercent>1</ExclusionValuesPercent>
           </GeneratorOptions>
@@ -1727,7 +1727,7 @@
             <SeedValue>11</SeedValue>
             <RepeatValues>false</RepeatValues>
             <FromTimes>1</FromTimes>
-            <ToTimes>10</ToTimes>
+            <ToTimes>2</ToTimes>
             <ExcludeValues>false</ExcludeValues>
             <ExclusionValuesPercent>1</ExclusionValuesPercent>
           </GeneratorOptions>
@@ -1765,7 +1765,7 @@
             <SeedValue>18</SeedValue>
             <RepeatValues>false</RepeatValues>
             <FromTimes>1</FromTimes>
-            <ToTimes>10</ToTimes>
+            <ToTimes>2</ToTimes>
             <ExcludeValues>false</ExcludeValues>
             <ExclusionValuesPercent>1</ExclusionValuesPercent>
           </GeneratorOptions>
@@ -1779,15 +1779,15 @@
           <Checked>true</Checked>
           <DataType>INT</DataType>
           <GeneratorOptions p6:type="ForeignKeyGeneratorOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
-            <Unique>true</Unique>
+            <Unique>false</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
             <AllowNulls>false</AllowNulls>
             <NullProportion>0</NullProportion>
             <ValueDistributionMode>Seed</ValueDistributionMode>
             <SeedValue>19</SeedValue>
-            <RepeatValues>false</RepeatValues>
+            <RepeatValues>true</RepeatValues>
             <FromTimes>1</FromTimes>
-            <ToTimes>10</ToTimes>
+            <ToTimes>3</ToTimes>
             <ExcludeValues>false</ExcludeValues>
             <ExclusionValuesPercent>1</ExclusionValuesPercent>
           </GeneratorOptions>
@@ -1806,7 +1806,7 @@
         <RowsToGenerate>0</RowsToGenerate>
         <PopulationDetails>
           <PopulationType>RowsCount</PopulationType>
-          <RowsCount>1000</RowsCount>
+          <RowsCount>50</RowsCount>
           <LookupProportion>30</LookupProportion>
           <ProportionOfExistingData>10</ProportionOfExistingData>
           <TimeTicksToPopulate>100000000</TimeTicksToPopulate>
@@ -1847,7 +1847,7 @@
             <SeedValue>23</SeedValue>
             <RepeatValues>false</RepeatValues>
             <FromTimes>1</FromTimes>
-            <ToTimes>10</ToTimes>
+            <ToTimes>1</ToTimes>
             <ExcludeValues>false</ExcludeValues>
             <ExclusionValuesPercent>1</ExclusionValuesPercent>
           </GeneratorOptions>
@@ -1969,15 +1969,15 @@
           <Checked>true</Checked>
           <DataType>INT</DataType>
           <GeneratorOptions p6:type="ForeignKeyGeneratorOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
-            <Unique>true</Unique>
+            <Unique>false</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
             <AllowNulls>false</AllowNulls>
             <NullProportion>0</NullProportion>
             <ValueDistributionMode>Seed</ValueDistributionMode>
             <SeedValue>29</SeedValue>
-            <RepeatValues>false</RepeatValues>
+            <RepeatValues>true</RepeatValues>
             <FromTimes>1</FromTimes>
-            <ToTimes>10</ToTimes>
+            <ToTimes>3</ToTimes>
             <ExcludeValues>false</ExcludeValues>
             <ExclusionValuesPercent>1</ExclusionValuesPercent>
           </GeneratorOptions>
@@ -1991,15 +1991,15 @@
           <Checked>true</Checked>
           <DataType>INT</DataType>
           <GeneratorOptions p6:type="ForeignKeyGeneratorOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
-            <Unique>true</Unique>
+            <Unique>false</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
             <AllowNulls>false</AllowNulls>
             <NullProportion>0</NullProportion>
             <ValueDistributionMode>Seed</ValueDistributionMode>
             <SeedValue>30</SeedValue>
-            <RepeatValues>false</RepeatValues>
+            <RepeatValues>true</RepeatValues>
             <FromTimes>1</FromTimes>
-            <ToTimes>10</ToTimes>
+            <ToTimes>2</ToTimes>
             <ExcludeValues>false</ExcludeValues>
             <ExclusionValuesPercent>1</ExclusionValuesPercent>
           </GeneratorOptions>
