@@ -65,7 +65,8 @@ CREATE TABLE `Appointment` (
   KEY `FK_Consultation_Appointment` (`consultationId`),
   CONSTRAINT `FK_Consultation_Appointment` FOREIGN KEY (`consultationId`) REFERENCES `Consultation` (`ID`) ON DELETE CASCADE,
   CONSTRAINT `FK_Invoice_Appointment` FOREIGN KEY (`invoiceId`) REFERENCES `Invoice` (`ID`) ON DELETE CASCADE,
-  CONSTRAINT `FK_Prescription_Appointment` FOREIGN KEY (`prescriptionId`) REFERENCES `Prescription` (`ID`) ON DELETE CASCADE
+  CONSTRAINT `FK_Prescription_Appointment` FOREIGN KEY (`prescriptionId`) REFERENCES `Prescription` (`ID`) ON DELETE CASCADE,
+  CONSTRAINT `DateTimeCheck` CHECK (`endTime` > `startTime`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -203,11 +204,13 @@ CREATE TABLE `Employee` (
   `name` varchar(45) NOT NULL,
   `password` longtext NOT NULL,
   `phone` varchar(20) NOT NULL,
-  `email` varchar(20) NOT NULL,
+  `email` varchar(255) NOT NULL,
   `address` varchar(20) NOT NULL,
   `sex` varchar(20) NOT NULL,
   `salary` int(11) NOT NULL,
-  PRIMARY KEY (`ID`)
+  PRIMARY KEY (`ID`),
+  CONSTRAINT `SexCheck` CHECK (`sex` in ('Male','Female','Other')),
+  CONSTRAINT `PhoneCheck` CHECK (`phone` regexp '^[+]91 [6-9][[:digit:]]{9}$')
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -242,7 +245,8 @@ CREATE TABLE `Journey` (
   PRIMARY KEY (`driverID`,`ambulanceId`),
   KEY `FK_Ambulance_Journey` (`ambulanceId`),
   CONSTRAINT `FK_Ambulance_Journey` FOREIGN KEY (`ambulanceId`) REFERENCES `Ambulance` (`ID`) ON DELETE CASCADE,
-  CONSTRAINT `FK_Driver_Journey` FOREIGN KEY (`driverID`) REFERENCES `Driver` (`ID`) ON DELETE CASCADE
+  CONSTRAINT `FK_Driver_Journey` FOREIGN KEY (`driverID`) REFERENCES `Driver` (`ID`) ON DELETE CASCADE,
+  CONSTRAINT `DateTimeCheck` CHECK (`endTime` > `startTime`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -279,7 +283,9 @@ CREATE TABLE `Patient` (
   `sex` varchar(20) NOT NULL,
   `medicalHistory` varchar(300) DEFAULT NULL,
   `marital` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`ID`)
+  PRIMARY KEY (`ID`),
+  CONSTRAINT `SexCheck` CHECK (`sex` in ('Male','Female','Other')),
+  CONSTRAINT `PhoneCheck` CHECK (`phone` regexp '^[+]91 [6-9][[:digit:]]{9}$')
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -328,7 +334,8 @@ CREATE TABLE `Supplies` (
   PRIMARY KEY (`drugID`,`vendorID`),
   KEY `FK_Vendor_Supplies` (`vendorID`),
   CONSTRAINT `FK_Pharmacy_Supplies` FOREIGN KEY (`drugID`) REFERENCES `Pharmacy` (`ID`) ON DELETE CASCADE,
-  CONSTRAINT `FK_Vendor_Supplies` FOREIGN KEY (`vendorID`) REFERENCES `Vendor` (`ID`) ON DELETE CASCADE
+  CONSTRAINT `FK_Vendor_Supplies` FOREIGN KEY (`vendorID`) REFERENCES `Vendor` (`ID`) ON DELETE CASCADE,
+  CONSTRAINT `DateTimeCheck` CHECK (`supplyTime` > `orderTime`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -341,11 +348,12 @@ DROP TABLE IF EXISTS `Vendor`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Vendor` (
   `ID` int(11) NOT NULL,
-  `Name` varchar(45) NOT NULL,
-  `Phone` varchar(10) NOT NULL,
-  `Address` varchar(100) NOT NULL,
-  `Email` varchar(20) NOT NULL,
-  PRIMARY KEY (`ID`)
+  `name` varchar(45) NOT NULL,
+  `phone` varchar(20) NOT NULL,
+  `address` varchar(100) NOT NULL,
+  `email` varchar(20) NOT NULL,
+  PRIMARY KEY (`ID`),
+  CONSTRAINT `PhoneCheck` CHECK (`phone` regexp '^[+]91 [6-9][[:digit:]]{9}$')
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -358,4 +366,4 @@ CREATE TABLE `Vendor` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-03-22 10:42:11
+-- Dump completed on 2021-03-23  8:30:43
