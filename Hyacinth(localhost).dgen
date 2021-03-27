@@ -41,7 +41,7 @@
         </PopulationDetails>
       </Settings>
       <Columns>
-        <Column Name="ID">
+        <Column Name="ambulanceID">
           <Checked>true</Checked>
           <DataType>INT</DataType>
           <GeneratorOptions p6:type="MySqlIntegerGeneratorOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
@@ -53,7 +53,7 @@
             <ValueDistributionMode>Sequential</ValueDistributionMode>
             <SeedValue>2</SeedValue>
             <MinValue>1</MinValue>
-            <MaxValue>30</MaxValue>
+            <MaxValue>2147483647</MaxValue>
             <UseDefault>false</UseDefault>
           </GeneratorOptions>
           <GeneratorType>MySqlIntegerGenerator</GeneratorType>
@@ -133,7 +133,7 @@
         </PopulationDetails>
       </Settings>
       <Columns>
-        <Column Name="ID">
+        <Column Name="diagnosticsID">
           <Checked>true</Checked>
           <DataType>INT</DataType>
           <GeneratorOptions p6:type="MySqlIntegerGeneratorOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
@@ -145,7 +145,7 @@
             <ValueDistributionMode>Sequential</ValueDistributionMode>
             <SeedValue>12</SeedValue>
             <MinValue>1</MinValue>
-            <MaxValue>30</MaxValue>
+            <MaxValue>2147483647</MaxValue>
             <UseDefault>false</UseDefault>
           </GeneratorOptions>
           <GeneratorType>MySqlIntegerGenerator</GeneratorType>
@@ -223,7 +223,7 @@
         </PopulationDetails>
       </Settings>
       <Columns>
-        <Column Name="ID">
+        <Column Name="employeeID">
           <Checked>true</Checked>
           <DataType>INT</DataType>
           <GeneratorOptions p6:type="MySqlIntegerGeneratorOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
@@ -402,7 +402,7 @@
         </PopulationDetails>
       </Settings>
       <Columns>
-        <Column Name="ID">
+        <Column Name="invoiceID">
           <Checked>true</Checked>
           <DataType>INT</DataType>
           <GeneratorOptions p6:type="MySqlIntegerGeneratorOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
@@ -412,7 +412,7 @@
             <IsAlwaysUnique>false</IsAlwaysUnique>
             <Increment xmlns:q6="http://www.w3.org/2001/XMLSchema" p6:type="q6:int">1</Increment>
             <ValueDistributionMode>Sequential</ValueDistributionMode>
-            <SeedValue>21</SeedValue>
+            <SeedValue>22</SeedValue>
             <MinValue>1</MinValue>
             <MaxValue>2147483647</MaxValue>
             <UseDefault>false</UseDefault>
@@ -476,7 +476,7 @@
         </PopulationDetails>
       </Settings>
       <Columns>
-        <Column Name="ID">
+        <Column Name="patientID">
           <Checked>true</Checked>
           <DataType>INT</DataType>
           <GeneratorOptions p6:type="MySqlIntegerGeneratorOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
@@ -486,7 +486,7 @@
             <IsAlwaysUnique>false</IsAlwaysUnique>
             <Increment xmlns:q8="http://www.w3.org/2001/XMLSchema" p6:type="q8:int">1</Increment>
             <ValueDistributionMode>Sequential</ValueDistributionMode>
-            <SeedValue>26</SeedValue>
+            <SeedValue>27</SeedValue>
             <MinValue>1</MinValue>
             <MaxValue>2147483647</MaxValue>
             <UseDefault>false</UseDefault>
@@ -686,7 +686,7 @@
         </PopulationDetails>
       </Settings>
       <Columns>
-        <Column Name="ID">
+        <Column Name="pharmacyID">
           <Checked>true</Checked>
           <DataType>INT</DataType>
           <GeneratorOptions p6:type="MySqlIntegerGeneratorOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
@@ -696,7 +696,7 @@
             <IsAlwaysUnique>false</IsAlwaysUnique>
             <Increment xmlns:q9="http://www.w3.org/2001/XMLSchema" p6:type="q9:int">1</Increment>
             <ValueDistributionMode>Sequential</ValueDistributionMode>
-            <SeedValue>27</SeedValue>
+            <SeedValue>29</SeedValue>
             <MinValue>1</MinValue>
             <MaxValue>2147483647</MaxValue>
             <UseDefault>false</UseDefault>
@@ -762,7 +762,7 @@
         </PopulationDetails>
       </Settings>
       <Columns>
-        <Column Name="ID">
+        <Column Name="prescriptionID">
           <Checked>true</Checked>
           <DataType>INT</DataType>
           <GeneratorOptions p6:type="MySqlIntegerGeneratorOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
@@ -772,7 +772,7 @@
             <IsAlwaysUnique>false</IsAlwaysUnique>
             <Increment xmlns:q10="http://www.w3.org/2001/XMLSchema" p6:type="q10:int">1</Increment>
             <ValueDistributionMode>Sequential</ValueDistributionMode>
-            <SeedValue>28</SeedValue>
+            <SeedValue>30</SeedValue>
             <MinValue>1</MinValue>
             <MaxValue>2147483647</MaxValue>
             <UseDefault>false</UseDefault>
@@ -834,7 +834,7 @@
         </PopulationDetails>
       </Settings>
       <Columns>
-        <Column Name="ID">
+        <Column Name="vendorID">
           <Checked>true</Checked>
           <DataType>INT</DataType>
           <GeneratorOptions p6:type="MySqlIntegerGeneratorOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
@@ -844,7 +844,7 @@
             <IsAlwaysUnique>false</IsAlwaysUnique>
             <Increment xmlns:q11="http://www.w3.org/2001/XMLSchema" p6:type="q11:int">1</Increment>
             <ValueDistributionMode>Sequential</ValueDistributionMode>
-            <SeedValue>31</SeedValue>
+            <SeedValue>33</SeedValue>
             <MinValue>1</MinValue>
             <MaxValue>2147483647</MaxValue>
             <UseDefault>false</UseDefault>
@@ -951,7 +951,7 @@
         </PopulationDetails>
       </Settings>
       <Columns>
-        <Column Name="ID">
+        <Column Name="doctorID">
           <Checked>true</Checked>
           <DataType>INT</DataType>
           <GeneratorOptions p6:type="MySqlIntegerGeneratorOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
@@ -962,14 +962,13 @@
             <Increment xmlns:q12="http://www.w3.org/2001/XMLSchema" p6:type="q12:int">1</Increment>
             <ValueDistributionMode>Sequential</ValueDistributionMode>
             <SeedValue>13</SeedValue>
-            <MinValue>1</MinValue>
-            <MaxValue>15</MaxValue>
+            <MinValue>2</MinValue>
+            <MaxValue>17</MaxValue>
             <UseDefault>false</UseDefault>
           </GeneratorOptions>
           <GeneratorType>MySqlIntegerGenerator</GeneratorType>
-          <GeneratorName>ID (sequential)</GeneratorName>
-          <GeneratorDescription>1, 2, 3, 4, ..., 9, 10, 11, 12, ...</GeneratorDescription>
-          <GeneratorCategory>Business</GeneratorCategory>
+          <GeneratorName>int</GeneratorName>
+          <GeneratorDescription>fill with 32-bit signed integer values</GeneratorDescription>
           <HasForeignKey>true</HasForeignKey>
           <Precision>11</Precision>
         </Column>
@@ -1098,7 +1097,7 @@
         </PopulationDetails>
       </Settings>
       <Columns>
-        <Column Name="ID">
+        <Column Name="driverID">
           <Checked>true</Checked>
           <DataType>INT</DataType>
           <GeneratorOptions p6:type="MySqlIntegerGeneratorOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
@@ -1109,14 +1108,13 @@
             <Increment xmlns:q13="http://www.w3.org/2001/XMLSchema" p6:type="q13:int">1</Increment>
             <ValueDistributionMode>Sequential</ValueDistributionMode>
             <SeedValue>17</SeedValue>
-            <MinValue>26</MinValue>
-            <MaxValue>29</MaxValue>
+            <MinValue>27</MinValue>
+            <MaxValue>30</MaxValue>
             <UseDefault>false</UseDefault>
           </GeneratorOptions>
           <GeneratorType>MySqlIntegerGenerator</GeneratorType>
-          <GeneratorName>ID (sequential)</GeneratorName>
-          <GeneratorDescription>1, 2, 3, 4, ..., 9, 10, 11, 12, ...</GeneratorDescription>
-          <GeneratorCategory>Business</GeneratorCategory>
+          <GeneratorName>int</GeneratorName>
+          <GeneratorDescription>fill with 32-bit signed integer values</GeneratorDescription>
           <HasForeignKey>true</HasForeignKey>
           <Precision>11</Precision>
         </Column>
@@ -1195,7 +1193,7 @@
         </PopulationDetails>
       </Settings>
       <Columns>
-        <Column Name="ID">
+        <Column Name="nurseID">
           <Checked>true</Checked>
           <DataType>INT</DataType>
           <GeneratorOptions p6:type="MySqlIntegerGeneratorOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
@@ -1205,15 +1203,14 @@
             <IsAlwaysUnique>false</IsAlwaysUnique>
             <Increment xmlns:q16="http://www.w3.org/2001/XMLSchema" p6:type="q16:int">1</Increment>
             <ValueDistributionMode>Sequential</ValueDistributionMode>
-            <SeedValue>24</SeedValue>
-            <MinValue>16</MinValue>
-            <MaxValue>25</MaxValue>
+            <SeedValue>25</SeedValue>
+            <MinValue>17</MinValue>
+            <MaxValue>27</MaxValue>
             <UseDefault>false</UseDefault>
           </GeneratorOptions>
           <GeneratorType>MySqlIntegerGenerator</GeneratorType>
-          <GeneratorName>ID (sequential)</GeneratorName>
-          <GeneratorDescription>1, 2, 3, 4, ..., 9, 10, 11, 12, ...</GeneratorDescription>
-          <GeneratorCategory>Business</GeneratorCategory>
+          <GeneratorName>int</GeneratorName>
+          <GeneratorDescription>fill with 32-bit signed integer values</GeneratorDescription>
           <HasForeignKey>true</HasForeignKey>
           <Precision>11</Precision>
         </Column>
@@ -1271,7 +1268,7 @@
         </PopulationDetails>
       </Settings>
       <Columns>
-        <Column Name="ID">
+        <Column Name="consultationID">
           <Checked>true</Checked>
           <DataType>INT</DataType>
           <GeneratorOptions p6:type="MySqlIntegerGeneratorOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
@@ -1298,7 +1295,7 @@
           <GeneratorOptions p6:type="MySqlLoremIpsumGeneratorOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
             <AllowEmptyStrings>false</AllowEmptyStrings>
             <EmptyStringProportion>10</EmptyStringProportion>
-            <AllowNulls>true</AllowNulls>
+            <AllowNulls>false</AllowNulls>
             <NullProportion>5</NullProportion>
             <ValueDistributionMode>Seed</ValueDistributionMode>
             <SeedValue>8</SeedValue>
@@ -1329,7 +1326,7 @@
         <Column Name="doctorID">
           <Checked>true</Checked>
           <DataType>INT</DataType>
-          <GeneratorOptions p6:type="ForeignKeyGeneratorOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
+          <GeneratorOptions p6:type="CustomForeignKeyGeneratorOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
             <Unique>false</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
             <AllowNulls>false</AllowNulls>
@@ -1338,12 +1335,14 @@
             <SeedValue>8</SeedValue>
             <RepeatValues>true</RepeatValues>
             <FromTimes>1</FromTimes>
-            <ToTimes>5</ToTimes>
-            <ExcludeValues>false</ExcludeValues>
-            <ExclusionValuesPercent>1</ExclusionValuesPercent>
+            <ToTimes>2</ToTimes>
+            <ReferenceTableName>Doctor</ReferenceTableName>
+            <ReferenceColumnNames>
+              <string>doctorID</string>
+            </ReferenceColumnNames>
           </GeneratorOptions>
-          <GeneratorType>ForeignKeyGenerator</GeneratorType>
-          <GeneratorName>Foreign Key (auto assigned)</GeneratorName>
+          <GeneratorType>CustomForeignKeyGenerator</GeneratorType>
+          <GeneratorName>Foreign Key (manually assigned)</GeneratorName>
           <GeneratorDescription>references a column from parent table</GeneratorDescription>
           <HasForeignKey>true</HasForeignKey>
           <Precision>11</Precision>
@@ -1351,7 +1350,7 @@
         <Column Name="patientID">
           <Checked>true</Checked>
           <DataType>INT</DataType>
-          <GeneratorOptions p6:type="ForeignKeyGeneratorOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
+          <GeneratorOptions p6:type="CustomForeignKeyGeneratorOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
             <Unique>false</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
             <AllowNulls>false</AllowNulls>
@@ -1360,12 +1359,14 @@
             <SeedValue>9</SeedValue>
             <RepeatValues>true</RepeatValues>
             <FromTimes>1</FromTimes>
-            <ToTimes>2</ToTimes>
-            <ExcludeValues>false</ExcludeValues>
-            <ExclusionValuesPercent>1</ExclusionValuesPercent>
+            <ToTimes>3</ToTimes>
+            <ReferenceTableName>Patient</ReferenceTableName>
+            <ReferenceColumnNames>
+              <string>patientID</string>
+            </ReferenceColumnNames>
           </GeneratorOptions>
-          <GeneratorType>ForeignKeyGenerator</GeneratorType>
-          <GeneratorName>Foreign Key (auto assigned)</GeneratorName>
+          <GeneratorType>CustomForeignKeyGenerator</GeneratorType>
+          <GeneratorName>Foreign Key (manually assigned)</GeneratorName>
           <GeneratorDescription>references a column from parent table</GeneratorDescription>
           <HasForeignKey>true</HasForeignKey>
           <Precision>11</Precision>
@@ -1386,7 +1387,7 @@
         </PopulationDetails>
       </Settings>
       <Columns>
-        <Column Name="ID">
+        <Column Name="adminID">
           <Checked>true</Checked>
           <DataType>INT</DataType>
           <GeneratorOptions p6:type="MySqlIntegerGeneratorOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
@@ -1423,7 +1424,7 @@
         </PopulationDetails>
       </Settings>
       <Columns>
-        <Column Name="ID">
+        <Column Name="appointmentID">
           <Checked>true</Checked>
           <DataType>INT</DataType>
           <GeneratorOptions p6:type="MySqlIntegerGeneratorOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
@@ -1435,7 +1436,7 @@
             <ValueDistributionMode>Sequential</ValueDistributionMode>
             <SeedValue>3</SeedValue>
             <MinValue>1</MinValue>
-            <MaxValue>50</MaxValue>
+            <MaxValue>2147483647</MaxValue>
             <UseDefault>false</UseDefault>
           </GeneratorOptions>
           <GeneratorType>MySqlIntegerGenerator</GeneratorType>
@@ -1686,7 +1687,7 @@
         <RowsToGenerate>0</RowsToGenerate>
         <PopulationDetails>
           <PopulationType>RowsCount</PopulationType>
-          <RowsCount>50</RowsCount>
+          <RowsCount>30</RowsCount>
           <LookupProportion>30</LookupProportion>
           <ProportionOfExistingData>10</ProportionOfExistingData>
           <TimeTicksToPopulate>100000000</TimeTicksToPopulate>
@@ -1696,8 +1697,8 @@
         <Column Name="diagnosticsID">
           <Checked>true</Checked>
           <DataType>INT</DataType>
-          <GeneratorOptions p6:type="ForeignKeyGeneratorOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
-            <Unique>true</Unique>
+          <GeneratorOptions p6:type="CustomForeignKeyGeneratorOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
+            <Unique>false</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
             <AllowNulls>false</AllowNulls>
             <NullProportion>0</NullProportion>
@@ -1705,12 +1706,14 @@
             <SeedValue>10</SeedValue>
             <RepeatValues>true</RepeatValues>
             <FromTimes>1</FromTimes>
-            <ToTimes>3</ToTimes>
-            <ExcludeValues>false</ExcludeValues>
-            <ExclusionValuesPercent>1</ExclusionValuesPercent>
+            <ToTimes>2</ToTimes>
+            <ReferenceTableName>Diagnostics</ReferenceTableName>
+            <ReferenceColumnNames>
+              <string>diagnosticsID</string>
+            </ReferenceColumnNames>
           </GeneratorOptions>
-          <GeneratorType>ForeignKeyGenerator</GeneratorType>
-          <GeneratorName>Foreign Key (auto assigned)</GeneratorName>
+          <GeneratorType>CustomForeignKeyGenerator</GeneratorType>
+          <GeneratorName>Foreign Key (manually assigned)</GeneratorName>
           <GeneratorDescription>references a column from parent table</GeneratorDescription>
           <HasForeignKey>true</HasForeignKey>
           <Precision>11</Precision>
@@ -1718,21 +1721,23 @@
         <Column Name="prescriptionID">
           <Checked>true</Checked>
           <DataType>INT</DataType>
-          <GeneratorOptions p6:type="ForeignKeyGeneratorOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
+          <GeneratorOptions p6:type="CustomForeignKeyGeneratorOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
             <Unique>true</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
             <AllowNulls>false</AllowNulls>
             <NullProportion>0</NullProportion>
             <ValueDistributionMode>Seed</ValueDistributionMode>
-            <SeedValue>11</SeedValue>
+            <SeedValue>10</SeedValue>
             <RepeatValues>false</RepeatValues>
             <FromTimes>1</FromTimes>
-            <ToTimes>2</ToTimes>
-            <ExcludeValues>false</ExcludeValues>
-            <ExclusionValuesPercent>1</ExclusionValuesPercent>
+            <ToTimes>3</ToTimes>
+            <ReferenceTableName>Prescription</ReferenceTableName>
+            <ReferenceColumnNames>
+              <string>prescriptionID</string>
+            </ReferenceColumnNames>
           </GeneratorOptions>
-          <GeneratorType>ForeignKeyGenerator</GeneratorType>
-          <GeneratorName>Foreign Key (auto assigned)</GeneratorName>
+          <GeneratorType>CustomForeignKeyGenerator</GeneratorType>
+          <GeneratorName>Foreign Key (manually assigned)</GeneratorName>
           <GeneratorDescription>references a column from parent table</GeneratorDescription>
           <HasForeignKey>true</HasForeignKey>
           <Precision>11</Precision>
@@ -1756,7 +1761,7 @@
         <Column Name="prescriptionID">
           <Checked>true</Checked>
           <DataType>INT</DataType>
-          <GeneratorOptions p6:type="ForeignKeyGeneratorOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
+          <GeneratorOptions p6:type="CustomForeignKeyGeneratorOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
             <Unique>true</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
             <AllowNulls>false</AllowNulls>
@@ -1765,12 +1770,14 @@
             <SeedValue>18</SeedValue>
             <RepeatValues>false</RepeatValues>
             <FromTimes>1</FromTimes>
-            <ToTimes>2</ToTimes>
-            <ExcludeValues>false</ExcludeValues>
-            <ExclusionValuesPercent>1</ExclusionValuesPercent>
+            <ToTimes>10</ToTimes>
+            <ReferenceTableName>Prescription</ReferenceTableName>
+            <ReferenceColumnNames>
+              <string>prescriptionID</string>
+            </ReferenceColumnNames>
           </GeneratorOptions>
-          <GeneratorType>ForeignKeyGenerator</GeneratorType>
-          <GeneratorName>Foreign Key (auto assigned)</GeneratorName>
+          <GeneratorType>CustomForeignKeyGenerator</GeneratorType>
+          <GeneratorName>Foreign Key (manually assigned)</GeneratorName>
           <GeneratorDescription>references a column from parent table</GeneratorDescription>
           <HasForeignKey>true</HasForeignKey>
           <Precision>11</Precision>
@@ -1778,8 +1785,8 @@
         <Column Name="pharmacyID">
           <Checked>true</Checked>
           <DataType>INT</DataType>
-          <GeneratorOptions p6:type="ForeignKeyGeneratorOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
-            <Unique>true</Unique>
+          <GeneratorOptions p6:type="CustomForeignKeyGeneratorOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
+            <Unique>false</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
             <AllowNulls>false</AllowNulls>
             <NullProportion>0</NullProportion>
@@ -1787,12 +1794,14 @@
             <SeedValue>19</SeedValue>
             <RepeatValues>true</RepeatValues>
             <FromTimes>1</FromTimes>
-            <ToTimes>3</ToTimes>
-            <ExcludeValues>false</ExcludeValues>
-            <ExclusionValuesPercent>1</ExclusionValuesPercent>
+            <ToTimes>2</ToTimes>
+            <ReferenceTableName>Pharmacy</ReferenceTableName>
+            <ReferenceColumnNames>
+              <string>pharmacyID</string>
+            </ReferenceColumnNames>
           </GeneratorOptions>
-          <GeneratorType>ForeignKeyGenerator</GeneratorType>
-          <GeneratorName>Foreign Key (auto assigned)</GeneratorName>
+          <GeneratorType>CustomForeignKeyGenerator</GeneratorType>
+          <GeneratorName>Foreign Key (manually assigned)</GeneratorName>
           <GeneratorDescription>references a column from parent table</GeneratorDescription>
           <HasForeignKey>true</HasForeignKey>
           <Precision>11</Precision>
@@ -1965,24 +1974,26 @@
         </PopulationDetails>
       </Settings>
       <Columns>
-        <Column Name="drugID">
+        <Column Name="pharmacyID">
           <Checked>true</Checked>
           <DataType>INT</DataType>
-          <GeneratorOptions p6:type="ForeignKeyGeneratorOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
-            <Unique>true</Unique>
+          <GeneratorOptions p6:type="CustomForeignKeyGeneratorOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
+            <Unique>false</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
             <AllowNulls>false</AllowNulls>
             <NullProportion>0</NullProportion>
             <ValueDistributionMode>Seed</ValueDistributionMode>
-            <SeedValue>29</SeedValue>
+            <SeedValue>31</SeedValue>
             <RepeatValues>true</RepeatValues>
             <FromTimes>1</FromTimes>
-            <ToTimes>3</ToTimes>
-            <ExcludeValues>false</ExcludeValues>
-            <ExclusionValuesPercent>1</ExclusionValuesPercent>
+            <ToTimes>2</ToTimes>
+            <ReferenceTableName>Pharmacy</ReferenceTableName>
+            <ReferenceColumnNames>
+              <string>pharmacyID</string>
+            </ReferenceColumnNames>
           </GeneratorOptions>
-          <GeneratorType>ForeignKeyGenerator</GeneratorType>
-          <GeneratorName>Foreign Key (auto assigned)</GeneratorName>
+          <GeneratorType>CustomForeignKeyGenerator</GeneratorType>
+          <GeneratorName>Foreign Key (manually assigned)</GeneratorName>
           <GeneratorDescription>references a column from parent table</GeneratorDescription>
           <HasForeignKey>true</HasForeignKey>
           <Precision>11</Precision>
@@ -1990,21 +2001,23 @@
         <Column Name="vendorID">
           <Checked>true</Checked>
           <DataType>INT</DataType>
-          <GeneratorOptions p6:type="ForeignKeyGeneratorOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
+          <GeneratorOptions p6:type="CustomForeignKeyGeneratorOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
             <Unique>true</Unique>
             <IsAlwaysUnique>false</IsAlwaysUnique>
             <AllowNulls>false</AllowNulls>
             <NullProportion>0</NullProportion>
             <ValueDistributionMode>Seed</ValueDistributionMode>
-            <SeedValue>30</SeedValue>
-            <RepeatValues>true</RepeatValues>
+            <SeedValue>32</SeedValue>
+            <RepeatValues>false</RepeatValues>
             <FromTimes>1</FromTimes>
             <ToTimes>2</ToTimes>
-            <ExcludeValues>false</ExcludeValues>
-            <ExclusionValuesPercent>1</ExclusionValuesPercent>
+            <ReferenceTableName>Vendor</ReferenceTableName>
+            <ReferenceColumnNames>
+              <string>vendorID</string>
+            </ReferenceColumnNames>
           </GeneratorOptions>
-          <GeneratorType>ForeignKeyGenerator</GeneratorType>
-          <GeneratorName>Foreign Key (auto assigned)</GeneratorName>
+          <GeneratorType>CustomForeignKeyGenerator</GeneratorType>
+          <GeneratorName>Foreign Key (manually assigned)</GeneratorName>
           <GeneratorDescription>references a column from parent table</GeneratorDescription>
           <HasForeignKey>true</HasForeignKey>
           <Precision>11</Precision>
