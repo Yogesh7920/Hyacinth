@@ -1,26 +1,32 @@
 create view DoctorInfo as (
-    select * from doctor natural join employee
+    select doctorID, name, phone, email, address, sex from Doctor natural join Employee
 );
 
 create view NurseInfo as (
-    select * from nurse natural join employee
+    select nurseId, name, phone, email, address, sex from Nurse natural join Employee
 );
 
 create view DriverInfo as (
-    select * from driver natural join employee
+    select driverID, name, phone, email, address, sex from Driver natural join Employee
 );
 
 create view AdminInfo as (
-    select * from admin natural join employee
+    select adminID, name, phone, email, address, sex from Admin natural join Employee
 );
 
 create view VendorDrugInfo as (
-    select vendorID, drugID, vendor.name, vendor.phone, vendor.address, vendor.email,
+    select Vendor.vendorID, p.pharmacyID, Vendor.name, Vendor.phone, Vendor.address, Vendor.email,
          price, orderTime, supplyTime,
          p.name as drug_name, category
-    from vendor
-           inner join supplies s on vendor.ID = s.vendorID
-           inner join pharmacy p on s.drugID = p.ID
+    from Vendor
+           inner join Supplies s using (vendorID)
+           inner join Pharmacy p using (pharmacyID)
 );
 
-
+create view DriverJourneyInfo as (
+    select
+           DriverInfo.*, Ambulance.*, Journey.startTime, Journey.endTime, Journey.address as journeyAddress
+    from DriverInfo
+        inner join Journey using (driverID)
+        inner join Ambulance using (ambulanceId)
+)
