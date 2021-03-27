@@ -23,4 +23,12 @@ create view VendorDrugInfo as (
            inner join pharmacy p on s.drugID = p.ID
 );
 
+create view NurseDiagnosticsInfo as (
+	select NurseInfo.ID as Nurse_ID, NurseInfo.qualification, 
+               NurseInfo.license, Diagnostics.ID as Diagnostics_ID, 
+               Diagnostics.category, Diagnostics.name as diagnostics 
+        from NurseInfo inner join (Assists, Diagnostics) on 
+             (NurseInfo.ID = Assists.nurseId and Diagnostics.ID = Assists.diagnosticsID)
+
+);
 
