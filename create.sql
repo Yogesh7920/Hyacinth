@@ -4,7 +4,7 @@ use Hyacinth;
 
 create table Employee
 (
-    ID       int primary key,
+    employeeID       int primary key,
     name     varchar(45) not null,
     password longtext    not null,
     phone    varchar(20) not null,
@@ -18,49 +18,49 @@ create table Employee
 
 create table Nurse
 (
-    ID            int primary key,
+    nurseID            int primary key,
     qualification varchar(30) not null,
     license       varchar(30) not null,
-    constraint FK_Employee_Nurse foreign key (ID)
-        references Employee (ID)
+    constraint FK_Employee_Nurse foreign key (nurseID)
+        references Employee (employeeID)
         on delete cascade
 );
 
 create table Admin
 (
-    ID int primary key,
-    constraint FK_Employee_Admin foreign key (ID)
-        references Employee (ID)
+    adminID int primary key,
+    constraint FK_Employee_Admin foreign key (adminID)
+        references Employee (employeeID)
         on delete cascade
 );
 
 create table Doctor
 (
-    ID             int primary key,
+    doctorID             int primary key,
     qualification  varchar(30)  not null,
     license        varchar(30)  not null,
     bio            varchar(300) not null,
     available      bool         not null,
     specialization varchar(30)  not null,
-    constraint FK_Employee_Doctor foreign key (ID)
-        references Employee (ID)
+    constraint FK_Employee_Doctor foreign key (doctorID)
+        references Employee (employeeID)
         on delete cascade
 );
 
 create table Driver
 (
-    ID          int primary key,
+    driverID          int primary key,
     experience  int(5)      not null,
     licenseNo   varchar(10) not null,
     successRate float,
-    constraint FK_Employee_Driver foreign key (ID)
-        references Employee (ID)
+    constraint FK_Employee_Driver foreign key (driverID)
+        references Employee (employeeID)
         on delete cascade
 );
 
 create table Patient
 (
-    ID             int primary key,
+    patientID             int primary key,
     name           varchar(45) not null,
     password       longtext    not null,
     phone          varchar(20) not null,
@@ -75,20 +75,20 @@ create table Patient
 
 create table Prescription
 (
-    ID        int primary key,
+    prescriptionID        int primary key,
     timeStamp timestamp not null
 );
 
 create table Diagnostics
 (
-    ID       int primary key,
+    diagnosticsID       int primary key,
     category varchar(20) not null,
     name     varchar(20) not null
 );
 
 create table Vendor
 (
-    ID      int primary key,
+    vendorID      int primary key,
     name    varchar(45)  not null,
     phone   varchar(20)  not null,
     address varchar(100) not null,
@@ -98,42 +98,42 @@ create table Vendor
 
 create table Pharmacy
 (
-    ID       int primary key,
+    pharmacyID       int primary key,
     name     varchar(45) not null,
     category varchar(20) not null
 );
 
 create table Invoice
 (
-    ID     int primary key,
+    invoiceID     int primary key,
     amount float not null,
     isPaid bool  not null
 );
 
 create table Ambulance
 (
-    ID              int primary key,
+    ambulanceID              int primary key,
     lastMaintenance datetime,
     totalDistance   float
 );
 
 create table Consultation
 (
-    ID        int primary key,
+    consultationID        int primary key,
     problem   varchar(40),
     doctorID  int,
     patientID int,
     constraint FK_Doctor_Consultation foreign key (doctorID)
-        references Doctor (ID)
+        references Doctor (doctorID)
         on delete cascade,
     constraint FK_Patient_Consultation foreign key (patientID)
-        references Patient (ID)
+        references Patient (patientID)
         on delete cascade
 );
 
 create table Appointment
 (
-    ID             int primary key,
+    appointmentID             int primary key,
     startTime      timestamp,
     endTime        timestamp,
     remarks        varchar(40),
@@ -142,31 +142,31 @@ create table Appointment
     consultationId int not null,
     constraint DateTimeCheck check ( endTime > startTime ),
     constraint FK_Consultation_Appointment foreign key (consultationId)
-        references Consultation (ID)
+        references Consultation (consultationID)
         on delete cascade,
     constraint FK_Invoice_Appointment foreign key (invoiceId)
-        references Invoice (ID)
+        references Invoice (invoiceID)
         on delete cascade,
     constraint FK_Prescription_Appointment foreign key (prescriptionId)
-        references Prescription (ID)
+        references Prescription (prescriptionID)
         on delete cascade
 );
 
 create table Supplies
 (
-    drugID     int      not null,
+    pharmacyID     int      not null,
     vendorID   int      not null,
     price      float    not null,
     orderTime  datetime not null,
     supplyTime datetime,
     constraint DateTimeCheck check ( supplyTime > orderTime ),
-    constraint FK_Pharmacy_Supplies foreign key (drugID)
-        references Pharmacy (ID)
+    constraint FK_Pharmacy_Supplies foreign key (pharmacyID)
+        references Pharmacy (pharmacyID)
         on delete cascade,
     constraint FK_Vendor_Supplies foreign key (vendorID)
-        references Vendor (ID)
+        references Vendor (vendorID)
         on delete cascade,
-    primary key (drugID, vendorID)
+    primary key (pharmacyID, vendorID)
 );
 
 
@@ -175,10 +175,10 @@ create table Drugs
     prescriptionID int not null,
     pharmacyID     int not null,
     constraint FK_Prescription_Drugs foreign key (prescriptionID)
-        references Prescription (ID)
+        references Prescription (prescriptionID)
         on delete cascade,
     constraint FK_Pharmacy_Drugs foreign key (pharmacyID)
-        references Pharmacy (ID)
+        references Pharmacy (pharmacyID)
         on delete cascade,
     primary key (prescriptionID, pharmacyID)
 );
@@ -188,10 +188,10 @@ create table Contains
     diagnosticsID  int not null,
     prescriptionID int not null,
     constraint FK_Diagnostics_Contains foreign key (diagnosticsID)
-        references Diagnostics (ID)
+        references Diagnostics (diagnosticsID)
         on delete cascade,
     constraint FK_Prescription_Contains foreign key (prescriptionID)
-        references Prescription (ID)
+        references Prescription (prescriptionID)
         on delete cascade,
     primary key (diagnosticsID, prescriptionID)
 );
@@ -201,10 +201,10 @@ create table Assists
     nurseId       int,
     diagnosticsID int,
     constraint FK_Nurse_Assists foreign key (nurseID)
-        references Nurse (ID)
+        references Nurse (nurseID)
         on delete cascade,
     constraint FK_Diagnostics_Assists foreign key (diagnosticsID)
-        references Diagnostics (ID)
+        references Diagnostics (diagnosticsID)
         on delete cascade,
     primary key (nurseId, diagnosticsID)
 );
@@ -218,10 +218,10 @@ create table Journey
     endTime     datetime,
     constraint DateTimeCheck check ( endTime > startTime ),
     constraint FK_Driver_Journey foreign key (driverID)
-        references Driver (ID)
+        references Driver (driverID)
         on delete cascade,
     constraint FK_Ambulance_Journey foreign key (ambulanceId)
-        references Ambulance (ID)
+        references Ambulance (ambulanceID)
         on delete cascade,
     primary key (driverID, ambulanceId)
 );
