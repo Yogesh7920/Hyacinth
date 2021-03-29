@@ -9,27 +9,36 @@ drop view if exists NurseDiagnosticsInfo;
 drop view if exists DoctorPatientInfo;
 drop view if exists PatientDoctorInfo;
 
-create view DoctorInfo as
-    ( select  doctorID, name as doctorName,
+create view DoctorInfo as (
+    select d.doctorID, name as doctorName,
              phone, email, address, sex
-    from Doctor natural join Employee );
+    from Doctor d
+        inner join Employee e on d.doctorID = e.employeeID
+);
 
-create view PatientInfo as
-    ( select patientID, name as patientName, phone, email,
+create view PatientInfo as (
+    select patientID, name as patientName, phone, email,
              address, sex, medicalHistory, marital
-    from Patient );
+    from Patient
+);
 
-create view NurseInfo as
-    ( select Nurse.*, name, phone, email, address, sex
-    from Nurse natural join Employee );
+create view NurseInfo as (
+    select n.*, name, phone, email, address, sex
+    from Nurse n
+        inner join Employee e on n.nurseID = e.employeeID
+);
 
-create view DriverInfo as
-    ( select driverID, name, phone, email, address, sex
-    from Driver natural join Employee );
+create view DriverInfo as (
+    select driverID, name, phone, email, address, sex
+    from Driver d
+        inner join Employee e on d.driverID = e.employeeID
+);
 
-create view AdminInfo as
-    ( select adminID, name, phone, email, address, sex
-    from Admin natural join Employee );
+create view AdminInfo as (
+    select adminID, name, phone, email, address, sex
+    from Admin a
+        inner join Employee e on a.adminID = e.employeeID
+);
 
 create view VendorDrugInfo as (
     select Vendor.vendorID, p.pharmacyID, Vendor.name,
