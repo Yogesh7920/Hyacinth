@@ -23,9 +23,9 @@ DROP TABLE IF EXISTS `Admin`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Admin` (
-  `ID` int(11) NOT NULL,
-  PRIMARY KEY (`ID`),
-  CONSTRAINT `FK_Employee_Admin` FOREIGN KEY (`ID`) REFERENCES `Employee` (`ID`) ON DELETE CASCADE
+  `adminID` int(11) NOT NULL,
+  PRIMARY KEY (`adminID`),
+  CONSTRAINT `FK_Employee_Admin` FOREIGN KEY (`adminID`) REFERENCES `Employee` (`employeeID`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -40,6 +40,24 @@ INSERT INTO `Admin` VALUES (30);
 UNLOCK TABLES;
 
 --
+-- Temporary table structure for view `AdminInfo`
+--
+
+DROP TABLE IF EXISTS `AdminInfo`;
+/*!50001 DROP VIEW IF EXISTS `AdminInfo`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `AdminInfo` (
+  `adminID` tinyint NOT NULL,
+  `name` tinyint NOT NULL,
+  `phone` tinyint NOT NULL,
+  `email` tinyint NOT NULL,
+  `address` tinyint NOT NULL,
+  `sex` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
+
+--
 -- Table structure for table `Ambulance`
 --
 
@@ -47,10 +65,10 @@ DROP TABLE IF EXISTS `Ambulance`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Ambulance` (
-  `ID` int(11) NOT NULL,
+  `ambulanceID` int(11) NOT NULL,
   `lastMaintenance` datetime DEFAULT NULL,
   `totalDistance` float DEFAULT NULL,
-  PRIMARY KEY (`ID`)
+  PRIMARY KEY (`ambulanceID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -72,20 +90,20 @@ DROP TABLE IF EXISTS `Appointment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Appointment` (
-  `ID` int(11) NOT NULL,
+  `appointmentID` int(11) NOT NULL,
   `startTime` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `endTime` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `remarks` varchar(40) DEFAULT NULL,
   `invoiceId` int(11) NOT NULL,
   `prescriptionId` int(11) NOT NULL,
   `consultationId` int(11) NOT NULL,
-  PRIMARY KEY (`ID`),
+  PRIMARY KEY (`appointmentID`),
   UNIQUE KEY `invoiceId` (`invoiceId`),
   UNIQUE KEY `prescriptionId` (`prescriptionId`),
   KEY `FK_Consultation_Appointment` (`consultationId`),
-  CONSTRAINT `FK_Consultation_Appointment` FOREIGN KEY (`consultationId`) REFERENCES `Consultation` (`ID`) ON DELETE CASCADE,
-  CONSTRAINT `FK_Invoice_Appointment` FOREIGN KEY (`invoiceId`) REFERENCES `Invoice` (`ID`) ON DELETE CASCADE,
-  CONSTRAINT `FK_Prescription_Appointment` FOREIGN KEY (`prescriptionId`) REFERENCES `Prescription` (`ID`) ON DELETE CASCADE,
+  CONSTRAINT `FK_Consultation_Appointment` FOREIGN KEY (`consultationId`) REFERENCES `Consultation` (`consultationID`) ON DELETE CASCADE,
+  CONSTRAINT `FK_Invoice_Appointment` FOREIGN KEY (`invoiceId`) REFERENCES `Invoice` (`invoiceID`) ON DELETE CASCADE,
+  CONSTRAINT `FK_Prescription_Appointment` FOREIGN KEY (`prescriptionId`) REFERENCES `Prescription` (`prescriptionID`) ON DELETE CASCADE,
   CONSTRAINT `DateTimeCheck` CHECK (`endTime` > `startTime`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -96,7 +114,7 @@ CREATE TABLE `Appointment` (
 
 LOCK TABLES `Appointment` WRITE;
 /*!40000 ALTER TABLE `Appointment` DISABLE KEYS */;
-INSERT INTO `Appointment` VALUES (1,'2019-12-10 03:10:12','2019-12-12 16:40:44','Molestias voluptatem dolores.\r\n',48,36,7),(2,'2019-11-12 03:31:17','2019-11-12 14:20:37','Ut voluptatem et. Ab corporis.',44,49,28),(3,'2018-01-01 01:19:23','2018-01-04 15:09:58','Doloribus temporibus eum;',50,27,27),(4,'2018-11-13 06:30:15','2018-11-16 21:59:57','Quaerat assumenda.\r\n',39,47,45),(5,'2020-06-19 17:15:44','2020-06-21 10:40:18','Tempore aut eos. Quo commodi.\r\n',24,11,1),(6,'2020-07-24 05:28:57','2020-07-26 22:36:55','Eveniet atque aut. Sapiente!\r\n',30,20,28),(7,'2018-07-31 11:11:14','2018-08-01 08:02:32','Quod totam quos. Qui.\r\n',25,45,21),(8,'2018-11-29 03:31:13','2018-11-30 19:43:58','Voluptatem deleniti ut.\r\n',34,42,23),(9,'2019-08-27 08:59:11','2019-08-29 10:39:36','Est ut autem. Accusamus...\r\n',31,37,42),(10,'2020-09-28 05:23:14','2020-09-29 12:55:14','Sit at est. Fugiat earum.\r\n',40,48,11),(11,'2018-01-01 00:00:07','2018-01-04 14:02:02','Impedit rem adipisci. Hic;',46,50,4),(12,'2018-04-15 19:19:02','2018-04-16 08:23:00','Sequi ut eum. Quam aut.',6,43,37),(13,'2019-07-01 22:21:10','2019-07-02 14:12:17','Harum et quod; consequatur.\r\n',49,38,8),(14,'2021-01-09 23:42:50','2021-01-13 01:17:31','Et sunt sed.\r\nDeserunt.\r\n',1,15,21),(15,'2021-03-06 09:01:03','2021-03-08 02:45:03','Rem vero esse. Eius laudantium.',47,46,42),(16,'2020-04-15 20:50:43','2020-04-19 04:28:53','In voluptatem molestiae.\r\n',45,21,3),(17,'2019-12-26 13:56:36','2019-12-29 15:04:32','Suscipit repellat eum. Id.\r\n',16,6,5),(18,'2018-01-01 01:00:32','2018-01-02 04:32:58','Placeat quia fuga. Itaque.\r\n',22,16,24),(19,'2019-10-29 14:04:06','2019-11-02 12:27:13','Ipsam architecto.\r\n',7,33,33),(20,'2020-01-05 18:53:12','2020-01-08 18:27:42','Unde laboriosam molestias.',35,28,33),(21,'2019-09-15 07:57:59','2019-09-15 21:13:21','Vel beatae unde.\r\nSed.\r\n',41,44,4),(22,'2018-08-09 15:08:25','2018-08-13 10:28:52','Perspiciatis ad nulla.\r\n',26,1,32),(23,'2018-12-19 17:35:45','2018-12-23 00:43:05','Et quisquam sunt. Sed.',2,7,22),(24,'2018-01-01 00:14:28','2018-01-02 15:30:38','Sed et est; aliquid.\r\n',17,23,23),(25,'2018-01-01 00:00:07','2018-01-04 07:40:25',NULL,12,29,47),(26,'2018-10-06 08:50:13','2018-10-08 03:28:31',NULL,32,22,13),(27,'2018-08-19 05:38:57','2018-08-22 20:25:23','Animi dolorum aut.\r\n',18,24,41),(28,'2018-10-10 12:03:55','2018-10-12 02:54:01','Provident sed velit.\r\n',8,39,40),(29,'2018-05-29 04:27:36','2018-05-31 05:16:29','Corrupti laborum;\r\n',13,2,37),(30,'2018-01-01 00:00:12','2018-01-04 07:39:47','Et voluptates quibusdam.\r\n',27,17,47),(31,'2020-09-05 13:45:44','2020-09-06 20:25:07','Deleniti vitae facere. Error.\r\n',36,12,13),(32,'2019-09-16 14:43:50','2019-09-20 08:01:38','Adipisci voluptate.\r\n',3,30,46),(33,'2019-01-02 06:58:08','2019-01-02 22:35:24','Enim voluptatum.\r\n',33,18,19),(34,'2020-06-22 07:35:41','2020-06-25 14:14:09','Quam est ut. Vero...\r\n',28,25,28),(35,'2018-07-13 10:05:13','2018-07-16 06:03:55','Obcaecati sed assumenda.\r\n',23,13,19),(36,'2018-01-01 00:14:57','2018-01-01 16:08:29','Dolores vero quam. Tenetur;\r\n',42,34,19),(37,'2018-09-26 13:41:43','2018-09-28 17:16:04','Dolore est qui;\r\n',29,19,4),(38,'2019-10-06 21:12:41','2019-10-09 07:16:13','Unde animi obcaecati.\r\n',9,40,20),(39,'2019-11-20 14:45:17','2019-11-22 15:03:12','Nihil id ut.\r\nPossimus.\r\n',4,14,43),(40,'2018-01-27 07:51:42','2018-01-27 17:26:45','Veniam veritatis.\r\n',10,35,1),(41,'2018-02-28 22:49:53','2018-03-02 09:31:19','Magni harum molestiae.\r\n',37,31,20),(42,'2018-01-01 00:01:02','2018-01-03 20:36:05','Consequatur facilis sed.\r\n',43,41,17),(43,'2019-06-21 20:22:15','2019-06-23 18:13:57','Nihil voluptatem.\r\n',5,8,12),(44,'2021-01-07 19:03:21','2021-01-10 20:07:33','Rem sit quis.\r\nAut fugit.',19,26,15),(45,'2018-03-24 11:12:12','2018-03-28 06:20:05','Non consequatur.\r\n',14,3,4),(46,'2019-03-02 03:44:59','2019-03-05 12:50:42','Rerum aut nesciunt. Eius!\r\n',11,9,47),(47,'2020-10-02 16:07:17','2020-10-04 22:23:55','Ad natus ut.',38,32,8),(48,'2018-08-28 09:17:48','2018-08-30 22:55:38','Tempora culpa cumque...\r\n',20,4,48),(49,'2018-02-02 05:51:53','2018-02-02 18:45:39','Unde quas culpa. Iste.\r\n',15,10,2),(50,'2019-03-25 08:54:38','2019-03-27 02:29:28','Vero temporibus quis.\r\n',21,5,17);
+INSERT INTO `Appointment` VALUES (1,'2019-12-10 03:10:12','2019-12-12 16:40:44','Molestias voluptatem dolores.\r\n',48,36,13),(2,'2019-11-12 03:31:17','2019-11-12 14:20:37','Ut voluptatem et. Ab corporis.',44,49,2),(3,'2018-01-01 01:19:23','2018-01-04 15:09:58','Doloribus temporibus eum;',50,27,15),(4,'2018-11-13 06:30:15','2018-11-16 21:59:57','Quaerat assumenda.\r\n',39,47,13),(5,'2020-06-19 17:15:44','2020-06-21 10:40:18','Tempore aut eos. Quo commodi.\r\n',24,11,7),(6,'2020-07-24 05:28:57','2020-07-26 22:36:55','Eveniet atque aut. Sapiente!\r\n',30,20,22),(7,'2018-07-31 11:11:14','2018-08-01 08:02:32','Quod totam quos. Qui.\r\n',25,45,21),(8,'2018-11-29 03:31:13','2018-11-30 19:43:58','Voluptatem deleniti ut.\r\n',34,42,15),(9,'2019-08-27 08:59:11','2019-08-29 10:39:36','Est ut autem. Accusamus...\r\n',31,37,6),(10,'2020-09-28 05:23:14','2020-09-29 12:55:14','Sit at est. Fugiat earum.\r\n',40,48,9),(11,'2018-01-01 00:00:07','2018-01-04 14:02:02','Impedit rem adipisci. Hic;',46,50,14),(12,'2018-04-15 19:19:02','2018-04-16 08:23:00','Sequi ut eum. Quam aut.',6,43,21),(13,'2019-07-01 22:21:10','2019-07-02 14:12:17','Harum et quod; consequatur.\r\n',49,38,20),(14,'2021-01-09 23:42:50','2021-01-13 01:17:31','Et sunt sed.\r\nDeserunt.\r\n',1,15,5),(15,'2021-03-06 09:01:03','2021-03-08 02:45:03','Rem vero esse. Eius laudantium.',47,46,6),(16,'2020-04-15 20:50:43','2020-04-19 04:28:53','In voluptatem molestiae.\r\n',45,21,17),(17,'2019-12-26 13:56:36','2019-12-29 15:04:32','Suscipit repellat eum. Id.\r\n',16,6,13),(18,'2018-01-01 01:00:32','2018-01-02 04:32:58','Placeat quia fuga. Itaque.\r\n',22,16,24),(19,'2019-10-29 14:04:06','2019-11-02 12:27:13','Ipsam architecto.\r\n',7,33,23),(20,'2020-01-05 18:53:12','2020-01-08 18:27:42','Unde laboriosam molestias.',35,28,3),(21,'2019-09-15 07:57:59','2019-09-15 21:13:21','Vel beatae unde.\r\nSed.\r\n',41,44,8),(22,'2018-08-09 15:08:25','2018-08-13 10:28:52','Perspiciatis ad nulla.\r\n',26,1,6),(23,'2018-12-19 17:35:45','2018-12-23 00:43:05','Et quisquam sunt. Sed.',2,7,18),(24,'2018-01-01 00:14:28','2018-01-02 15:30:38','Sed et est; aliquid.\r\n',17,23,19),(25,'2018-01-01 00:00:07','2018-01-04 07:40:25',NULL,12,29,1),(26,'2018-10-06 08:50:13','2018-10-08 03:28:31',NULL,32,22,19),(27,'2018-08-19 05:38:57','2018-08-22 20:25:23','Animi dolorum aut.\r\n',18,24,17),(28,'2018-10-10 12:03:55','2018-10-12 02:54:01','Provident sed velit.\r\n',8,39,16),(29,'2018-05-29 04:27:36','2018-05-31 05:16:29','Corrupti laborum;\r\n',13,2,3),(30,'2018-01-01 00:00:12','2018-01-04 07:39:47','Et voluptates quibusdam.\r\n',27,17,3),(31,'2020-09-05 13:45:44','2020-09-06 20:25:07','Deleniti vitae facere. Error.\r\n',36,12,3),(32,'2019-09-16 14:43:50','2019-09-20 08:01:38','Adipisci voluptate.\r\n',3,30,2),(33,'2019-01-02 06:58:08','2019-01-02 22:35:24','Enim voluptatum.\r\n',33,18,9),(34,'2020-06-22 07:35:41','2020-06-25 14:14:09','Quam est ut. Vero...\r\n',28,25,10),(35,'2018-07-13 10:05:13','2018-07-16 06:03:55','Obcaecati sed assumenda.\r\n',23,13,5),(36,'2018-01-01 00:14:57','2018-01-01 16:08:29','Dolores vero quam. Tenetur;\r\n',42,34,13),(37,'2018-09-26 13:41:43','2018-09-28 17:16:04','Dolore est qui;\r\n',29,19,16),(38,'2019-10-06 21:12:41','2019-10-09 07:16:13','Unde animi obcaecati.\r\n',9,40,8),(39,'2019-11-20 14:45:17','2019-11-22 15:03:12','Nihil id ut.\r\nPossimus.\r\n',4,14,5),(40,'2018-01-27 07:51:42','2018-01-27 17:26:45','Veniam veritatis.\r\n',10,35,17),(41,'2018-02-28 22:49:53','2018-03-02 09:31:19','Magni harum molestiae.\r\n',37,31,12),(42,'2018-01-01 00:01:02','2018-01-03 20:36:05','Consequatur facilis sed.\r\n',43,41,15),(43,'2019-06-21 20:22:15','2019-06-23 18:13:57','Nihil voluptatem.\r\n',5,8,8),(44,'2021-01-07 19:03:21','2021-01-10 20:07:33','Rem sit quis.\r\nAut fugit.',19,26,9),(45,'2018-03-24 11:12:12','2018-03-28 06:20:05','Non consequatur.\r\n',14,3,2),(46,'2019-03-02 03:44:59','2019-03-05 12:50:42','Rerum aut nesciunt. Eius!\r\n',11,9,1),(47,'2020-10-02 16:07:17','2020-10-04 22:23:55','Ad natus ut.',38,32,20),(48,'2018-08-28 09:17:48','2018-08-30 22:55:38','Tempora culpa cumque...\r\n',20,4,14),(49,'2018-02-02 05:51:53','2018-02-02 18:45:39','Unde quas culpa. Iste.\r\n',15,10,16),(50,'2019-03-25 08:54:38','2019-03-27 02:29:28','Vero temporibus quis.\r\n',21,5,1);
 /*!40000 ALTER TABLE `Appointment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -112,8 +130,8 @@ CREATE TABLE `Assists` (
   `diagnosticsID` int(11) NOT NULL,
   PRIMARY KEY (`nurseId`,`diagnosticsID`),
   KEY `FK_Diagnostics_Assists` (`diagnosticsID`),
-  CONSTRAINT `FK_Diagnostics_Assists` FOREIGN KEY (`diagnosticsID`) REFERENCES `Diagnostics` (`ID`) ON DELETE CASCADE,
-  CONSTRAINT `FK_Nurse_Assists` FOREIGN KEY (`nurseId`) REFERENCES `Nurse` (`ID`) ON DELETE CASCADE
+  CONSTRAINT `FK_Diagnostics_Assists` FOREIGN KEY (`diagnosticsID`) REFERENCES `Diagnostics` (`diagnosticsID`) ON DELETE CASCADE,
+  CONSTRAINT `FK_Nurse_Assists` FOREIGN KEY (`nurseId`) REFERENCES `Nurse` (`nurseID`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -123,7 +141,7 @@ CREATE TABLE `Assists` (
 
 LOCK TABLES `Assists` WRITE;
 /*!40000 ALTER TABLE `Assists` DISABLE KEYS */;
-INSERT INTO `Assists` VALUES (16,1),(16,2),(16,3),(16,4),(16,5),(17,2),(17,3),(17,4),(17,5),(17,6),(18,3),(18,4),(18,5),(18,6),(18,7),(19,4),(19,5),(19,6),(19,7),(19,8),(20,5),(20,6),(20,7),(20,8),(20,9),(21,6),(21,7),(21,8),(21,9),(21,10),(22,7),(22,8),(22,9),(22,10),(22,11),(23,8),(23,9),(23,10),(23,11),(23,12),(24,9),(24,10),(24,11),(24,12),(24,13),(25,10),(25,11),(25,12),(25,13),(25,14);
+INSERT INTO `Assists` VALUES (17,1),(17,2),(17,3),(17,4),(17,5),(18,2),(18,3),(18,4),(18,5),(18,6),(19,3),(19,4),(19,5),(19,6),(19,7),(20,4),(20,5),(20,6),(20,7),(20,8),(21,5),(21,6),(21,7),(21,8),(21,9),(22,6),(22,7),(22,8),(22,9),(22,10),(23,7),(23,8),(23,9),(23,10),(23,11),(24,8),(24,9),(24,10),(24,11),(24,12),(25,9),(25,10),(25,11),(25,12),(25,13),(26,10),(26,11),(26,12),(26,13),(26,14);
 /*!40000 ALTER TABLE `Assists` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -135,15 +153,15 @@ DROP TABLE IF EXISTS `Consultation`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Consultation` (
-  `ID` int(11) NOT NULL,
+  `consultationID` int(11) NOT NULL,
   `problem` varchar(40) DEFAULT NULL,
   `doctorID` int(11) DEFAULT NULL,
   `patientID` int(11) DEFAULT NULL,
-  PRIMARY KEY (`ID`),
+  PRIMARY KEY (`consultationID`),
   KEY `FK_Doctor_Consultation` (`doctorID`),
   KEY `FK_Patient_Consultation` (`patientID`),
-  CONSTRAINT `FK_Doctor_Consultation` FOREIGN KEY (`doctorID`) REFERENCES `Doctor` (`ID`) ON DELETE CASCADE,
-  CONSTRAINT `FK_Patient_Consultation` FOREIGN KEY (`patientID`) REFERENCES `Patient` (`ID`) ON DELETE CASCADE
+  CONSTRAINT `FK_Doctor_Consultation` FOREIGN KEY (`doctorID`) REFERENCES `Doctor` (`doctorID`) ON DELETE CASCADE,
+  CONSTRAINT `FK_Patient_Consultation` FOREIGN KEY (`patientID`) REFERENCES `Patient` (`patientID`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -153,7 +171,7 @@ CREATE TABLE `Consultation` (
 
 LOCK TABLES `Consultation` WRITE;
 /*!40000 ALTER TABLE `Consultation` DISABLE KEYS */;
-INSERT INTO `Consultation` VALUES (1,'Omnis et quis.\r\nNulla;',15,29),(2,'Non omnis et; deleniti quae?',7,4),(3,'Cumque qui recusandae;\r\n',4,24),(4,'Voluptatem vel enim. Vel.\r\n',4,10),(5,'Nobis impedit quisquam. A.\r\n',1,50),(6,'Culpa saepe facere.\r\n',1,50),(7,'Dolor sit sint. Repellat quia.',7,41),(8,'Ullam nihil ut. Saepe est;\r\n',3,36),(9,'Illum cumque veritatis.\r\n',14,5),(10,'Eum iste natus. Id.\r\n',7,42),(11,'Voluptatem suscipit harum.\r\n',10,11),(12,'Provident doloribus itaque.',13,6),(13,NULL,7,46),(14,'Eos soluta autem;\r\n',6,37),(15,'Iste sit nesciunt nam.',4,22),(16,'Est architecto quas. Ut!\r\n',2,46),(17,'Neque natus deleniti...\r\nMagnam.',9,1),(18,'Qui error aspernatur. Earum.\r\n',1,43),(19,'Ab molestias hic. Repellendus.',3,38),(20,'Nam ut maxime.\r\nOdit quia.\r\n',3,29),(21,'Et eum quod. Et provident!\r\n',5,24),(22,'Cumque unde dolore. Odit;\r\n',4,44),(23,'Magnam consequuntur beatae.\r\n',1,49),(24,'Voluptas et veniam. Et ullam.',12,39),(25,'Et vitae esse facere sed eos.',2,30),(26,'Aut tempore maiores.\r\n',3,25),(27,'Aliquid facere aliquam at.',2,34),(28,'Sed et iure. Error eum placeat!',4,47),(29,'Ut sed rerum. Voluptatem ipsum.',11,22),(30,'At illum distinctio. Enim ex.\r\n',2,17),(31,'Perspiciatis cum praesentium.\r\n',9,12),(32,'Ut inventore molestiae.\r\n',6,40),(33,'Consequatur molestias.\r\n',1,7),(34,'Amet quia consequuntur. Ut!',3,35),(35,'Et voluptas eos. Qui tempora.\r\n',6,18),(36,'Dolorum animi amet.\r\n',5,17),(37,'Et ut qui. Adipisci quo velit?',2,45),(38,'Vel hic necessitatibus.\r\n',6,49),(39,'Sit aperiam voluptas. Itaque.\r\n',5,30),(40,'Ut labore delectus.\r\n',8,25),(41,'Voluptas illum voluptate;\r\n',9,12),(42,'Vero et excepturi ducimus ut.',8,47),(43,'Molestiae ducimus est.',8,2),(44,'Deleniti atque dignissimos.\r\n',6,18),(45,'Rerum fugit ut; sit eaque.',7,31),(46,'Perferendis in iusto.\r\n',5,13),(47,'Et in ut.\r\nEst sint est.\r\n',5,8),(48,'Qui corporis omnis. Eligendi.\r\n',9,13),(49,'Totam et est. Asperiores.\r\n',9,26),(50,'Quo unde sit. Unde accusamus.\r\n',8,31);
+INSERT INTO `Consultation` VALUES (1,'Omnis et quis.\r\nNulla;',16,29),(2,'Non omnis et; deleniti quae?',8,4),(3,'Cumque qui recusandae;\r\n',5,29),(4,'Voluptatem vel enim. Vel.\r\n',7,10),(5,'Nobis impedit quisquam. A.\r\n',2,50),(6,'Culpa saepe facere.\r\n',4,50),(7,'Dolor sit sint. Repellat quia.',10,50),(8,'Ullam nihil ut. Saepe est;\r\n',3,5),(9,'Illum cumque veritatis.\r\n',15,24),(10,'Eum iste natus. Id.\r\n',8,22),(11,'Voluptatem suscipit harum.\r\n',11,11),(12,'Provident doloribus itaque.',14,41),(13,'Eos soluta autem;\r\n',10,22),(14,'Iste sit nesciunt nam.',6,36),(15,'Est architecto quas. Ut!\r\n',5,24),(16,'Neque natus deleniti...\r\nMagnam.',2,46),(17,'Qui error aspernatur. Earum.\r\n',9,17),(18,'Ab molestias hic. Repellendus.',9,46),(19,'Nam ut maxime.\r\nOdit quia.\r\n',13,42),(20,'Et eum quod. Et provident!\r\n',7,17),(21,'Cumque unde dolore. Odit;\r\n',6,12),(22,'Magnam consequuntur beatae.\r\n',4,37),(23,'Voluptas et veniam. Et ullam.',12,18),(24,'Et vitae esse facere sed eos.',3,13);
 /*!40000 ALTER TABLE `Consultation` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -169,8 +187,8 @@ CREATE TABLE `Contains` (
   `prescriptionID` int(11) NOT NULL,
   PRIMARY KEY (`diagnosticsID`,`prescriptionID`),
   KEY `FK_Prescription_Contains` (`prescriptionID`),
-  CONSTRAINT `FK_Diagnostics_Contains` FOREIGN KEY (`diagnosticsID`) REFERENCES `Diagnostics` (`ID`) ON DELETE CASCADE,
-  CONSTRAINT `FK_Prescription_Contains` FOREIGN KEY (`prescriptionID`) REFERENCES `Prescription` (`ID`) ON DELETE CASCADE
+  CONSTRAINT `FK_Diagnostics_Contains` FOREIGN KEY (`diagnosticsID`) REFERENCES `Diagnostics` (`diagnosticsID`) ON DELETE CASCADE,
+  CONSTRAINT `FK_Prescription_Contains` FOREIGN KEY (`prescriptionID`) REFERENCES `Prescription` (`prescriptionID`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -180,7 +198,7 @@ CREATE TABLE `Contains` (
 
 LOCK TABLES `Contains` WRITE;
 /*!40000 ALTER TABLE `Contains` DISABLE KEYS */;
-INSERT INTO `Contains` VALUES (1,1),(1,2),(2,2),(2,3),(3,3),(3,4),(4,4),(4,5),(5,5),(5,6),(6,6),(6,7),(7,7),(7,8),(8,8),(8,9),(9,9),(9,10),(10,10),(10,11),(11,11),(11,12),(12,12),(12,13),(13,13),(13,14),(14,14),(14,15),(15,15),(15,16),(16,16),(16,17),(17,17),(17,18),(18,18),(18,19),(19,19),(19,20),(20,20),(20,21),(21,21),(22,22),(23,23),(24,24),(25,25),(26,26),(27,27),(28,28),(29,29),(30,30);
+INSERT INTO `Contains` VALUES (1,1),(1,2),(2,3),(2,4),(3,5),(3,6),(4,7),(4,8),(5,9),(5,10),(6,11),(7,12),(8,13),(9,14),(10,15),(10,16),(11,17),(11,18),(12,19),(13,20),(13,21),(14,22),(14,23),(15,24),(15,25),(16,26),(17,27),(18,28),(19,29),(19,30);
 /*!40000 ALTER TABLE `Contains` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -192,10 +210,10 @@ DROP TABLE IF EXISTS `Diagnostics`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Diagnostics` (
-  `ID` int(11) NOT NULL,
+  `diagnosticsID` int(11) NOT NULL,
   `category` varchar(20) NOT NULL,
   `name` varchar(20) NOT NULL,
-  PRIMARY KEY (`ID`)
+  PRIMARY KEY (`diagnosticsID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -217,14 +235,14 @@ DROP TABLE IF EXISTS `Doctor`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Doctor` (
-  `ID` int(11) NOT NULL,
+  `doctorID` int(11) NOT NULL,
   `qualification` varchar(30) NOT NULL,
   `license` varchar(30) NOT NULL,
   `bio` varchar(300) NOT NULL,
   `available` tinyint(1) NOT NULL,
   `specialization` varchar(30) NOT NULL,
-  PRIMARY KEY (`ID`),
-  CONSTRAINT `FK_Employee_Doctor` FOREIGN KEY (`ID`) REFERENCES `Employee` (`ID`) ON DELETE CASCADE
+  PRIMARY KEY (`doctorID`),
+  CONSTRAINT `FK_Employee_Doctor` FOREIGN KEY (`doctorID`) REFERENCES `Employee` (`employeeID`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -234,9 +252,58 @@ CREATE TABLE `Doctor` (
 
 LOCK TABLES `Doctor` WRITE;
 /*!40000 ALTER TABLE `Doctor` DISABLE KEYS */;
-INSERT INTO `Doctor` VALUES (1,'Paediatrics','VG88508545','Sed aut quis.\r\nBeatae suscipit consequatur. Eos vitae et. Eos omnis laborum! Aut ab et. Tempora vitae corrupti. Omnis unde qui! Distinctio adipisci cumque. Fugit quis ducimus!\r\nAsperiores cum voluptatem.',0,'Family Practice'),(2,'Tuberculosis and Respiratory d','MV67988583','Maiores voluptatem odit. Sint est beatae! Voluptas vel quo. Libero provident fugiat! Unde blanditiis fugiat. Fugit nihil dignissimos! Ratione voluptas minima; sed aut est.\r\nProvident ut quibusdam. Temporibus possimus dolorem.',0,'Endocrinology'),(3,'Bachelor of Medicine, Bachelor','SP04631043','Odit sed, velit voluptas iste eius natus et veritatis vitae commodi aspernatur enim. Fuga neque et. Ullam error dolores! Sed deleniti sit. Odio iusto sapiente! Rerum quis voluptates. Ut omnis sit.',0,'Family Practice'),(4,'Palliative Medicine','AU43835063','Sed est eos. Alias est aut.\r\nCommodi voluptas quasi. Sed sint esse. Mollitia ea tenetur? Quam ut sit. Molestiae voluptatem ex! Ducimus est ipsa. Corporis sed id! Facilis dignissimos quae.',1,'Orthopedic Surgery'),(5,'Obstetrics and Gynaecology','MH50132113','Autem est at; culpa eum non. Unde commodi iste? Rem quia sed. Eum nihil nobis! Consequatur natus distinctio. Est quia error. Quas et eaque. Sed deleniti est; unde delectus tempore.\r\n',1,'Chiropractor'),(6,'Biochemistry','UK63146980','Rerum deleniti et natus animi corporis. Soluta quisquam ipsum fugiat iste dolor unde explicabo libero et quam non sit a velit cum reiciendis dolore qui; voluptas quia enim. Dolore aut consequuntur! Aliquam debitis molestiae.',0,'Family Practice'),(7,'Bachelor of Medicine, Bachelor','VN09336507','Nisi ut nisi.\r\nUt modi aspernatur. Necessitatibus sint rerum. Excepturi assumenda obcaecati. Ducimus dolorum iusto. Sed eaque autem; mollitia sunt impedit. Ipsam cum iste. Et veritatis praesentium. Alias quia sed!\r\n',0,'Otolaryngology'),(8,'Dermatology, Venerology and Le','TJ17459860','Voluptatem porro incidunt. Libero fugiat ipsum. Sit distinctio iste. Vero est omnis. Et non in? Perspiciatis sit explicabo. Ullam perferendis beatae. Unde ea pariatur.\r\nSunt quisquam iste. Dolorem consectetur culpa.\r\n',0,'Dermatology'),(9,'Biochemistry','ZT32280402','Ea quod maxime...\r\nQuia rerum error. Natus autem rerum. Non nemo nobis. Enim obcaecati libero. Neque numquam in; inventore impedit inventore.\r\nQui nisi quasi; quas qui sed; obcaecati tenetur nobis.\r\n',0,'Cardiology'),(10,'Dermatology','MD13668520','Omnis dolores inventore.\r\nEt delectus labore. Nostrum enim dolor. Sit iste nihil! Id voluptates aut. Quia distinctio totam.\r\nAut totam accusantium. Tempore impedit inventore...\r\nExcepturi atque voluptate. Qui vero error.',1,'Cardiology'),(11,'Biochemistry','EU11297181','Error a voluptatem. Nisi non ut. Deserunt magnam et! Omnis harum pariatur; error sed qui. Nihil id qui? Et est officiis. Velit illo dicta.\r\nUt quis aut. Et excepturi sit.',0,'Anesthesiology'),(12,'Forensic Medicine','KZ44294515','Quaerat dolor voluptates. Nobis illum rerum. Et explicabo vel. Et omnis magnam! Et magnam qui. Architecto iste ut? Libero voluptatem corrupti! Molestiae dolor quis. Expedita perspiciatis sed.\r\nEt quod amet.\r\n',0,'Hematology'),(13,'Physiology','KM57568616','Ut maiores aut. Dolor sed dolores. Sit magnam enim!\r\nPerspiciatis aliquid illo. Quaerat unde ut. Sunt ea quasi; magnam tempora fugit. Aut alias voluptatem. Delectus et dolorem.\r\nNemo odit aut.',0,'Hematology'),(14,'Laryngology','VE79885001','Maiores enim quibusdam. Magni maxime sit. Error sit nihil; nesciunt ea voluptatem. Quo sint impedit? Laboriosam iste sit. Quibusdam eaque voluptate. Consequuntur enim dolores? Qui quidem ut.\r\nQuod aut qui;\r\n',1,'Cardiology'),(15,'Cardiology','HO56641352','Expedita totam omnis. Libero eaque aperiam!\r\nSuscipit omnis qui.\r\nAmet tenetur incidunt. Natus consectetur tenetur. Sit quas perspiciatis. Quo quia sed. Ipsa voluptatem in. Est eaque voluptatem. Nemo maiores recusandae!\r\n',1,'Oncology');
+INSERT INTO `Doctor` VALUES (2,'Paediatrics','VG88508545','Sed aut quis.\r\nBeatae suscipit consequatur. Eos vitae et. Eos omnis laborum! Aut ab et. Tempora vitae corrupti. Omnis unde qui! Distinctio adipisci cumque. Fugit quis ducimus!\r\nAsperiores cum voluptatem.',0,'Family Practice'),(3,'Tuberculosis and Respiratory d','MV67988583','Maiores voluptatem odit. Sint est beatae! Voluptas vel quo. Libero provident fugiat! Unde blanditiis fugiat. Fugit nihil dignissimos! Ratione voluptas minima; sed aut est.\r\nProvident ut quibusdam. Temporibus possimus dolorem.',0,'Endocrinology'),(4,'Bachelor of Medicine, Bachelor','SP04631043','Odit sed, velit voluptas iste eius natus et veritatis vitae commodi aspernatur enim. Fuga neque et. Ullam error dolores! Sed deleniti sit. Odio iusto sapiente! Rerum quis voluptates. Ut omnis sit.',0,'Family Practice'),(5,'Palliative Medicine','AU43835063','Sed est eos. Alias est aut.\r\nCommodi voluptas quasi. Sed sint esse. Mollitia ea tenetur? Quam ut sit. Molestiae voluptatem ex! Ducimus est ipsa. Corporis sed id! Facilis dignissimos quae.',1,'Orthopedic Surgery'),(6,'Obstetrics and Gynaecology','MH50132113','Autem est at; culpa eum non. Unde commodi iste? Rem quia sed. Eum nihil nobis! Consequatur natus distinctio. Est quia error. Quas et eaque. Sed deleniti est; unde delectus tempore.\r\n',1,'Chiropractor'),(7,'Biochemistry','UK63146980','Rerum deleniti et natus animi corporis. Soluta quisquam ipsum fugiat iste dolor unde explicabo libero et quam non sit a velit cum reiciendis dolore qui; voluptas quia enim. Dolore aut consequuntur! Aliquam debitis molestiae.',0,'Family Practice'),(8,'Bachelor of Medicine, Bachelor','VN09336507','Nisi ut nisi.\r\nUt modi aspernatur. Necessitatibus sint rerum. Excepturi assumenda obcaecati. Ducimus dolorum iusto. Sed eaque autem; mollitia sunt impedit. Ipsam cum iste. Et veritatis praesentium. Alias quia sed!\r\n',0,'Otolaryngology'),(9,'Dermatology, Venerology and Le','TJ17459860','Voluptatem porro incidunt. Libero fugiat ipsum. Sit distinctio iste. Vero est omnis. Et non in? Perspiciatis sit explicabo. Ullam perferendis beatae. Unde ea pariatur.\r\nSunt quisquam iste. Dolorem consectetur culpa.\r\n',0,'Dermatology'),(10,'Biochemistry','ZT32280402','Ea quod maxime...\r\nQuia rerum error. Natus autem rerum. Non nemo nobis. Enim obcaecati libero. Neque numquam in; inventore impedit inventore.\r\nQui nisi quasi; quas qui sed; obcaecati tenetur nobis.\r\n',0,'Cardiology'),(11,'Dermatology','MD13668520','Omnis dolores inventore.\r\nEt delectus labore. Nostrum enim dolor. Sit iste nihil! Id voluptates aut. Quia distinctio totam.\r\nAut totam accusantium. Tempore impedit inventore...\r\nExcepturi atque voluptate. Qui vero error.',1,'Cardiology'),(12,'Biochemistry','EU11297181','Error a voluptatem. Nisi non ut. Deserunt magnam et! Omnis harum pariatur; error sed qui. Nihil id qui? Et est officiis. Velit illo dicta.\r\nUt quis aut. Et excepturi sit.',0,'Anesthesiology'),(13,'Forensic Medicine','KZ44294515','Quaerat dolor voluptates. Nobis illum rerum. Et explicabo vel. Et omnis magnam! Et magnam qui. Architecto iste ut? Libero voluptatem corrupti! Molestiae dolor quis. Expedita perspiciatis sed.\r\nEt quod amet.\r\n',0,'Hematology'),(14,'Physiology','KM57568616','Ut maiores aut. Dolor sed dolores. Sit magnam enim!\r\nPerspiciatis aliquid illo. Quaerat unde ut. Sunt ea quasi; magnam tempora fugit. Aut alias voluptatem. Delectus et dolorem.\r\nNemo odit aut.',0,'Hematology'),(15,'Laryngology','VE79885001','Maiores enim quibusdam. Magni maxime sit. Error sit nihil; nesciunt ea voluptatem. Quo sint impedit? Laboriosam iste sit. Quibusdam eaque voluptate. Consequuntur enim dolores? Qui quidem ut.\r\nQuod aut qui;\r\n',1,'Cardiology'),(16,'Cardiology','HO56641352','Expedita totam omnis. Libero eaque aperiam!\r\nSuscipit omnis qui.\r\nAmet tenetur incidunt. Natus consectetur tenetur. Sit quas perspiciatis. Quo quia sed. Ipsa voluptatem in. Est eaque voluptatem. Nemo maiores recusandae!\r\n',1,'Oncology');
 /*!40000 ALTER TABLE `Doctor` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Temporary table structure for view `DoctorInfo`
+--
+
+DROP TABLE IF EXISTS `DoctorInfo`;
+/*!50001 DROP VIEW IF EXISTS `DoctorInfo`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `DoctorInfo` (
+  `doctorID` tinyint NOT NULL,
+  `doctorName` tinyint NOT NULL,
+  `phone` tinyint NOT NULL,
+  `email` tinyint NOT NULL,
+  `address` tinyint NOT NULL,
+  `sex` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary table structure for view `DoctorPatientInfo`
+--
+
+DROP TABLE IF EXISTS `DoctorPatientInfo`;
+/*!50001 DROP VIEW IF EXISTS `DoctorPatientInfo`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `DoctorPatientInfo` (
+  `pharmacyID` tinyint NOT NULL,
+  `prescriptionId` tinyint NOT NULL,
+  `consultationID` tinyint NOT NULL,
+  `doctorID` tinyint NOT NULL,
+  `doctorName` tinyint NOT NULL,
+  `phone` tinyint NOT NULL,
+  `email` tinyint NOT NULL,
+  `address` tinyint NOT NULL,
+  `sex` tinyint NOT NULL,
+  `problem` tinyint NOT NULL,
+  `patientID` tinyint NOT NULL,
+  `appointmentID` tinyint NOT NULL,
+  `startTime` tinyint NOT NULL,
+  `endTime` tinyint NOT NULL,
+  `remarks` tinyint NOT NULL,
+  `invoiceId` tinyint NOT NULL,
+  `timeStamp` tinyint NOT NULL,
+  `name` tinyint NOT NULL,
+  `category` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
 
 --
 -- Table structure for table `Driver`
@@ -246,12 +313,12 @@ DROP TABLE IF EXISTS `Driver`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Driver` (
-  `ID` int(11) NOT NULL,
+  `driverID` int(11) NOT NULL,
   `experience` int(5) NOT NULL,
   `licenseNo` varchar(10) NOT NULL,
   `successRate` float DEFAULT NULL,
-  PRIMARY KEY (`ID`),
-  CONSTRAINT `FK_Employee_Driver` FOREIGN KEY (`ID`) REFERENCES `Employee` (`ID`) ON DELETE CASCADE
+  PRIMARY KEY (`driverID`),
+  CONSTRAINT `FK_Employee_Driver` FOREIGN KEY (`driverID`) REFERENCES `Employee` (`employeeID`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -261,9 +328,51 @@ CREATE TABLE `Driver` (
 
 LOCK TABLES `Driver` WRITE;
 /*!40000 ALTER TABLE `Driver` DISABLE KEYS */;
-INSERT INTO `Driver` VALUES (26,21,'LN16865292',54),(27,9,'HD77175554',13),(28,0,'VS33891242',0),(29,10,'RI76549790',45);
+INSERT INTO `Driver` VALUES (27,21,'LN16865292',54),(28,9,'HD77175554',13),(29,0,'VS33891242',0),(30,10,'RI76549790',45);
 /*!40000 ALTER TABLE `Driver` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Temporary table structure for view `DriverInfo`
+--
+
+DROP TABLE IF EXISTS `DriverInfo`;
+/*!50001 DROP VIEW IF EXISTS `DriverInfo`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `DriverInfo` (
+  `driverID` tinyint NOT NULL,
+  `name` tinyint NOT NULL,
+  `phone` tinyint NOT NULL,
+  `email` tinyint NOT NULL,
+  `address` tinyint NOT NULL,
+  `sex` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary table structure for view `DriverJourneyInfo`
+--
+
+DROP TABLE IF EXISTS `DriverJourneyInfo`;
+/*!50001 DROP VIEW IF EXISTS `DriverJourneyInfo`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `DriverJourneyInfo` (
+  `driverID` tinyint NOT NULL,
+  `name` tinyint NOT NULL,
+  `phone` tinyint NOT NULL,
+  `email` tinyint NOT NULL,
+  `address` tinyint NOT NULL,
+  `sex` tinyint NOT NULL,
+  `ambulanceID` tinyint NOT NULL,
+  `lastMaintenance` tinyint NOT NULL,
+  `totalDistance` tinyint NOT NULL,
+  `startTime` tinyint NOT NULL,
+  `endTime` tinyint NOT NULL,
+  `journeyAddress` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
 
 --
 -- Table structure for table `Drugs`
@@ -277,8 +386,8 @@ CREATE TABLE `Drugs` (
   `pharmacyID` int(11) NOT NULL,
   PRIMARY KEY (`prescriptionID`,`pharmacyID`),
   KEY `FK_Pharmacy_Drugs` (`pharmacyID`),
-  CONSTRAINT `FK_Pharmacy_Drugs` FOREIGN KEY (`pharmacyID`) REFERENCES `Pharmacy` (`ID`) ON DELETE CASCADE,
-  CONSTRAINT `FK_Prescription_Drugs` FOREIGN KEY (`prescriptionID`) REFERENCES `Prescription` (`ID`) ON DELETE CASCADE
+  CONSTRAINT `FK_Pharmacy_Drugs` FOREIGN KEY (`pharmacyID`) REFERENCES `Pharmacy` (`pharmacyID`) ON DELETE CASCADE,
+  CONSTRAINT `FK_Prescription_Drugs` FOREIGN KEY (`prescriptionID`) REFERENCES `Prescription` (`prescriptionID`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -288,7 +397,7 @@ CREATE TABLE `Drugs` (
 
 LOCK TABLES `Drugs` WRITE;
 /*!40000 ALTER TABLE `Drugs` DISABLE KEYS */;
-INSERT INTO `Drugs` VALUES (1,1),(2,2),(3,3),(4,4),(5,5),(6,6),(7,7),(8,8),(9,9),(10,10),(11,11),(12,12),(13,13),(14,14),(15,15),(16,16),(17,17),(18,18),(19,19),(20,20),(21,21),(22,22),(23,23),(24,24),(25,25),(26,26),(27,27),(28,28),(29,29),(30,30),(31,31),(32,32),(33,33),(34,34),(35,35),(36,36),(37,37),(38,38),(39,39),(40,40),(41,41),(42,42),(43,43),(44,44),(45,45),(46,46),(47,47),(48,48),(49,49),(50,50);
+INSERT INTO `Drugs` VALUES (1,1),(2,1),(3,2),(4,3),(5,4),(6,4),(7,5),(8,5),(9,6),(10,7),(11,8),(12,8),(13,9),(14,10),(15,11),(16,12),(17,13),(18,13),(19,14),(20,15),(21,16),(22,16),(23,17),(24,17),(25,18),(26,18),(27,19),(28,20),(29,20),(30,21),(31,22),(32,22),(33,23),(34,24),(35,24),(36,25),(37,25),(38,26),(39,26),(40,27),(41,28),(42,29),(43,29),(44,30),(45,31),(46,32),(47,33),(48,33),(49,34),(50,35);
 /*!40000 ALTER TABLE `Drugs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -300,7 +409,7 @@ DROP TABLE IF EXISTS `Employee`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Employee` (
-  `ID` int(11) NOT NULL,
+  `employeeID` int(11) NOT NULL,
   `name` varchar(45) NOT NULL,
   `password` longtext NOT NULL,
   `phone` varchar(20) NOT NULL,
@@ -308,7 +417,7 @@ CREATE TABLE `Employee` (
   `address` varchar(20) NOT NULL,
   `sex` varchar(20) NOT NULL,
   `salary` int(11) NOT NULL,
-  PRIMARY KEY (`ID`),
+  PRIMARY KEY (`employeeID`),
   CONSTRAINT `SexCheck` CHECK (`sex` in ('Male','Female','Other')),
   CONSTRAINT `PhoneCheck` CHECK (`phone` regexp '^[+]91 [6-9][[:digit:]]{9}$')
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -332,10 +441,10 @@ DROP TABLE IF EXISTS `Invoice`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Invoice` (
-  `ID` int(11) NOT NULL,
+  `invoiceID` int(11) NOT NULL,
   `amount` float NOT NULL,
   `isPaid` tinyint(1) NOT NULL,
-  PRIMARY KEY (`ID`)
+  PRIMARY KEY (`invoiceID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -364,8 +473,8 @@ CREATE TABLE `Journey` (
   `endTime` datetime DEFAULT NULL,
   PRIMARY KEY (`driverID`,`ambulanceId`),
   KEY `FK_Ambulance_Journey` (`ambulanceId`),
-  CONSTRAINT `FK_Ambulance_Journey` FOREIGN KEY (`ambulanceId`) REFERENCES `Ambulance` (`ID`) ON DELETE CASCADE,
-  CONSTRAINT `FK_Driver_Journey` FOREIGN KEY (`driverID`) REFERENCES `Driver` (`ID`) ON DELETE CASCADE,
+  CONSTRAINT `FK_Ambulance_Journey` FOREIGN KEY (`ambulanceId`) REFERENCES `Ambulance` (`ambulanceID`) ON DELETE CASCADE,
+  CONSTRAINT `FK_Driver_Journey` FOREIGN KEY (`driverID`) REFERENCES `Driver` (`driverID`) ON DELETE CASCADE,
   CONSTRAINT `DateTimeCheck` CHECK (`endTime` > `startTime`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -376,7 +485,7 @@ CREATE TABLE `Journey` (
 
 LOCK TABLES `Journey` WRITE;
 /*!40000 ALTER TABLE `Journey` DISABLE KEYS */;
-INSERT INTO `Journey` VALUES (26,1,'Apt. 454 554 Shukla Mount Delhi','2019-10-10 12:20:21','2019-10-11 10:28:00'),(26,2,'Apt. 908 56804 Vasudha Drives Arunachal Pradesh','2018-01-01 00:00:02','2018-01-02 10:55:30'),(26,3,'Suite 887 78067 Mangalya Lakes Karnataka','2020-03-28 23:16:07','2020-03-31 03:32:19'),(26,4,'Suite 303 03461 Subodh Brook Uttar Pradesh','2019-11-22 07:01:22','2019-11-22 11:43:40'),(26,5,'Suite 348 75387 Atreyee Mountain Maharashtra','2020-12-12 14:25:31','2020-12-13 08:21:31'),(26,6,'Suite 513 041 Sinha Mission Himachal Pradesh','2018-01-01 00:14:34','2018-01-02 15:35:17'),(26,7,'Suite 792 4237 Siddhran Curve Assam','2018-08-08 14:36:22','2018-08-09 20:05:15'),(26,8,'Suite 183 240 Khanna Glens Tamil Nadu','2018-01-01 00:00:13','2018-01-02 17:38:27'),(26,9,'Apt. 868 574 Susheel Forge Meghalaya','2018-02-11 08:41:20','2018-02-12 14:54:53'),(26,10,'Apt. 581 865 Gajbaahu Well Maharashtra','2018-09-29 04:03:36','2018-10-01 11:48:07'),(26,11,'Apt. 475 0161 Susheel Plains Andra Pradesh','2019-04-27 01:51:30','2019-04-29 23:57:50'),(26,12,'Suite 378 8144 Naval Ferry Delhi','2018-01-22 10:21:09','2018-01-23 06:02:59'),(26,13,'Apt. 893 2712 Amaresh Mills Daman and Diu','2020-11-25 13:28:50','2020-11-25 16:18:25'),(27,2,'Suite 313 4652 Kamla Knolls Gujarat','2018-01-01 00:00:03','2018-01-03 07:58:49'),(27,3,'Suite 887 78067 Mangalya Lakes Karnataka','2018-01-01 02:40:28','2018-01-03 20:09:36'),(27,4,'Suite 556 7050 Varma Ridge Telangana','2020-10-20 08:14:57','2020-10-22 13:24:18'),(27,5,'Apt. 808 013 Tandon Parks Tamil Nadu','2020-03-22 14:28:00','2020-03-24 18:05:01'),(27,6,'Suite 955 7717 Aanandinii Court Manipur','2020-03-15 09:33:48','2020-03-16 07:56:51'),(27,7,'Suite 556 7050 Varma Ridge Telangana','2020-08-27 15:09:03','2020-08-27 22:23:39'),(27,8,'Apt. 581 865 Gajbaahu Well Maharashtra','2018-01-01 01:16:14','2018-01-03 04:33:35'),(27,9,'Apt. 636 55090 Dwivedi Throughway Chhattisgarh','2018-12-05 06:59:19','2018-12-08 04:13:54'),(27,10,'Suite 635 346 Verma Ridges West Bengal','2020-01-07 22:56:21','2020-01-09 20:59:52'),(27,11,'Apt. 708 392 Jagathi Shoal Rajasthan','2019-10-08 08:20:32','2019-10-08 17:08:57'),(27,12,'Suite 955 7717 Aanandinii Court Manipur','2018-07-30 08:00:02','2018-07-30 22:17:12'),(27,13,'Apt. 455 827 Khatri Dam Meghalaya','2019-07-29 17:41:45','2019-08-01 08:33:12'),(27,14,'Apt. 649 556 Iyengar Estate Pondicherr','2020-02-12 23:34:31','2020-02-14 10:12:38'),(28,3,'Apt. 262 54352 Sher Wells Daman and Diu','2018-01-01 00:11:38','2018-01-02 03:54:07'),(28,4,'Suite 183 240 Khanna Glens Tamil Nadu','2018-01-01 01:25:02','2018-01-02 12:35:31'),(28,5,'Suite 066 22270 Tapan Falls Goa','2018-12-07 19:21:23','2018-12-09 21:59:21'),(28,6,'Apt. 332 403 Abhaidev Orchard Karnataka','2018-10-21 13:12:18','2018-10-23 13:54:47'),(28,7,'Apt. 893 2712 Amaresh Mills Daman and Diu','2019-02-10 10:35:53','2019-02-11 02:49:53'),(28,8,'Apt. 332 403 Abhaidev Orchard Karnataka','2018-01-01 02:26:29','2018-01-03 13:26:26'),(28,9,'Suite 049 28831 Gandhi Plains Andra Pradesh','2019-06-14 07:21:59','2019-06-15 04:26:29'),(28,10,'Apt. 636 55090 Dwivedi Throughway Chhattisgarh','2020-03-23 20:19:17','2020-03-24 10:33:51'),(28,11,'Apt. 584 56358 Subhashini Stream Manipur','2018-12-06 15:29:11','2018-12-09 09:22:17'),(28,12,'Apt. 584 56358 Subhashini Stream Manipur','2021-01-04 18:45:01','2021-01-05 22:06:27'),(28,13,'Apt. 425 5995 Priyala Mall Punjab','2018-01-01 00:00:02','2018-01-02 20:37:13'),(28,14,'Suite 557 293 Anish Fall Madya Pradesh','2018-02-16 14:10:01','2018-02-18 15:02:30'),(29,4,'Suite 513 041 Sinha Mission Himachal Pradesh','2018-01-01 00:01:11','2018-01-01 01:49:14'),(29,5,'Apt. 868 574 Susheel Forge Meghalaya','2019-08-05 18:55:41','2019-08-06 13:17:51'),(29,6,'Suite 843 44392 Khatri Street Odisha','2020-08-15 20:55:58','2020-08-18 06:06:31'),(29,7,'Suite 066 22270 Tapan Falls Goa','2018-01-01 00:02:30','2018-01-02 06:04:57'),(29,8,'Suite 378 8144 Naval Ferry Delhi','2020-02-11 20:47:18','2020-02-12 20:43:02'),(29,9,'Apt. 455 827 Khatri Dam Meghalaya','2018-01-01 01:14:06','2018-01-03 05:15:09'),(29,10,'Apt. 455 827 Khatri Dam Meghalaya','2020-12-21 22:56:22','2020-12-23 13:40:01'),(29,11,'Apt. 454 554 Shukla Mount Delhi','2018-08-13 07:55:14','2018-08-15 15:13:11'),(29,12,'Suite 066 22270 Tapan Falls Goa','2020-10-26 11:25:54','2020-10-28 22:29:18'),(29,13,'Apt. 403 706 Nair Island Madya Pradesh','2018-02-21 06:54:11','2018-02-22 09:06:00'),(29,14,'Suite 303 03461 Subodh Brook Uttar Pradesh','2018-01-01 01:36:59','2018-01-01 04:39:40'),(29,15,'Apt. 425 5995 Priyala Mall Punjab','2019-12-17 20:18:31','2019-12-18 20:46:22');
+INSERT INTO `Journey` VALUES (27,1,'Apt. 454 554 Shukla Mount Delhi','2019-10-10 12:20:21','2019-10-11 10:28:00'),(27,2,'Apt. 908 56804 Vasudha Drives Arunachal Pradesh','2018-01-01 00:00:02','2018-01-02 10:55:30'),(27,3,'Suite 887 78067 Mangalya Lakes Karnataka','2020-03-28 23:16:07','2020-03-31 03:32:19'),(27,4,'Suite 303 03461 Subodh Brook Uttar Pradesh','2019-11-22 07:01:22','2019-11-22 11:43:40'),(27,5,'Suite 348 75387 Atreyee Mountain Maharashtra','2020-12-12 14:25:31','2020-12-13 08:21:31'),(27,6,'Suite 513 041 Sinha Mission Himachal Pradesh','2018-01-01 00:14:34','2018-01-02 15:35:17'),(27,7,'Suite 792 4237 Siddhran Curve Assam','2018-08-08 14:36:22','2018-08-09 20:05:15'),(27,8,'Suite 183 240 Khanna Glens Tamil Nadu','2018-01-01 00:00:13','2018-01-02 17:38:27'),(27,9,'Apt. 868 574 Susheel Forge Meghalaya','2018-02-11 08:41:20','2018-02-12 14:54:53'),(27,10,'Apt. 581 865 Gajbaahu Well Maharashtra','2018-09-29 04:03:36','2018-10-01 11:48:07'),(27,11,'Apt. 475 0161 Susheel Plains Andra Pradesh','2019-04-27 01:51:30','2019-04-29 23:57:50'),(27,12,'Suite 378 8144 Naval Ferry Delhi','2018-01-22 10:21:09','2018-01-23 06:02:59'),(27,13,'Apt. 893 2712 Amaresh Mills Daman and Diu','2020-11-25 13:28:50','2020-11-25 16:18:25'),(28,2,'Suite 313 4652 Kamla Knolls Gujarat','2018-01-01 00:00:03','2018-01-03 07:58:49'),(28,3,'Suite 887 78067 Mangalya Lakes Karnataka','2018-01-01 02:40:28','2018-01-03 20:09:36'),(28,4,'Suite 556 7050 Varma Ridge Telangana','2020-10-20 08:14:57','2020-10-22 13:24:18'),(28,5,'Apt. 808 013 Tandon Parks Tamil Nadu','2020-03-22 14:28:00','2020-03-24 18:05:01'),(28,6,'Suite 955 7717 Aanandinii Court Manipur','2020-03-15 09:33:48','2020-03-16 07:56:51'),(28,7,'Suite 556 7050 Varma Ridge Telangana','2020-08-27 15:09:03','2020-08-27 22:23:39'),(28,8,'Apt. 581 865 Gajbaahu Well Maharashtra','2018-01-01 01:16:14','2018-01-03 04:33:35'),(28,9,'Apt. 636 55090 Dwivedi Throughway Chhattisgarh','2018-12-05 06:59:19','2018-12-08 04:13:54'),(28,10,'Suite 635 346 Verma Ridges West Bengal','2020-01-07 22:56:21','2020-01-09 20:59:52'),(28,11,'Apt. 708 392 Jagathi Shoal Rajasthan','2019-10-08 08:20:32','2019-10-08 17:08:57'),(28,12,'Suite 955 7717 Aanandinii Court Manipur','2018-07-30 08:00:02','2018-07-30 22:17:12'),(28,13,'Apt. 455 827 Khatri Dam Meghalaya','2019-07-29 17:41:45','2019-08-01 08:33:12'),(28,14,'Apt. 649 556 Iyengar Estate Pondicherr','2020-02-12 23:34:31','2020-02-14 10:12:38'),(29,3,'Apt. 262 54352 Sher Wells Daman and Diu','2018-01-01 00:11:38','2018-01-02 03:54:07'),(29,4,'Suite 183 240 Khanna Glens Tamil Nadu','2018-01-01 01:25:02','2018-01-02 12:35:31'),(29,5,'Suite 066 22270 Tapan Falls Goa','2018-12-07 19:21:23','2018-12-09 21:59:21'),(29,6,'Apt. 332 403 Abhaidev Orchard Karnataka','2018-10-21 13:12:18','2018-10-23 13:54:47'),(29,7,'Apt. 893 2712 Amaresh Mills Daman and Diu','2019-02-10 10:35:53','2019-02-11 02:49:53'),(29,8,'Apt. 332 403 Abhaidev Orchard Karnataka','2018-01-01 02:26:29','2018-01-03 13:26:26'),(29,9,'Suite 049 28831 Gandhi Plains Andra Pradesh','2019-06-14 07:21:59','2019-06-15 04:26:29'),(29,10,'Apt. 636 55090 Dwivedi Throughway Chhattisgarh','2020-03-23 20:19:17','2020-03-24 10:33:51'),(29,11,'Apt. 584 56358 Subhashini Stream Manipur','2018-12-06 15:29:11','2018-12-09 09:22:17'),(29,12,'Apt. 584 56358 Subhashini Stream Manipur','2021-01-04 18:45:01','2021-01-05 22:06:27'),(29,13,'Apt. 425 5995 Priyala Mall Punjab','2018-01-01 00:00:02','2018-01-02 20:37:13'),(29,14,'Suite 557 293 Anish Fall Madya Pradesh','2018-02-16 14:10:01','2018-02-18 15:02:30'),(30,4,'Suite 513 041 Sinha Mission Himachal Pradesh','2018-01-01 00:01:11','2018-01-01 01:49:14'),(30,5,'Apt. 868 574 Susheel Forge Meghalaya','2019-08-05 18:55:41','2019-08-06 13:17:51'),(30,6,'Suite 843 44392 Khatri Street Odisha','2020-08-15 20:55:58','2020-08-18 06:06:31'),(30,7,'Suite 066 22270 Tapan Falls Goa','2018-01-01 00:02:30','2018-01-02 06:04:57'),(30,8,'Suite 378 8144 Naval Ferry Delhi','2020-02-11 20:47:18','2020-02-12 20:43:02'),(30,9,'Apt. 455 827 Khatri Dam Meghalaya','2018-01-01 01:14:06','2018-01-03 05:15:09'),(30,10,'Apt. 455 827 Khatri Dam Meghalaya','2020-12-21 22:56:22','2020-12-23 13:40:01'),(30,11,'Apt. 454 554 Shukla Mount Delhi','2018-08-13 07:55:14','2018-08-15 15:13:11'),(30,12,'Suite 066 22270 Tapan Falls Goa','2020-10-26 11:25:54','2020-10-28 22:29:18'),(30,13,'Apt. 403 706 Nair Island Madya Pradesh','2018-02-21 06:54:11','2018-02-22 09:06:00'),(30,14,'Suite 303 03461 Subodh Brook Uttar Pradesh','2018-01-01 01:36:59','2018-01-01 04:39:40'),(30,15,'Apt. 425 5995 Priyala Mall Punjab','2019-12-17 20:18:31','2019-12-18 20:46:22');
 /*!40000 ALTER TABLE `Journey` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -388,11 +497,11 @@ DROP TABLE IF EXISTS `Nurse`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Nurse` (
-  `ID` int(11) NOT NULL,
+  `nurseID` int(11) NOT NULL,
   `qualification` varchar(30) NOT NULL,
   `license` varchar(30) NOT NULL,
-  PRIMARY KEY (`ID`),
-  CONSTRAINT `FK_Employee_Nurse` FOREIGN KEY (`ID`) REFERENCES `Employee` (`ID`) ON DELETE CASCADE
+  PRIMARY KEY (`nurseID`),
+  CONSTRAINT `FK_Employee_Nurse` FOREIGN KEY (`nurseID`) REFERENCES `Employee` (`employeeID`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -402,9 +511,52 @@ CREATE TABLE `Nurse` (
 
 LOCK TABLES `Nurse` WRITE;
 /*!40000 ALTER TABLE `Nurse` DISABLE KEYS */;
-INSERT INTO `Nurse` VALUES (16,'Advanced Diploma in Ophthalmic','VZ55085593'),(17,'Advanced Diploma in Ophthalmic','RI70996649'),(18,'Diploma in Neuro Nursing','CC29717864'),(19,'Advanced Diploma in Ophthalmic','JV30308957'),(20,'Diploma in Neuro Nursing','PV58267114'),(21,'Advanced Diploma in Ophthalmic','FG90265853'),(22,'Advanced Diploma in Ophthalmic','BZ71931039'),(23,'Diploma in Neuro Nursing','AX01516568'),(24,'Advanced Diploma in Ophthalmic','AR77354200'),(25,'Diploma in Emergency and Traum','RA60814409');
+INSERT INTO `Nurse` VALUES (17,'Advanced Diploma in Ophthalmic','VZ55085593'),(18,'Advanced Diploma in Ophthalmic','RI70996649'),(19,'Diploma in Neuro Nursing','CC29717864'),(20,'Advanced Diploma in Ophthalmic','JV30308957'),(21,'Diploma in Neuro Nursing','PV58267114'),(22,'Advanced Diploma in Ophthalmic','FG90265853'),(23,'Advanced Diploma in Ophthalmic','BZ71931039'),(24,'Diploma in Neuro Nursing','AX01516568'),(25,'Advanced Diploma in Ophthalmic','AR77354200'),(26,'Diploma in Emergency and Traum','RA60814409');
 /*!40000 ALTER TABLE `Nurse` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Temporary table structure for view `NurseDiagnosticsInfo`
+--
+
+DROP TABLE IF EXISTS `NurseDiagnosticsInfo`;
+/*!50001 DROP VIEW IF EXISTS `NurseDiagnosticsInfo`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `NurseDiagnosticsInfo` (
+  `nurseID` tinyint NOT NULL,
+  `qualification` tinyint NOT NULL,
+  `license` tinyint NOT NULL,
+  `name` tinyint NOT NULL,
+  `phone` tinyint NOT NULL,
+  `email` tinyint NOT NULL,
+  `address` tinyint NOT NULL,
+  `sex` tinyint NOT NULL,
+  `diagnosticsID` tinyint NOT NULL,
+  `category` tinyint NOT NULL,
+  `diagnostics` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary table structure for view `NurseInfo`
+--
+
+DROP TABLE IF EXISTS `NurseInfo`;
+/*!50001 DROP VIEW IF EXISTS `NurseInfo`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `NurseInfo` (
+  `nurseID` tinyint NOT NULL,
+  `qualification` tinyint NOT NULL,
+  `license` tinyint NOT NULL,
+  `name` tinyint NOT NULL,
+  `phone` tinyint NOT NULL,
+  `email` tinyint NOT NULL,
+  `address` tinyint NOT NULL,
+  `sex` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
 
 --
 -- Table structure for table `Patient`
@@ -414,7 +566,7 @@ DROP TABLE IF EXISTS `Patient`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Patient` (
-  `ID` int(11) NOT NULL,
+  `patientID` int(11) NOT NULL,
   `name` varchar(45) NOT NULL,
   `password` longtext NOT NULL,
   `phone` varchar(20) NOT NULL,
@@ -423,7 +575,7 @@ CREATE TABLE `Patient` (
   `sex` varchar(20) NOT NULL,
   `medicalHistory` varchar(300) DEFAULT NULL,
   `marital` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`ID`),
+  PRIMARY KEY (`patientID`),
   CONSTRAINT `SexCheck` CHECK (`sex` in ('Male','Female','Other')),
   CONSTRAINT `PhoneCheck` CHECK (`phone` regexp '^[+]91 [6-9][[:digit:]]{9}$')
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -440,6 +592,61 @@ INSERT INTO `Patient` VALUES (1,'Charmaine Stock','aReDlhzEsQhHqRuDdQEq4g==','+9
 UNLOCK TABLES;
 
 --
+-- Temporary table structure for view `PatientDoctorInfo`
+--
+
+DROP TABLE IF EXISTS `PatientDoctorInfo`;
+/*!50001 DROP VIEW IF EXISTS `PatientDoctorInfo`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `PatientDoctorInfo` (
+  `pharmacyID` tinyint NOT NULL,
+  `prescriptionId` tinyint NOT NULL,
+  `invoiceId` tinyint NOT NULL,
+  `consultationID` tinyint NOT NULL,
+  `patientID` tinyint NOT NULL,
+  `patientName` tinyint NOT NULL,
+  `phone` tinyint NOT NULL,
+  `email` tinyint NOT NULL,
+  `address` tinyint NOT NULL,
+  `sex` tinyint NOT NULL,
+  `medicalHistory` tinyint NOT NULL,
+  `marital` tinyint NOT NULL,
+  `problem` tinyint NOT NULL,
+  `doctorID` tinyint NOT NULL,
+  `appointmentID` tinyint NOT NULL,
+  `startTime` tinyint NOT NULL,
+  `endTime` tinyint NOT NULL,
+  `remarks` tinyint NOT NULL,
+  `amount` tinyint NOT NULL,
+  `isPaid` tinyint NOT NULL,
+  `timeStamp` tinyint NOT NULL,
+  `name` tinyint NOT NULL,
+  `category` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary table structure for view `PatientInfo`
+--
+
+DROP TABLE IF EXISTS `PatientInfo`;
+/*!50001 DROP VIEW IF EXISTS `PatientInfo`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `PatientInfo` (
+  `patientID` tinyint NOT NULL,
+  `patientName` tinyint NOT NULL,
+  `phone` tinyint NOT NULL,
+  `email` tinyint NOT NULL,
+  `address` tinyint NOT NULL,
+  `sex` tinyint NOT NULL,
+  `medicalHistory` tinyint NOT NULL,
+  `marital` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
+
+--
 -- Table structure for table `Pharmacy`
 --
 
@@ -447,10 +654,10 @@ DROP TABLE IF EXISTS `Pharmacy`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Pharmacy` (
-  `ID` int(11) NOT NULL,
+  `pharmacyID` int(11) NOT NULL,
   `name` varchar(45) NOT NULL,
   `category` varchar(20) NOT NULL,
-  PRIMARY KEY (`ID`)
+  PRIMARY KEY (`pharmacyID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -472,9 +679,9 @@ DROP TABLE IF EXISTS `Prescription`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Prescription` (
-  `ID` int(11) NOT NULL,
+  `prescriptionID` int(11) NOT NULL,
   `timeStamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  PRIMARY KEY (`ID`)
+  PRIMARY KEY (`prescriptionID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -496,15 +703,15 @@ DROP TABLE IF EXISTS `Supplies`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Supplies` (
-  `drugID` int(11) NOT NULL,
+  `pharmacyID` int(11) NOT NULL,
   `vendorID` int(11) NOT NULL,
   `price` float NOT NULL,
   `orderTime` datetime NOT NULL,
   `supplyTime` datetime DEFAULT NULL,
-  PRIMARY KEY (`drugID`,`vendorID`),
+  PRIMARY KEY (`pharmacyID`,`vendorID`),
   KEY `FK_Vendor_Supplies` (`vendorID`),
-  CONSTRAINT `FK_Pharmacy_Supplies` FOREIGN KEY (`drugID`) REFERENCES `Pharmacy` (`ID`) ON DELETE CASCADE,
-  CONSTRAINT `FK_Vendor_Supplies` FOREIGN KEY (`vendorID`) REFERENCES `Vendor` (`ID`) ON DELETE CASCADE,
+  CONSTRAINT `FK_Pharmacy_Supplies` FOREIGN KEY (`pharmacyID`) REFERENCES `Pharmacy` (`pharmacyID`) ON DELETE CASCADE,
+  CONSTRAINT `FK_Vendor_Supplies` FOREIGN KEY (`vendorID`) REFERENCES `Vendor` (`vendorID`) ON DELETE CASCADE,
   CONSTRAINT `DateTimeCheck` CHECK (`supplyTime` > `orderTime`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -515,7 +722,7 @@ CREATE TABLE `Supplies` (
 
 LOCK TABLES `Supplies` WRITE;
 /*!40000 ALTER TABLE `Supplies` DISABLE KEYS */;
-INSERT INTO `Supplies` VALUES (1,1,7609080,'2018-01-01 00:01:12','2018-01-02 19:44:06'),(2,2,8500500,'2020-06-01 01:30:41','2020-06-05 21:43:31'),(3,3,5,'2018-01-01 00:01:01','2018-01-03 05:12:05'),(4,4,5,'2018-01-01 00:00:59','2018-01-04 02:43:48'),(5,5,8965770,'2019-05-14 01:49:01','2019-05-18 21:18:08'),(6,6,6666770,'2018-06-22 01:51:32','2018-06-28 12:48:52'),(7,7,7996570,'2018-01-01 00:01:04','2018-01-07 14:08:35'),(8,8,4302900,'2019-06-18 08:24:04','2019-06-24 07:22:00'),(9,9,108,'2018-08-04 05:35:41','2018-08-08 21:01:17'),(10,10,9763180,'2021-02-27 03:23:05','2021-03-02 04:05:05'),(11,11,1829450,'2019-01-21 05:17:55','2019-01-26 08:18:12'),(12,12,7517900,'2020-09-14 21:38:09','2020-09-19 13:56:35'),(13,13,8,'2019-01-22 16:43:00','2019-01-28 22:09:52'),(14,14,4392190,'2018-01-01 00:00:41','2018-01-03 09:23:28'),(15,15,8843970,'2018-01-01 00:26:02','2018-01-04 10:56:20'),(16,16,8957840,'2019-01-08 13:48:52','2019-01-13 12:37:03'),(17,17,0,'2020-11-04 14:23:06','2020-11-06 15:52:41'),(18,18,5917560,'2019-07-22 20:13:28','2019-07-24 16:56:40'),(19,19,2516,'2018-02-15 05:33:12','2018-02-19 11:34:51'),(20,20,3746040,'2018-01-01 00:00:08','2018-01-02 16:01:37'),(21,21,2110260,'2019-01-18 08:52:33','2019-01-24 18:36:18'),(22,22,611397,'2019-02-08 03:58:55','2019-02-11 06:27:21'),(23,23,6482730,'2018-01-13 13:33:34','2018-01-16 11:19:28'),(24,24,5986210,'2021-03-10 16:58:15','2021-03-15 18:29:49'),(25,25,1504810,'2018-05-30 00:59:11','2018-06-02 16:36:20'),(26,26,8937580,'2020-01-10 21:35:59','2020-01-14 02:00:50'),(27,27,9898850,'2019-09-09 00:08:10','2019-09-11 11:26:34'),(28,28,1628120,'2020-12-15 06:39:14','2020-12-20 07:01:49'),(29,29,1677640,'2019-10-03 16:25:56','2019-10-04 18:44:18'),(30,30,7761960,'2021-01-20 19:08:06','2021-01-24 14:55:39'),(31,31,1340780,'2018-01-01 00:00:03','2018-01-07 09:57:13'),(32,32,1,'2018-01-01 00:00:08','2018-01-04 21:37:20'),(33,33,2936900,'2018-01-01 00:00:03','2018-01-02 23:37:16'),(34,34,9,'2021-01-01 22:30:38','2021-01-05 02:11:19'),(35,35,5090820,'2020-02-22 01:04:26','2020-02-27 13:33:42'),(36,36,4830320,'2018-12-15 06:22:28','2018-12-16 23:19:40'),(37,37,6214930,'2018-01-01 00:00:01','2018-01-06 05:32:04'),(38,38,192,'2021-01-17 08:17:10','2021-01-21 13:37:54'),(39,39,32078,'2018-08-03 12:55:23','2018-08-09 13:20:29'),(40,40,7585620,'2019-08-23 03:25:57','2019-08-28 04:52:02'),(41,41,1096250,'2018-01-01 00:01:36','2018-01-03 14:58:37'),(42,42,6763,'2018-07-20 21:04:19','2018-07-23 09:11:01'),(43,43,8528440,'2021-02-20 00:10:54','2021-02-22 01:56:49'),(44,44,2979790,'2018-05-12 16:19:36','2018-05-14 13:15:25'),(45,45,196,'2019-08-15 13:14:27','2019-08-19 04:31:50'),(46,46,5741680,'2019-10-22 04:21:14','2019-10-28 17:21:15'),(47,47,90,'2019-02-22 19:50:50','2019-02-27 00:20:34'),(48,48,7,'2018-08-09 02:48:25','2018-08-14 04:59:22'),(49,49,7677770,'2019-02-27 04:17:28','2019-03-02 11:16:36'),(50,50,5229870,'2021-01-15 03:52:44','2021-01-21 16:44:41');
+INSERT INTO `Supplies` VALUES (1,1,7609080,'2018-01-01 00:01:12','2018-01-02 19:44:06'),(1,2,8500500,'2020-06-01 01:30:41','2020-06-05 21:43:31'),(2,3,5,'2018-01-01 00:01:01','2018-01-03 05:12:05'),(2,4,5,'2018-01-01 00:00:59','2018-01-04 02:43:48'),(3,5,8965770,'2019-05-14 01:49:01','2019-05-18 21:18:08'),(4,6,6666770,'2018-06-22 01:51:32','2018-06-28 12:48:52'),(5,7,7996570,'2018-01-01 00:01:04','2018-01-07 14:08:35'),(6,8,4302900,'2019-06-18 08:24:04','2019-06-24 07:22:00'),(6,9,108,'2018-08-04 05:35:41','2018-08-08 21:01:17'),(7,10,9763180,'2021-02-27 03:23:05','2021-03-02 04:05:05'),(7,11,1829450,'2019-01-21 05:17:55','2019-01-26 08:18:12'),(8,12,7517900,'2020-09-14 21:38:09','2020-09-19 13:56:35'),(8,13,8,'2019-01-22 16:43:00','2019-01-28 22:09:52'),(9,14,4392190,'2018-01-01 00:00:41','2018-01-03 09:23:28'),(9,15,8843970,'2018-01-01 00:26:02','2018-01-04 10:56:20'),(10,16,8957840,'2019-01-08 13:48:52','2019-01-13 12:37:03'),(10,17,0,'2020-11-04 14:23:06','2020-11-06 15:52:41'),(11,18,5917560,'2019-07-22 20:13:28','2019-07-24 16:56:40'),(12,19,2516,'2018-02-15 05:33:12','2018-02-19 11:34:51'),(12,20,3746040,'2018-01-01 00:00:08','2018-01-02 16:01:37'),(13,21,2110260,'2019-01-18 08:52:33','2019-01-24 18:36:18'),(13,22,611397,'2019-02-08 03:58:55','2019-02-11 06:27:21'),(14,23,6482730,'2018-01-13 13:33:34','2018-01-16 11:19:28'),(14,24,5986210,'2021-03-10 16:58:15','2021-03-15 18:29:49'),(15,25,1504810,'2018-05-30 00:59:11','2018-06-02 16:36:20'),(15,26,8937580,'2020-01-10 21:35:59','2020-01-14 02:00:50'),(16,27,9898850,'2019-09-09 00:08:10','2019-09-11 11:26:34'),(17,28,1628120,'2020-12-15 06:39:14','2020-12-20 07:01:49'),(17,29,1677640,'2019-10-03 16:25:56','2019-10-04 18:44:18'),(18,30,7761960,'2021-01-20 19:08:06','2021-01-24 14:55:39'),(19,31,1340780,'2018-01-01 00:00:03','2018-01-07 09:57:13'),(19,32,1,'2018-01-01 00:00:08','2018-01-04 21:37:20'),(20,33,2936900,'2018-01-01 00:00:03','2018-01-02 23:37:16'),(21,34,9,'2021-01-01 22:30:38','2021-01-05 02:11:19'),(21,35,5090820,'2020-02-22 01:04:26','2020-02-27 13:33:42'),(22,36,4830320,'2018-12-15 06:22:28','2018-12-16 23:19:40'),(23,37,6214930,'2018-01-01 00:00:01','2018-01-06 05:32:04'),(24,38,192,'2021-01-17 08:17:10','2021-01-21 13:37:54'),(24,39,32078,'2018-08-03 12:55:23','2018-08-09 13:20:29'),(25,40,7585620,'2019-08-23 03:25:57','2019-08-28 04:52:02'),(25,41,1096250,'2018-01-01 00:01:36','2018-01-03 14:58:37'),(26,42,6763,'2018-07-20 21:04:19','2018-07-23 09:11:01'),(27,43,8528440,'2021-02-20 00:10:54','2021-02-22 01:56:49'),(27,44,2979790,'2018-05-12 16:19:36','2018-05-14 13:15:25'),(28,45,196,'2019-08-15 13:14:27','2019-08-19 04:31:50'),(28,46,5741680,'2019-10-22 04:21:14','2019-10-28 17:21:15'),(29,47,90,'2019-02-22 19:50:50','2019-02-27 00:20:34'),(30,48,7,'2018-08-09 02:48:25','2018-08-14 04:59:22'),(31,49,7677770,'2019-02-27 04:17:28','2019-03-02 11:16:36'),(31,50,5229870,'2021-01-15 03:52:44','2021-01-21 16:44:41');
 /*!40000 ALTER TABLE `Supplies` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -527,12 +734,12 @@ DROP TABLE IF EXISTS `Vendor`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Vendor` (
-  `ID` int(11) NOT NULL,
+  `vendorID` int(11) NOT NULL,
   `name` varchar(45) NOT NULL,
   `phone` varchar(20) NOT NULL,
   `address` varchar(100) NOT NULL,
   `email` varchar(20) NOT NULL,
-  PRIMARY KEY (`ID`),
+  PRIMARY KEY (`vendorID`),
   CONSTRAINT `PhoneCheck` CHECK (`phone` regexp '^[+]91 [6-9][[:digit:]]{9}$')
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -546,6 +753,219 @@ LOCK TABLES `Vendor` WRITE;
 INSERT INTO `Vendor` VALUES (1,'South X-Mobile Group','+91 7663103413','4-7 Effra Road, Newbiggin, Inverness-shire BR8 3JV','Rayford917@example.c'),(2,'First High-Technologies Group','+91 9721513259','2 Sing Way, Ormskirk, Oxfordshire WA55 2PP','BeverlyAshton4@nowhe'),(3,'Professional High-Technologies Corporation','+91 6009175946','3-8 Aynhoe Road, Malpas, Angus KY2 5FN','vmjm2541@example.com'),(4,'American Space Explore Corp.','+91 6540293773','35-19 Glenhill Close, Abbots Langley, Sussex BD6 8VU','Russell_Cunningham@e'),(5,'American Space Research Group','+91 7685086027','45-48 Antill Road, Solihull, Somerset MK8 5PT','FosterBaylor@nowhere'),(6,'Domestic Business Group','+91 7784839238','12-18 Stamford Street, Brighton, Cheshire TQ57 9WQ','AdelleCheek@example.'),(7,'National Products Inc.','+91 9782825747','42-26 Abyssinia Close, Gloucester, West Midlands SY1 5FX','Cardenas@example.com'),(8,'Advanced Broadcasting Group','+91 8390184999','34-56 Macclesfield Street, Rotherham, Renfrewshire S9 9WS','NevadaMcnamara@examp'),(9,'Global Space Explore Inc.','+91 6206460689','37 A-E Putney Hill, Cowes, Dunbartonshire WA1 3ZA','KyraMontes8@nowhere.'),(10,'South Space Explore Group','+91 8200371242','14-27 Darwin Road, Aberlour, Sussex WN93 8AN','VincenzoAndersen@exa'),(11,'Flexible Y-Mobile Corporation','+91 9610583536','5-9 Bedford Way, Thornton-Cleveleys, Tyrone HG90 5AH','Easterling@example.c'),(12,'Domestic Space Explore Inc.','+91 6288897903','2 Henrietta Street, Bournemouth, Merseyside PO33 9SQ','Brock9@example.com'),(13,'First Space Explore Corporation','+91 7248192938','8 Sutherland Grove, Coventry, Moray CV9 5UA','gwrd24@example.com'),(14,'First Delivery Inc.','+91 6729170564','22-28 Hackney Road, Barrow-in-Furness, Kinross-shire PR9 7PV','Boynton@example.com'),(15,'United Space Explore Inc.','+91 8584431906','9 Abbey Road, Crianlarich, Renfrewshire WR9 1YR','Abel@nowhere.com'),(16,'Australian Media Group','+91 6088047586','2-7 Great Queen Street, Ongar, Rutland RM47 5FX','Champion@example.com'),(17,'Future Instruments Corporation','+91 7131797692','5-9 Leicester Street, West Bromwich, Norfolk PA1 3XZ','eqscddmq.kpgj@nowher'),(18,'Flexible Space Explore Group','+91 6837142700','5 Devons Road, Newmarket, West Midlands BB32 4WH','lhvgt946@example.com'),(19,'International High-Technologies Corp.','+91 9130008759','3 Woodcote Road, Willenhall, Cornwall MK9 8FZ','JericaHawk@example.c'),(20,'National High-Technologies Inc.','+91 7579952333','1-9 Abbey Street, Oxford, Armagh CA9 8PP','Jacquiline.Loftis571'),(21,'Creative Engineering Corporation','+91 8105230236','14-28 Preston Road, Helensburgh, Peeblesshire CO61 7FV','Donny_Bourque241@exa'),(22,'North Industry Co.','+91 7657009858','3-9 Apollo Court, Staines, County Durham BL48 9QB','David.Burrow@example'),(23,'United High-Technologies Group','+91 8502669881','1 Montague Avenue, Dumfries, Inverness-shire TN9 6DV','Cornell5@example.com'),(24,'City Renewable Power Inc.','+91 9651206673','4-6 North End Road, Bristol, Staffordshire SP84 1XA','CassaundraAcevedo@no'),(25,'Flexible High-Technologies Inc.','+91 7337238474','8A Heath Road, Wallingford, Moray PH76 4FD','Carrier@example.com'),(26,'Domestic Industry Inc.','+91 9562883367','419 Fountain Square, Castle Douglas, Aberdeenshire OL74 6PQ','LorrineIBarfield@exa'),(27,'City Space Research Inc.','+91 6295940139','55-37 Gillett Square, Tarporley, Middlesex BB65 8AX','Jacques.Griffiths43@'),(28,'Professional High-Technologies Corporation','+91 8438798175','4 Glengall Road, Chippenham, Shropshire DY7 3JE','Claude_Cagle@example'),(29,'WorldWide Goods Corporation','+91 7709829583','44-26 Britannia Walk, Blackpool, Ayrshire CH6 4WN','ShaunOsullivan@examp'),(30,'Advanced Space Research Corp.','+91 9019481118','211E Culverden Road, Aberfeldy, Worcestershire MK6 9BV','Luvenia_Andrus@examp'),(31,'Future 3G Wireless Corp.','+91 7560085886','15 A-D Windham Road, Walsall, Gwynedd SE6 6QX','ArthurCarvalho15@exa'),(32,'Beyond Partners Inc.','+91 8976216081','9 A-E Denman Street, Swindon, Cheshire TD55 3RJ','ForresterU74@example'),(33,'Federal Entertainment Corporation','+91 6695940864','5-7 Forty Hill, Northampton, Bedfordshire IP54 4QF','Rhoades249@example.c'),(34,'Domestic Space Research Inc.','+91 9463335362','55-16 Abbeville Road, Sheffield, Berkshire CT41 2FN','JaysonBostic@nowhere'),(35,'Beyond High-Technologies Co.','+91 9991055830','90 Brettenham Avenue, Leicester, Westmorland WR37 8RB','AbrahamDuvall@exampl'),(36,'WorldWide Research Inc.','+91 8896423403','41-38 Kingston Road, Manchester, Berkshire BA8 8DB','Vera@example.com'),(37,'Pacific High-Technologies Inc.','+91 7901276626','7A Lewsiham Way, Welshpool, Roxburghshire BL8 2AZ','Huntington@example.c'),(38,'WorldWide B-Mobile Corporation','+91 6049885347','4-8 Fitzroy Street, Cambridge, Dorset MK79 1ZB','Zella_Douglas@exampl'),(39,'Home Space Research Inc.','+91 6648323139','8 A-C Hainault Road, Preston, Middlesex SO6 2JD','wkgd8082@example.com'),(40,'Pacific 2G Wireless Co.','+91 7465287652','6 Elford Close, Plymouth, Argyll SO2 1FH','Trinidad594@example.'),(41,'First High-Technologies Co.','+91 8358347191','4 A-C Holland Park Avenue, Rotherhithe, Peeblesshire S49 2UU','Abel@example.com'),(42,'Creative Materials Inc.','+91 7576033612','53-39 Burnley Road, Aberdovey, Ross OX12 7AF','Fredericks831@exampl'),(43,'Federal Partners Corporation','+91 9276340649','4-8 Abbotsbury Road, Dudley, Cambridgeshire BB4 9BX','AnnikaAbrams@example'),(44,'Canadian Space Research Group','+91 9898791142','4 Fountain Square, Bristol, Hertfordshire IV20 6NP','Leon_Nettles@nowhere'),(45,'North Investment Corp.','+91 9152531707','4-7 Ada Street, Broadstone, Norfolk CV35 7ER','MurilloA622@example.'),(46,'Advanced I-Mobile Inc.','+91 8723253628','12-37 Torrens Street, Cambridge, Midlothian BL61 8DG','Day@nowhere.com'),(47,'Global K-Mobile Group','+91 7557303783','2 Jews Row, Bolton, Shetland LL1 3HF','Bloom@example.com'),(48,'General Instruments Co.','+91 6378297126','88 Great Dover Street, Muswell Hill, Berwickshire IV22 4TZ','MadgeOutlaw@example.'),(49,'Australian Space Research Group','+91 8787920881','3-7 Beachborough Road, Leicester, Clwyd PH7 7FA','NicholasAdams@exampl'),(50,'Beyond Broadcasting Inc.','+91 9402301974','9 A-E Bleak Street, Liverpool, Cornwall PL63 9GJ','Joe_Abernathy@exampl');
 /*!40000 ALTER TABLE `Vendor` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Temporary table structure for view `VendorDrugInfo`
+--
+
+DROP TABLE IF EXISTS `VendorDrugInfo`;
+/*!50001 DROP VIEW IF EXISTS `VendorDrugInfo`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `VendorDrugInfo` (
+  `vendorID` tinyint NOT NULL,
+  `pharmacyID` tinyint NOT NULL,
+  `name` tinyint NOT NULL,
+  `phone` tinyint NOT NULL,
+  `address` tinyint NOT NULL,
+  `email` tinyint NOT NULL,
+  `price` tinyint NOT NULL,
+  `orderTime` tinyint NOT NULL,
+  `supplyTime` tinyint NOT NULL,
+  `drugName` tinyint NOT NULL,
+  `category` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Final view structure for view `AdminInfo`
+--
+
+/*!50001 DROP TABLE IF EXISTS `AdminInfo`*/;
+/*!50001 DROP VIEW IF EXISTS `AdminInfo`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`%` SQL SECURITY DEFINER */
+/*!50001 VIEW `AdminInfo` AS (select `a`.`adminID` AS `adminID`,`e`.`name` AS `name`,`e`.`phone` AS `phone`,`e`.`email` AS `email`,`e`.`address` AS `address`,`e`.`sex` AS `sex` from (`Admin` `a` join `Employee` `e` on(`a`.`adminID` = `e`.`employeeID`))) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `DoctorInfo`
+--
+
+/*!50001 DROP TABLE IF EXISTS `DoctorInfo`*/;
+/*!50001 DROP VIEW IF EXISTS `DoctorInfo`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`%` SQL SECURITY DEFINER */
+/*!50001 VIEW `DoctorInfo` AS (select `d`.`doctorID` AS `doctorID`,`e`.`name` AS `doctorName`,`e`.`phone` AS `phone`,`e`.`email` AS `email`,`e`.`address` AS `address`,`e`.`sex` AS `sex` from (`Doctor` `d` join `Employee` `e` on(`d`.`doctorID` = `e`.`employeeID`))) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `DoctorPatientInfo`
+--
+
+/*!50001 DROP TABLE IF EXISTS `DoctorPatientInfo`*/;
+/*!50001 DROP VIEW IF EXISTS `DoctorPatientInfo`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`%` SQL SECURITY DEFINER */
+/*!50001 VIEW `DoctorPatientInfo` AS (select `D`.`pharmacyID` AS `pharmacyID`,`A`.`prescriptionId` AS `prescriptionId`,`C`.`consultationID` AS `consultationID`,`DoctorInfo`.`doctorID` AS `doctorID`,`DoctorInfo`.`doctorName` AS `doctorName`,`DoctorInfo`.`phone` AS `phone`,`DoctorInfo`.`email` AS `email`,`DoctorInfo`.`address` AS `address`,`DoctorInfo`.`sex` AS `sex`,`C`.`problem` AS `problem`,`C`.`patientID` AS `patientID`,`A`.`appointmentID` AS `appointmentID`,`A`.`startTime` AS `startTime`,`A`.`endTime` AS `endTime`,`A`.`remarks` AS `remarks`,`A`.`invoiceId` AS `invoiceId`,`Pr`.`timeStamp` AS `timeStamp`,`Ph`.`name` AS `name`,`Ph`.`category` AS `category` from (((((`DoctorInfo` join `Consultation` `C` on(`DoctorInfo`.`doctorID` = `C`.`doctorID`)) join `Appointment` `A` on(`C`.`consultationID` = `A`.`consultationId`)) join `Prescription` `Pr` on(`A`.`prescriptionId` = `Pr`.`prescriptionID`)) join `Drugs` `D` on(`A`.`prescriptionId` = `D`.`prescriptionID`)) join `Pharmacy` `Ph` on(`D`.`pharmacyID` = `Ph`.`pharmacyID`))) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `DriverInfo`
+--
+
+/*!50001 DROP TABLE IF EXISTS `DriverInfo`*/;
+/*!50001 DROP VIEW IF EXISTS `DriverInfo`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`%` SQL SECURITY DEFINER */
+/*!50001 VIEW `DriverInfo` AS (select `d`.`driverID` AS `driverID`,`e`.`name` AS `name`,`e`.`phone` AS `phone`,`e`.`email` AS `email`,`e`.`address` AS `address`,`e`.`sex` AS `sex` from (`Driver` `d` join `Employee` `e` on(`d`.`driverID` = `e`.`employeeID`))) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `DriverJourneyInfo`
+--
+
+/*!50001 DROP TABLE IF EXISTS `DriverJourneyInfo`*/;
+/*!50001 DROP VIEW IF EXISTS `DriverJourneyInfo`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`%` SQL SECURITY DEFINER */
+/*!50001 VIEW `DriverJourneyInfo` AS (select `DriverInfo`.`driverID` AS `driverID`,`DriverInfo`.`name` AS `name`,`DriverInfo`.`phone` AS `phone`,`DriverInfo`.`email` AS `email`,`DriverInfo`.`address` AS `address`,`DriverInfo`.`sex` AS `sex`,`Ambulance`.`ambulanceID` AS `ambulanceID`,`Ambulance`.`lastMaintenance` AS `lastMaintenance`,`Ambulance`.`totalDistance` AS `totalDistance`,`Journey`.`startTime` AS `startTime`,`Journey`.`endTime` AS `endTime`,`Journey`.`address` AS `journeyAddress` from ((`DriverInfo` join `Journey` on(`DriverInfo`.`driverID` = `Journey`.`driverID`)) join `Ambulance` on(`Journey`.`ambulanceId` = `Ambulance`.`ambulanceID`))) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `NurseDiagnosticsInfo`
+--
+
+/*!50001 DROP TABLE IF EXISTS `NurseDiagnosticsInfo`*/;
+/*!50001 DROP VIEW IF EXISTS `NurseDiagnosticsInfo`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`%` SQL SECURITY DEFINER */
+/*!50001 VIEW `NurseDiagnosticsInfo` AS (select `NurseInfo`.`nurseID` AS `nurseID`,`NurseInfo`.`qualification` AS `qualification`,`NurseInfo`.`license` AS `license`,`NurseInfo`.`name` AS `name`,`NurseInfo`.`phone` AS `phone`,`NurseInfo`.`email` AS `email`,`NurseInfo`.`address` AS `address`,`NurseInfo`.`sex` AS `sex`,`Diagnostics`.`diagnosticsID` AS `diagnosticsID`,`Diagnostics`.`category` AS `category`,`Diagnostics`.`name` AS `diagnostics` from ((`NurseInfo` join `Assists` on(`NurseInfo`.`nurseID` = `Assists`.`nurseId`)) join `Diagnostics` on(`Assists`.`diagnosticsID` = `Diagnostics`.`diagnosticsID`))) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `NurseInfo`
+--
+
+/*!50001 DROP TABLE IF EXISTS `NurseInfo`*/;
+/*!50001 DROP VIEW IF EXISTS `NurseInfo`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`%` SQL SECURITY DEFINER */
+/*!50001 VIEW `NurseInfo` AS (select `n`.`nurseID` AS `nurseID`,`n`.`qualification` AS `qualification`,`n`.`license` AS `license`,`e`.`name` AS `name`,`e`.`phone` AS `phone`,`e`.`email` AS `email`,`e`.`address` AS `address`,`e`.`sex` AS `sex` from (`Nurse` `n` join `Employee` `e` on(`n`.`nurseID` = `e`.`employeeID`))) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `PatientDoctorInfo`
+--
+
+/*!50001 DROP TABLE IF EXISTS `PatientDoctorInfo`*/;
+/*!50001 DROP VIEW IF EXISTS `PatientDoctorInfo`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`%` SQL SECURITY DEFINER */
+/*!50001 VIEW `PatientDoctorInfo` AS (select `D`.`pharmacyID` AS `pharmacyID`,`A`.`prescriptionId` AS `prescriptionId`,`A`.`invoiceId` AS `invoiceId`,`C`.`consultationID` AS `consultationID`,`PatientInfo`.`patientID` AS `patientID`,`PatientInfo`.`patientName` AS `patientName`,`PatientInfo`.`phone` AS `phone`,`PatientInfo`.`email` AS `email`,`PatientInfo`.`address` AS `address`,`PatientInfo`.`sex` AS `sex`,`PatientInfo`.`medicalHistory` AS `medicalHistory`,`PatientInfo`.`marital` AS `marital`,`C`.`problem` AS `problem`,`C`.`doctorID` AS `doctorID`,`A`.`appointmentID` AS `appointmentID`,`A`.`startTime` AS `startTime`,`A`.`endTime` AS `endTime`,`A`.`remarks` AS `remarks`,`I`.`amount` AS `amount`,`I`.`isPaid` AS `isPaid`,`P`.`timeStamp` AS `timeStamp`,`Ph`.`name` AS `name`,`Ph`.`category` AS `category` from ((((((`PatientInfo` join `Consultation` `C` on(`PatientInfo`.`patientID` = `C`.`patientID`)) join `Appointment` `A` on(`C`.`consultationID` = `A`.`consultationId`)) join `Invoice` `I` on(`A`.`invoiceId` = `I`.`invoiceID`)) join `Prescription` `P` on(`A`.`prescriptionId` = `P`.`prescriptionID`)) join `Drugs` `D` on(`A`.`prescriptionId` = `D`.`prescriptionID`)) join `Pharmacy` `Ph` on(`D`.`pharmacyID` = `Ph`.`pharmacyID`))) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `PatientInfo`
+--
+
+/*!50001 DROP TABLE IF EXISTS `PatientInfo`*/;
+/*!50001 DROP VIEW IF EXISTS `PatientInfo`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`%` SQL SECURITY DEFINER */
+/*!50001 VIEW `PatientInfo` AS (select `Patient`.`patientID` AS `patientID`,`Patient`.`name` AS `patientName`,`Patient`.`phone` AS `phone`,`Patient`.`email` AS `email`,`Patient`.`address` AS `address`,`Patient`.`sex` AS `sex`,`Patient`.`medicalHistory` AS `medicalHistory`,`Patient`.`marital` AS `marital` from `Patient`) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `VendorDrugInfo`
+--
+
+/*!50001 DROP TABLE IF EXISTS `VendorDrugInfo`*/;
+/*!50001 DROP VIEW IF EXISTS `VendorDrugInfo`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`%` SQL SECURITY DEFINER */
+/*!50001 VIEW `VendorDrugInfo` AS (select `Vendor`.`vendorID` AS `vendorID`,`p`.`pharmacyID` AS `pharmacyID`,`Vendor`.`name` AS `name`,`Vendor`.`phone` AS `phone`,`Vendor`.`address` AS `address`,`Vendor`.`email` AS `email`,`s`.`price` AS `price`,`s`.`orderTime` AS `orderTime`,`s`.`supplyTime` AS `supplyTime`,`p`.`name` AS `drugName`,`p`.`category` AS `category` from ((`Vendor` join `Supplies` `s` on(`Vendor`.`vendorID` = `s`.`vendorID`)) join `Pharmacy` `p` on(`s`.`pharmacyID` = `p`.`pharmacyID`))) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -556,4 +976,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-03-23  8:30:53
+-- Dump completed on 2021-03-30  6:18:06
