@@ -5,12 +5,19 @@ import os
 
 app = FastAPI()
 try:
+    # conn = mariadb.connect(
+    #     user=os.getenv("USER", "root"),
+    #     password=os.getenv("PASSWORD", "maria"),
+    #     host=os.getenv("HOST", "hyacinthDB"),
+    #     port=int(os.getenv("PORT", "3306")),
+    #     database=os.getenv("DB", "Hyacinth")
+    # )
     conn = mariadb.connect(
-        user= os.getenv("USER", "root"),
-        password=os.getenv("PASSWORD", "password"),
-        host=os.getenv("HOST", "localhost"),
-        port=os.getenv("PORT", "3306"),
-        database=os.getenv("DB", "Hyacinth")
+        user="root",
+        password="maria",
+        host="hyacinthDB",
+        port=3306,
+        database="Hyacinth"
     )
 except mariadb.Error as e:
     print(f"Error connecting to MariaDB Platform: {e}")
@@ -34,5 +41,3 @@ def get_students():
             'name': name
         })
     return res
-
-
