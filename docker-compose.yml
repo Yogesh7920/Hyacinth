@@ -35,12 +35,10 @@ services:
     environment:
       MYSQL_DATABASE: "${DB}"
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-      MYSQL_ROOT_PASSWORD: ""
+      MYSQL_ROOT_PASSWORD: "${DB_PASSWORD}"
     volumes:
       - ./sql_scripts:/scripts
       - db:/var/lib/mysql
-    ports: 
-      - "3307:3306"
 
 volumes: 
   db: {}
