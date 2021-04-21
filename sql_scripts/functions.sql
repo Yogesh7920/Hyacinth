@@ -1,0 +1,7 @@
+use hyacinth;
+
+DELIMITER //
+
+
+
+DELIMITER ;
