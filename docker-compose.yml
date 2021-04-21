@@ -26,8 +26,6 @@ services:
   db:
     container_name: hyacinthDB
     image: mariadb
-    ports:
-      - "3307:3306"
     environment:
       MYSQL_ALLOW_EMPY_PASSOWRD: "yes"
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}

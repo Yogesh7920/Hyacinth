@@ -8,7 +8,7 @@ try:
         user="root",
         password="maria",
         host="hyacinthDB",
-        port=3307,
+        port=3306,
         database="Hyacinth"
 
     )
