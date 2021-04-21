@@ -2,4 +2,4 @@
 .vscode/
 sql_scripts/test.sql
 *.pyc
-
+.env
