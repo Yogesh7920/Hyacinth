@@ -5,12 +5,18 @@ import os
 
 app = FastAPI()
 try:
+    user = os.getenv("DB_USER", "root")
+    password = os.getenv("DB_PASSWORD", "password")
+    host = os.getenv("DB_HOST", "localhost")
+    port = int(os.getenv("DB_PORT", "3306"))
+    database = os.getenv("DB", "Hyacinth")
+    print(user, password, host, port, database)
     conn = mariadb.connect(
-        user= os.getenv("USER", "root"),
-        password=os.getenv("PASSWORD", "password"),
-        host=os.getenv("HOST", "localhost"),
-        port=os.getenv("PORT", "3306"),
-        database=os.getenv("DB", "Hyacinth")
+        user="root",
+        password="",
+        host="db",
+        port=3307,
+        database="Hyacinth"
     )
 except mariadb.Error as e:
     print(f"Error connecting to MariaDB Platform: {e}")
