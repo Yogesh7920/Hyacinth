@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 import mariadb
 import sys
+import os
 
 app = FastAPI()
 try:

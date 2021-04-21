@@ -1,21 +1,27 @@
 version: '3.9'
 
 services: 
-  angular:
-    container_name: hyacinthFE
-    build: 
-      context: ./hyacinthFE
-      dockerfile: Dockerfile
-    ports: 
-      - 4200:4200
-    volumes: 
-      - ./hyacinthFE:/code
-      - /code/node_modules
+  # angular:
+  #   container_name: hyacinthFE
+  #   build: 
+  #     context: ./hyacinthFE
+  #     dockerfile: Dockerfile
+  #   ports: 
+  #     - 4200:4200
+  #   volumes: 
+  #     - ./hyacinthFE:/code
+  #     - /code/node_modules
   
   fastapi:
     build: 
       context: ./hyacinthBE
     container_name: hyacinthBE
+    environment: 
+      USER: ${USER}
+      PASSWORD: ${PASSWORD}
+      HOST: ${HOST}
+      PORT: ${PORT}
+      DB: ${DB}
     volumes:
       - ./hyacinthBE:/code
     ports:
@@ -28,7 +34,7 @@ services:
     image: mariadb
     environment:
       MYSQL_ALLOW_EMPY_PASSOWRD: "yes"
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${PASSWORD}
     volumes:
       - ./sql_scripts:/scripts
       - hyacinth_db:/var/lib/mysql
