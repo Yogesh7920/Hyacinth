@@ -10,13 +10,12 @@ try:
     host = os.getenv("DB_HOST", "localhost")
     port = int(os.getenv("DB_PORT", "3306"))
     database = os.getenv("DB", "Hyacinth")
-    print(user, password, host, port, database)
     conn = mariadb.connect(
-        user="root",
-        password="",
-        host="db",
-        port=3307,
-        database="Hyacinth"
+        user=user,
+        password=password,
+        host=host,
+        port=port,
+        database=database
     )
 except mariadb.Error as e:
     print(f"Error connecting to MariaDB Platform: {e}")
@@ -40,5 +39,3 @@ def get_students():
             'name': name
         })
     return res
-
-
