@@ -1,4 +1,4 @@
 FROM tiangolo/uvicorn-gunicorn-fastapi:python3.7
 
-WORKDIR /workspace/fastapi
-COPY . .
+WORKDIR /code
+RUN pip3 install mariadb

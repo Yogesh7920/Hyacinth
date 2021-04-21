@@ -1,7 +1,7 @@
 FROM node:14.16
 
-RUN mkdir -p /workspace/angular
-WORKDIR /workspace/angular
+RUN mkdir -p /code
+WORKDIR /code
 COPY package*.json ./
 RUN npm install -g @angular/cli
 RUN npm install
