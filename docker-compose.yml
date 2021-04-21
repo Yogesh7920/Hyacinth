@@ -39,6 +39,16 @@ services:
     volumes:
       - ./sql_scripts:/scripts
       - db:/var/lib/mysql
+  
+  phpmyadmin:
+    container_name: hyacinthDE
+    image: phpmyadmin/phpmyadmin
+    environment:
+        PMA_HOST: hyacinthDB
+        PMA_USER: "${DB_USER}"
+        PMA_PASSWORD: "${DB_PASSWORD}"
+    ports:
+        - "5000:80"
 
 volumes: 
   db: {}
