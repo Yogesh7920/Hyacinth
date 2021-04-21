@@ -17,7 +17,7 @@ services:
     build: ./hyacinthBE
     container_name: hyacinth
     volumes:
-      - ./hyacinth:/code
+      - ./hyacinthBE/app:/code
     ports:
       - "8000:80"
     depends_on:

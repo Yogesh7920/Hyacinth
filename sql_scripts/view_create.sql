@@ -1,3 +1,6 @@
+SET NAMES 'utf8';
+USE Hyacinth;
+
 drop view if exists DoctorInfo;
 drop view if exists NurseInfo;
 drop view if exists DriverInfo;
