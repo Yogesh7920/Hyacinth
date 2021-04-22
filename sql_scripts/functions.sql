@@ -1,6 +1,7 @@
 use hyacinth;
 
 drop function if exists total_monthly_income;
+drop function if exists total_monthly_expenditure;
 
 DELIMITER //
 
@@ -14,6 +15,13 @@ begin
 );
 end //
 
-DELIMITER ;
+create function total_monthly_expenditure()
+    returns float
+begin
+    return (
+        select sum(price) from hyacinth.supplies
+        where (orderTime > date_sub(curdate(), interval 31 day ))
+    );
+end //
 
-select total_monthly_income();
+DELIMITER ;
