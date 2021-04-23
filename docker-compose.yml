@@ -3,20 +3,20 @@ version: '3.9'
 services: 
   angular:
     container_name: hyacinthFE
-    build: 
+    build:
       context: ./hyacinthFE
       dockerfile: Dockerfile
-    ports: 
+    ports:
       - 4200:4200
-    volumes: 
+    volumes:
       - ./hyacinthFE:/code
       - /code/node_modules
-  
+
   fastapi:
-    build: 
+    build:
       context: ./hyacinthBE
     container_name: hyacinthBE
-    environment: 
+    environment:
       DB_USER: ${DB_USER}
       DB_PASSWORD: ${DB_PASSWORD}
       DB_HOST: ${DB_HOST}
@@ -39,18 +39,18 @@ services:
     volumes:
       - ./sql_scripts:/scripts
       - db:/var/lib/mysql
-    ports: 
+    ports:
       - ${DB_PORT}:3306
-  
+
   phpmyadmin:
     container_name: hyacinthDE
     image: phpmyadmin/phpmyadmin
     environment:
-        PMA_HOST: "${DB_HOST}"
-        PMA_USER: "${DB_USER}"
-        PMA_PASSWORD: "${DB_PASSWORD}"
+      PMA_HOST: "${DB_HOST}"
+      PMA_USER: "${DB_USER}"
+      PMA_PASSWORD: "${DB_PASSWORD}"
     ports:
-        - "5000:80"
+      - "5000:80"
 
 volumes: 
   db: {}
