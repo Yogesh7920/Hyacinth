@@ -48,7 +48,7 @@ create function total_monthly_expenditure()
 begin
     return (
         select sum(price) from Hyacinth.Supplies
-        where (orderTime > date_sub(curdate(), interval 31 day ))
+        where (orderTime > date_sub(curdate(), interval dayofmonth(curdate()) - 1 day ))
     );
 end //
 
