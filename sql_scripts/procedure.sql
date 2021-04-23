@@ -1,6 +1,19 @@
 drop procedure if exists exec_query;
 drop procedure if exists EmployeeRegistration;
 drop procedure if exists PatientRegistration;
+drop procedure if exists NurseProfile;
+drop procedure if exists DiagnosticsHistory;
+drop procedure if exists DoctorProfile;
+drop procedure if exists PatientRecords;
+drop procedure if exists DriverProfile;
+drop procedure if exists DriveRecords;
+drop procedure if exists PatientProfile;
+drop procedure if exists HospitalRecords;
+drop procedure if exists AdminProfile;
+drop procedure if exists PharmacyRecords;
+
+
+
 
 delimiter //
 
@@ -53,6 +66,59 @@ begin
         set registered=true;
     end if;
 end; //
+
+create procedure NurseProfile(ID int(11))
+begin
+    select * from NurseInfo where nurseID = ID;    
+end; //
+
+create procedure DiagnosticsHistory(ID int(11),cat varchar(20))
+begin
+    select * from NurseDiagnosticsInfo where nurseID = ID and category = cat;    
+end; //
+
+create procedure DoctorProfile(ID int(11))
+begin
+    select * from DoctorInfo where doctorID = ID;    
+end; //
+
+create procedure PatientRecords (ID int(11))
+begin
+    select * from DoctorPatientInfo where doctorID = ID;    
+end; //
+
+create procedure DriverProfile(ID int(11))
+begin
+    select * from DriverInfo where driverID = ID;    
+end; //
+
+create procedure DriveRecords (ID int(11))
+begin
+    select * from DriverJourneyInfo where driverID = ID;    
+end; //
+
+create procedure PatientProfile(ID int(11))
+begin
+    select * from PatientInfo where patientID = ID;    
+end; //
+
+create procedure HospitalRecords(ID int(11))
+begin
+    select * from PatientDoctorInfo where patientID = ID;    
+end; //
+
+create procedure AdminProfile(ID int(11))
+begin
+    select * from AdminInfo where adminID = ID;    
+end; //
+
+create procedure PharmacyRecords (drug varchar(45))
+begin
+    select * from VendorDrugInfo where drugName = drug;    
+end; //
+
+
+
 
 delimiter ;
 
