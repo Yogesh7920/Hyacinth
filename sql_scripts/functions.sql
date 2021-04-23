@@ -11,8 +11,8 @@ begin
     return (
         select sum(amount) from Hyacinth.Invoice
         inner join Appointment a on Invoice.invoiceID = a.invoiceId
-        where (isPaid=1) and (startTime > date_sub(curdate(), interval 31 day ))
-);
+        where (isPaid=1) and (startTime > date_sub(curdate(), interval dayofmonth(curdate()) - 1 day ))
+    );
 end //
 
 create function employee_role(email_ varchar(20))
