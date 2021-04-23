@@ -4,7 +4,7 @@ use Hyacinth;
 
 create table Employee
 (
-    employeeID       int primary key,
+    employeeID       int primary key auto_increment,
     name     varchar(45) not null,
     password longtext    not null,
     phone    varchar(20) not null unique,
@@ -60,7 +60,7 @@ create table Driver
 
 create table Patient
 (
-    patientID             int primary key,
+    patientID      int primary key auto_increment,
     name           varchar(45) not null,
     password       longtext    not null,
     phone          varchar(20) not null unique,
@@ -75,54 +75,54 @@ create table Patient
 
 create table Prescription
 (
-    prescriptionID        int primary key,
-    timeStamp timestamp not null
+    prescriptionID  int primary key,
+    timeStamp       timestamp not null
 );
 
 create table Diagnostics
 (
-    diagnosticsID       int primary key,
-    category varchar(20) not null,
-    name     varchar(20) not null
+    diagnosticsID   int primary key,
+    category        varchar(20) not null,
+    name            varchar(20) not null
 );
 
 create table Vendor
 (
-    vendorID      int primary key,
-    name    varchar(45)  not null,
-    phone   varchar(20)  not null,
-    address varchar(100) not null,
-    email   varchar(20)  not null,
+    vendorID    int primary key auto_increment,
+    name        varchar(45)  not null,
+    phone       varchar(20)  not null,
+    address     varchar(100) not null,
+    email       varchar(20)  not null,
     constraint PhoneCheck check ( phone regexp '^[\+]91 [6-9][[:digit:]]{9}$' )
 );
 
 create table Pharmacy
 (
-    pharmacyID       int primary key,
-    name     varchar(45) not null,
-    category varchar(20) not null
+    pharmacyID  int primary key auto_increment,
+    name        varchar(45) not null,
+    category    varchar(20) not null
 );
 
 create table Invoice
 (
-    invoiceID     int primary key,
-    amount float not null,
-    isPaid bool  not null
+    invoiceID   int primary key auto_increment,
+    amount      float not null,
+    isPaid      bool  not null
 );
 
 create table Ambulance
 (
-    ambulanceID              int primary key,
+    ambulanceID     int primary key auto_increment,
     lastMaintenance datetime,
     totalDistance   float
 );
 
 create table Consultation
 (
-    consultationID        int primary key,
-    problem   varchar(40),
-    doctorID  int,
-    patientID int,
+    consultationID  int primary key auto_increment,
+    problem         varchar(40),
+    doctorID        int,
+    patientID       int,
     constraint FK_Doctor_Consultation foreign key (doctorID)
         references Doctor (doctorID)
         on delete cascade,
@@ -133,7 +133,7 @@ create table Consultation
 
 create table Appointment
 (
-    appointmentID             int primary key,
+    appointmentID  int primary key auto_increment,
     startTime      timestamp,
     endTime        timestamp,
     remarks        varchar(40),

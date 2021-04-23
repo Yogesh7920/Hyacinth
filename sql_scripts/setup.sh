@@ -1,5 +1,7 @@
 #!/bin/bash
 
-mysql -u root -p Hyacinth < create.sql
-mysql -u root -p Hyacinth < datagen.sql
-mysql -u root -p Hyacinth < view_create.sql
+mysql -u root -p Hyacinth < create_schema.sql
+mysql -u root -p Hyacinth < create_view.sql
+mysql -u root -p Hyacinth < create_data.sql
+mysql -u root -p Hyacinth < create_role.sql
+mysql -u root -p Hyacinth < init.sql

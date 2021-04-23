@@ -39,7 +39,7 @@ begin
     -- If user does not exist, check if the admin has added him/her as an employee.
     elseif exists(select * from Employee where email=email_)
     then
-        set @create_user = concat('create user ', substring_index(email_, '@', 1), '@localhost identified by \'', password_, '\';');
+        set @create_user = concat('create user \'', substring_index(email_, '@', 1), '\'@\'localhost\' identified by \'', password_, '\';');
         call exec_query(@create_user);
         set valid=true;
     -- If the admin has not added the Employee, don't allow registration.
@@ -48,21 +48,31 @@ begin
     end if;
 end; //
 
-create procedure PatientRegistration(name_ varchar(45), password_ varchar(255), phone varchar(20), 
-                                    email varchar(20), address_ varchar(20), sex varchar(20),
+create procedure PatientRegistration(name_ varchar(45), email_ varchar(20), password_ varchar(255),
+                                    phone varchar(20), address_ varchar(20), sex varchar(20),
                                     medicalHistory varchar(300), marital bool, out registered bool
                                     )
 begin
-    if user_exists(email)
+    if user_exists(email_)
     then
         set registered=false;
     else
-        set @create_user = concat('create user ', substring_index(email, '@', 1), '@localhost identified by ', PASSWORD(password_));
+        set @create_user = concat('create user \'', substring_index(email_, '@', 1), '\'@\'localhost\' identified by \'', password_, '\';');
         call exec_query(@create_user);
-
-        -- select @insert_user = concat('insert into Patient ')
-        -- call exec_query(@insert_user);
-        -- grant patient_role to email;
+        set @insert_user = concat(
+            'insert into Patient set',
+            ' name = \'', name_, '\'',
+            ', email = \'', email_, '\'',
+            ', phone = \'', phone, '\'',
+            ', password = \'', PASSWORD(password_), '\'',
+            ', address = \'', address_, '\'',
+            ', sex = \'', sex, '\'',
+            ', medicalHistory = \'', medicalHistory, '\'',
+            ', marital = ', marital
+        );
+        select @insert_user;
+        call exec_query(@insert_user);
+        grant patient_role to email;
         set registered=true;
     end if;
 end; //
