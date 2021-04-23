@@ -1,3 +1,5 @@
+use hyacinth;
+
 drop function if exists total_monthly_income;
 drop function if exists total_monthly_expenditure;
 drop function if exists user_exists;
@@ -47,7 +49,9 @@ create function total_monthly_expenditure()
     returns float
 begin
     return (
-        select sum(price) from Hyacinth.Supplies
+        select sum(price), temp.total from Hyacinth.Supplies, (
+              select sum(salary) as total from employee
+            ) as temp
         where (orderTime > date_sub(curdate(), interval dayofmonth(curdate()) - 1 day ))
     );
 end //

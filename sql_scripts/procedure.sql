@@ -13,8 +13,6 @@ drop procedure if exists AdminProfile;
 drop procedure if exists PharmacyRecords;
 
 
-
-
 delimiter //
 
 create procedure exec_query(query_str varchar(255))
@@ -126,9 +124,6 @@ create procedure PharmacyRecords (drug varchar(45))
 begin
     select * from VendorDrugInfo where drugName = drug;    
 end; //
-
-
-
 
 delimiter ;
 
