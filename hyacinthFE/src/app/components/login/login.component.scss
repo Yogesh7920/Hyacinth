@@ -1,0 +1,14 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    flex-direction: column;
+}
+
+.register {
+    text-decoration: underline;
+    &:hover {
+        cursor: pointer;    
+    }
+}

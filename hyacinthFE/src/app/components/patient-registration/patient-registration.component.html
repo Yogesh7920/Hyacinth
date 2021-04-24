@@ -1,0 +1,92 @@
+<div class="container">
+    <mat-card>
+
+        <mat-card-content>
+            <form>
+                <table>
+                    <tr>
+                        <td>
+                            <mat-form-field appearance="fill" class="demo-full-width">
+                                <mat-label>First Name</mat-label>
+                                <input matInput matInput>
+                            </mat-form-field>
+                        </td>
+                        <td>
+                            <mat-form-field appearance="fill" class="demo-full-width">
+                                <mat-label>Last Name</mat-label>
+                                <input matInput>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <mat-form-field appearance="fill" class="demo-full-width">
+                                <mat-label>Address</mat-label>
+                                <textarea matInput [matTextareaAutosize]="true"
+                                    [matAutosizeMinRows]="2" [matAutosizeMaxRows]="5"></textarea>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <mat-form-field appearance="fill" class="demo-full-width">
+                                <mat-label>Phone</mat-label>
+                                <input matInput placeholder="9881236758">
+                                <mat-icon matSuffix>phone</mat-icon>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Date of Birth</mat-label>
+                                <input matInput [matDatepicker]="picker">
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <span>Gender: </span>
+                            &nbsp;
+                            <mat-radio-group>
+                                <mat-radio-button value="Male">Male</mat-radio-button>
+                                &nbsp;
+                                <mat-radio-button value="Female">Female</mat-radio-button>
+                                &nbsp;
+                                <mat-radio-button value="Other">Other</mat-radio-button>
+                            </mat-radio-group>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <mat-form-field appearance="fill" class="demo-full-width">
+                                <mat-label>Email</mat-label>
+                                <input matInput>
+                                <mat-icon matSuffix>email</mat-icon>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <mat-form-field appearance="fill" class="demo-full-width">
+                                <mat-label>Password</mat-label>
+                                <input matInput [type]="hide ? 'password' : 'text'">
+                                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                                    [attr.aria-pressed]="hide">
+                                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                </button>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button color="warn">Clear</button>
+            &nbsp;
+            <button mat-raised-button color="primary">Submit</button>
+        </mat-card-actions>
+    </mat-card>
+</div>
