@@ -5,6 +5,8 @@ from fastapi.middleware.cors import CORSMiddleware
 import mariadb
 import sys
 import os
+from routers import doctor, nurse
+from database import Global
 
 app = FastAPI()
 
@@ -18,24 +20,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-try:
-    user = os.getenv("DB_USER", "root")
-    password = os.getenv("DB_PASSWORD", "password")
-    host = os.getenv("DB_HOST", "localhost")
-    port = int(os.getenv("DB_PORT", "3306"))
-    database = os.getenv("DB", "Hyacinth")
-    conn = mariadb.connect(
-        user=user,
-        password=password,
-        host=host,
-        port=port,
-        database=database
-    )
-except mariadb.Error as e:
-    print(f"Error connecting to MariaDB Platform: {e}")
-    sys.exit(1)
+app.include_router(doctor.router)
+app.include_router(nurse.router)
 
-cur = conn.cursor()
+cur = Global.cur
 
 
 @app.get("/")
@@ -53,35 +41,3 @@ def get_employees():
             'name': name
         })
     return res
-
-
-@app.get("/doctors")
-def get_doctors():
-    res = []
-    cur.execute(" select * from DoctorInfo")
-    for ID, name, phone, email, _, sex in cur:
-        res.append({
-            'ID': ID,
-            'name': name,
-            'phone': phone,
-            'email': email,
-            'sex': sex
-        })
-    return res
-
-
-@app.get("/nurses")
-def get_nurses():
-    res = []
-    cur.execute(" select * from NurseInfo")
-    for ID, _, _, name, phone, email, _, sex in cur:
-        res.append({
-            'ID': ID,
-            'name': name,
-            'phone': phone,
-            'email': email,
-            'sex': sex
-        })
-    return res
-
-
