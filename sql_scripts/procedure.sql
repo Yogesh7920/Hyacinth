@@ -1,3 +1,5 @@
+use Hyacinth;
+
 drop procedure if exists exec_query;
 drop procedure if exists EmployeeRegistration;
 drop procedure if exists PatientRegistration;

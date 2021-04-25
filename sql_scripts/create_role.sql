@@ -1,3 +1,5 @@
+use Hyacinth;
+
 drop role if exists patient_role;
 
 create role patient_role;
