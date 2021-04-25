@@ -1,9 +1,12 @@
 from fastapi import FastAPI
+from fastapi.responses import JSONResponse
+from fastapi.encoders import jsonable_encoder
 import mariadb
 import sys
 import os
 
 app = FastAPI()
+
 try:
     user = os.getenv("DB_USER", "root")
     password = os.getenv("DB_PASSWORD", "password")
@@ -30,7 +33,7 @@ def read_root():
 
 
 @app.get("/employees")
-def get_students():
+def get_employees():
     res = []
     cur.execute(" select employeeID, name from Employee")
     for ID, name in cur:
@@ -39,3 +42,35 @@ def get_students():
             'name': name
         })
     return res
+
+
+@app.get("/doctors")
+def get_doctors():
+    res = []
+    cur.execute(" select * from DoctorInfo")
+    for ID, name, phone, email, _, sex in cur:
+        res.append({
+            'ID': ID,
+            'name': name,
+            'phone': phone,
+            'email': email,
+            'sex': sex
+        })
+    return res
+
+
+@app.get("/nurses")
+def get_nurses():
+    res = []
+    cur.execute(" select * from NurseInfo")
+    for ID, _, _, name, phone, email, _, sex in cur:
+        res.append({
+            'ID': ID,
+            'name': name,
+            'phone': phone,
+            'email': email,
+            'sex': sex
+        })
+    return res
+
+

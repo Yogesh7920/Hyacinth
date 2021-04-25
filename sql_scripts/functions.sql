@@ -1,4 +1,4 @@
-use hyacinth;
+use Hyacinth;
 
 drop function if exists total_monthly_income;
 drop function if exists total_monthly_expenditure;
