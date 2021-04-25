@@ -9,22 +9,30 @@ import { PatientRegistrationComponent } from './components/patient-registration/
 import { LoginComponent } from './components/login/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
+import { AdminHomeComponent } from './components/admin-home/admin-home.component';
+import { AdminPatientsComponent } from './components/admin-patients/admin-patients.component';
+import { AdminDoctorsComponent } from './components/admin-doctors/admin-doctors.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavbarComponent,
-    PatientRegistrationComponent,
-    LoginComponent
-  ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    MaterialModule,
-    AppRoutingModule,
-    FormsModule 
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        NavbarComponent,
+        PatientRegistrationComponent,
+        LoginComponent,
+        AdminHomeComponent,
+        AdminPatientsComponent,
+        AdminDoctorsComponent
+    ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        MaterialModule,
+        AppRoutingModule,
+        FormsModule,
+        HttpClientModule
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
@@ -10,11 +11,11 @@ export class NavbarComponent implements OnInit {
     @Input() snav;
 
     isLoggedIn = !!localStorage.getItem("isLoggedIn");
-    constructor(private storageService: StorageService) { }
+    role = localStorage.getItem("role");
+    constructor(private storageService: StorageService, private router: Router) { }
 
     ngOnInit() {
         this.storageService.watchStorage().subscribe(event => {
-            console.log(event);
             if (!event) {
                 this.isLoggedIn = false;
             } else {
@@ -25,7 +26,15 @@ export class NavbarComponent implements OnInit {
         })
     }
 
+    getHomeLink() {
+        if (!this.role) {
+            return "login";
+        }
+        return this.role;
+    }
+
     logout() {
         this.storageService.clear();
+        this.router.navigate(["login"]);
     }
 }

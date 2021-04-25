@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 100%;
+}
+  
+.table-container {
+    position: relative;
+    height: 700px;
+    overflow: auto;
+    width: 80%;
+}
+
+table {
+    width: 100%;
+}
+  

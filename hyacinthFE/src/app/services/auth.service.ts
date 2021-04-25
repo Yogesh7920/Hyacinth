@@ -11,6 +11,7 @@ export class AuthService {
     login({ email, password }) {
         this.storageService.setItem("email", email);
         this.storageService.setItem("password", password);
+        this.storageService.setItem("role", "admin");
         this.storageService.setItem("isLoggedIn", "true");
         // login with backend
     }
