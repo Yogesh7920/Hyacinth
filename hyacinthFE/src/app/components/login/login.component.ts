@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 
 @Component({
@@ -11,7 +12,10 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
 
-    constructor(public dialog: MatDialog) { }
+    constructor(
+        public dialog: MatDialog,
+        private authService: AuthService
+    ) { }
 
     loginForm = new FormGroup({
         email: new FormControl('', [Validators.required, Validators.email]),
@@ -28,7 +32,7 @@ export class LoginComponent {
     hide = true;
 
     onSubmit() {
-        console.log(this.loginForm.valid);
+        this.authService.login(this.loginForm.value);
     }
 
 }

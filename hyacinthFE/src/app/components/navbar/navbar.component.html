@@ -1,5 +1,5 @@
 <mat-toolbar color="primary" class="toolbar">
-    <button mat-icon-button (click)="snav.toggle()">
+    <button *ngIf="isLoggedIn" mat-icon-button (click)="snav.toggle()">
         <mat-icon>menu</mat-icon>
     </button>
     <h1 class="app-name">
@@ -8,7 +8,14 @@
         </a>
     </h1>
     <div style="flex: 1;"></div>
-    <a [routerLink]="'/login'" style="margin-right: 5px;" mat-icon-button>
+    <a *ngIf="!isLoggedIn; else loggedIn" [routerLink]="'/login'" style="margin-right: 5px;" mat-icon-button>
         <mat-icon>login</mat-icon>
     </a>
+    <ng-template #loggedIn>
+        <a style="margin-right: 5px;" mat-icon-button>
+            <mat-icon style="margin-right: 5px;" mat-icon-button (click)="logout()">
+                logout
+            </mat-icon>
+        </a>
+    </ng-template>
 </mat-toolbar>
