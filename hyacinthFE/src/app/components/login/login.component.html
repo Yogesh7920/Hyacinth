@@ -10,29 +10,29 @@
         </mat-form-field>
     </div>
     <div style="height: 60px;"></div>
-    <div>
-        <mat-form-field style="width:30vw" appearance="fill">
-            <mat-label>Enter your email</mat-label>
-            <input matInput placeholder="pat@example.com" [formControl]="email" required>
-            <mat-icon matSuffix>email</mat-icon>
-            <mat-error *ngIf="login.controls['email']?.invalid">Invalid Email-ID provided</mat-error>
-        </mat-form-field>
-    </div>
+    <form [formGroup]="loginForm">
+        <div>
+            <mat-form-field style="width:30vw" appearance="fill">
+                <mat-label>Enter your email</mat-label>
+                <input matInput placeholder="pat@example.com" formControlName="email" required>
+                <mat-icon matSuffix>email</mat-icon>
+            </mat-form-field>
+        </div>
+        <div style="height: 20px;"></div>
+        <div>
+            <mat-form-field style="width:30vw" appearance="fill">
+                <mat-label>Enter your password</mat-label>
+                <input matInput formControlName="password" [type]="hide ? 'password' : 'text'" required>
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+    </form>
     <div style="height: 20px;"></div>
     <div>
-        <mat-form-field style="width:30vw" appearance="fill">
-            <mat-label>Enter your password</mat-label>
-            <input matInput [formControl]="password" [type]="hide ? 'password' : 'text'">
-            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-                [attr.aria-pressed]="hide">
-                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-            </button>
-            <mat-error *ngIf="login.controls['password']?.invalid">Password is required.</mat-error>
-        </mat-form-field>
-    </div>
-    <div style="height: 20px;"></div>
-    <div>
-        <button style="width: 10vw;" color="primary" mat-raised-button>
+        <button style="width: 10vw;" color="primary" [disabled]="!this.loginForm.valid" mat-raised-button (click)="onSubmit()">
             Login
         </button>
     </div>

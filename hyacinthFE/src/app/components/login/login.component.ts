@@ -13,7 +13,7 @@ export class LoginComponent {
 
     constructor(public dialog: MatDialog) { }
 
-    login = new FormGroup({
+    loginForm = new FormGroup({
         email: new FormControl('', [Validators.required, Validators.email]),
         password: new FormControl('', [Validators.required])
     });
@@ -27,12 +27,8 @@ export class LoginComponent {
 
     hide = true;
 
-    get email() {
-        return this.login.get('email') as FormControl;
-    }
-
-    get password() {
-        return this.login.get('password') as FormControl;
+    onSubmit() {
+        console.log(this.loginForm.valid);
     }
 
 }
