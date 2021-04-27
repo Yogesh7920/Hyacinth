@@ -1,10 +1,5 @@
 from fastapi import FastAPI
-from fastapi.responses import JSONResponse
-from fastapi.encoders import jsonable_encoder
 from fastapi.middleware.cors import CORSMiddleware
-import mariadb
-import sys
-import os
 from routers import doctor, nurse
 from database import Global
 
@@ -34,10 +29,19 @@ def read_root():
 @app.get("/employees")
 def get_employees():
     res = []
-    cur.execute(" select employeeID, name from Employee")
+    cur.execute("select employeeID, name from Employee")
     for ID, name in cur:
         res.append({
             'id': ID,
             'name': name
         })
     return res
+
+
+@app.post('/employee_registration')
+def employee_registration(email, password):
+    res = cur.callproc('EmployeeRegistration', (email, password, True))
+    result = cur.fetchone()
+
+    return {'role' :result}
+
