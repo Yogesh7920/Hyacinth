@@ -23,3 +23,25 @@ def get_doctors():
             'sex': sex
         })
     return res
+
+
+@router.get('/{pk}')
+def get_doctor_info(pk):
+    cur.execute(f"call DoctorProfile({pk})")
+    d = dict()
+    for ID, qual, lic, bio, available, special, name, phone, email, address, sex in cur:
+        d = {
+            'id': ID,
+            'name': name,
+            'phone': phone,
+            'email': email,
+            'address': address,
+            'sex': sex,
+            'qualification': qual,
+            'license': lic,
+            'bio': bio,
+            'available': available,
+            'specialization': special
+        }
+
+    return d

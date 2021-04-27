@@ -13,7 +13,7 @@ drop view if exists DoctorPatientInfo;
 drop view if exists PatientDoctorInfo;
 
 create view DoctorInfo as (
-    select d.doctorID, name as doctorName,
+    select d.*, name as doctorName,
              phone, email, address, sex
     from Doctor d
         inner join Employee e on d.doctorID = e.employeeID
