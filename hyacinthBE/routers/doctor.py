@@ -14,7 +14,7 @@ cur = Global.cur
 def get_doctors():
     res = []
     cur.execute(" select * from DoctorInfo")
-    for ID, name, phone, email, _, sex in cur:
+    for ID, _, _, _, _, _, name, phone, email, _, sex in cur:
         res.append({
             'ID': ID,
             'name': name,

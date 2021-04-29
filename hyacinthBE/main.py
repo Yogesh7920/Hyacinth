@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routers import doctor, nurse, employee, driver
+from routers import employee, doctor, nurse, driver
 from database import Global
 
 app = FastAPI()
