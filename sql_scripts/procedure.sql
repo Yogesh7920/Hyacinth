@@ -25,26 +25,26 @@ begin
     deallocate prepare stmt;
 end; //
 
-create procedure EmployeeRegistration(in email_ varchar(20), in password_ varchar(255), out valid bool)
+create procedure EmployeeRegistration(in email_ varchar(20), in password_ varchar(255), out role varchar(11))
 begin
     -- If user exists, then check password
     if user_exists(email_)
     then
         set @password = (select password from Employee where email=email_);
         if (password(password_)=@password) then
-            set valid=true;
+            set role=employee_role(email_);
         else
-            set valid=false;
+            set role='None';
         end if;
     -- If user does not exist, check if the admin has added him/her as an employee.
     elseif exists(select * from Employee where email=email_)
     then
         set @create_user = concat('create user \'', substring_index(email_, '@', 1), '\'@\'localhost\' identified by \'', password_, '\';');
         call exec_query(@create_user);
-        set valid=true;
+        set role=employee_role(email_);
     -- If the admin has not added the Employee, don't allow registration.
     else
-        set valid=false;
+        set role='None';
     end if;
 end; //
 

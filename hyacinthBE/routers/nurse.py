@@ -24,3 +24,22 @@ def get_nurses():
             'sex': sex
         })
     return res
+
+
+@router.get('/{pk}')
+def get_nurse_info(pk):
+    cur.execute(f"call NurseProfile({pk})")
+    d = dict()
+    for ID, qual, lic, name, phone, email, address, sex in cur:
+        d = {
+            'id': ID,
+            'name': name,
+            'phone': phone,
+            'email': email,
+            'address': address,
+            'sex': sex,
+            'qualification': qual,
+            'license': lic
+        }
+
+    return d
