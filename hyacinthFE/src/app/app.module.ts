@@ -13,6 +13,8 @@ import { AdminHomeComponent } from './components/admin-home/admin-home.component
 import { AdminPatientsComponent } from './components/admin-patients/admin-patients.component';
 import { AdminDoctorsComponent } from './components/admin-doctors/admin-doctors.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AdminNursesComponent } from './components/admin-nurses/admin-nurses.component';
+import { DoctorHomeComponent } from './components/doctor-home/doctor-home.component';
 
 @NgModule({
     declarations: [
@@ -22,7 +24,9 @@ import { HttpClientModule } from '@angular/common/http';
         LoginComponent,
         AdminHomeComponent,
         AdminPatientsComponent,
-        AdminDoctorsComponent
+        AdminDoctorsComponent,
+        AdminNursesComponent,
+        DoctorHomeComponent
     ],
     imports: [
         BrowserModule,

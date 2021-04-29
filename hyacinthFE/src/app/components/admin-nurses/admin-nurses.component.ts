@@ -1,14 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { environment } from "src/environments/environment";
+import { environment } from 'src/environments/environment';
 
 @Component({
-    selector: 'app-admin-doctors',
-    templateUrl: './admin-doctors.component.html',
-    styleUrls: ['./admin-doctors.component.scss']
+    selector: 'app-admin-nurses',
+    templateUrl: './admin-nurses.component.html',
+    styleUrls: ['./admin-nurses.component.scss']
 })
-export class AdminDoctorsComponent implements OnInit {
+export class AdminNursesComponent implements OnInit {
 
     constructor(
         private http: HttpClient
@@ -18,7 +18,7 @@ export class AdminDoctorsComponent implements OnInit {
     dataSource = new MatTableDataSource([]);
 
     getDoctors() {
-        let url = environment.apiUrl + "doctor";
+        let url = environment.apiUrl + "nurse";
         return this.http.get(url);
     }
 
@@ -27,5 +27,4 @@ export class AdminDoctorsComponent implements OnInit {
             this.dataSource.data = result as Array<Object>;
         })
     }
-
 }

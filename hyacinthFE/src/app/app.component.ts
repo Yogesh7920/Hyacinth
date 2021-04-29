@@ -1,11 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+
+    constructor(private router: Router) { }
+
+    ngOnInit() {
+        if (!!localStorage.getItem("isLoggedIn")) {
+            this.router.navigate([localStorage.getItem("role")]);
+        }
+    }
 
     fillerNav = Array.from({ length: 50 }, (_, i) => `Nav Item ${i + 1}`);
 
