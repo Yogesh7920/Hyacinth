@@ -1,7 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from routers import employee, doctor, nurse, driver, patient
-from database import Global
 
 app = FastAPI()
 
@@ -20,8 +19,6 @@ app.include_router(doctor.router)
 app.include_router(nurse.router)
 app.include_router(driver.router)
 app.include_router(patient.router)
-
-cur = Global.cur
 
 
 @app.get("/")

@@ -12,7 +12,7 @@ cur = Global.cur
 
 
 @router.get('/')
-def get_driver():
+def get_patient():
     res = []
     cur.execute(" select * from PatientInfo")
     for patientID, patientName, phone, email, _, sex, _, marital in cur:
@@ -27,7 +27,7 @@ def get_driver():
 
 
 @router.get('/{pk}')
-def get_driver_info(pk):
+def get_patient_info(pk):
     cur.execute(f"call PatientProfile({pk})")
     d = dict()
     for patientID, patientName, phone, email, address, sex, medicalHistory, marital in cur:
