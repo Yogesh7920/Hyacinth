@@ -24,7 +24,6 @@ def get_employees():
 
 @router.post('/registration')
 def employee_registration(email, password):
-    res = cur.callproc('EmployeeRegistration', (email, password, True))
-    result = cur.fetchone()
-
-    return {'role': result}
+    res = cur.callproc('EmployeeRegistration', (email, password, True, True))
+    role, pk = cur.fetchall()[0]
+    return {'role': role, 'id': pk}

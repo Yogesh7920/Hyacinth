@@ -40,5 +40,14 @@ def get_patient_info(pk):
             'sex': sex,
             'medicalHistory': medicalHistory
         }
-
     return d
+
+
+@router.post('/login')
+def patient_login(email, password):
+    pass
+
+
+@router.post('/registration')
+def patient_registration():
+    pass
