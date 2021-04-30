@@ -4,11 +4,12 @@ import { AdminHomeComponent } from './components/admin-home/admin-home.component
 import { AdminUsersComponent } from './components/admin-users/admin-users.component';
 import { LoginComponent } from './components/login/login.component';
 import { PatientRegistrationComponent } from './components/patient-registration/patient-registration.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 const routes: Routes = [
     {
         path: 'login',
-        component: LoginComponent
+        component: ProfileComponent
     },
     {
         path: 'register/patient',
