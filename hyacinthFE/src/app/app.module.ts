@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { DoctorHomeComponent } from './components/doctor-home/doctor-home.component';
 import { TableComponent } from './components/shared/table/table.component';
 import { AdminUsersComponent } from './components/admin-users/admin-users.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
     declarations: [
@@ -24,7 +25,8 @@ import { AdminUsersComponent } from './components/admin-users/admin-users.compon
         AdminHomeComponent,
         DoctorHomeComponent,
         TableComponent,
-        AdminUsersComponent
+        AdminUsersComponent,
+        ProfileComponent
     ],
     imports: [
         BrowserModule,

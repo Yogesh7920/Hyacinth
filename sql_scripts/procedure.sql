@@ -61,7 +61,8 @@ begin
     then
         set id=-1;
     else
-        set @create_user = concat('create user \'', substring_index(email_, '@', 1), '\'@\'localhost\' identified by \'', password_, '\';');
+        set @email = substring_index(email_, '@', 1);
+        set @create_user = concat('create user \'', @email, '\'@\'localhost\' identified by \'', password_, '\';');
         call exec_query(@create_user);
         set @insert_user = concat(
             'insert into Patient set',
@@ -76,7 +77,7 @@ begin
         );
         select @insert_user;
         call exec_query(@insert_user);
-        grant patient_role to email;
+        grant patient_role to @email;
         set id = (select id from patient where email=email_);
     end if;
 end; //
