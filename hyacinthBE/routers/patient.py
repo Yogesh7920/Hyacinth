@@ -57,16 +57,17 @@ def patient_registration(name, email, password, phone, address, sex, marital, me
     return {'id': pk}
 
 
-@router.post('/dashboard')
+@router.get('/dashboard/{pk}')
 def patient_dashboard(pk):
     res = []
-    cur.execute(f"select * from Consultation where patientID={pk}")
-    for consID, problem, docID, patID in cur:
+    cur.execute(f"select * from PatientConsultInfo where patientID={pk}")
+    for patID, docID, consID, problem, special in cur:
         res.append({
             'consultationID': consID,
             'problem': problem,
             'doctorID': docID,
-            'patientID': patID
+            'patientID': patID,
+            'specialization': special
         })
     return res
 

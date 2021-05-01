@@ -92,6 +92,6 @@ create view PatientDoctorInfo as (
 );
 
 create view PatientConsultInfo as (
-    select * from Consultation
+    select patientID, doctorID, consultationID, problem, specialization from Consultation
     inner join Doctor using (doctorID)
 );
