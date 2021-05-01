@@ -14,5 +14,3 @@ grant select on Contains to patient_role;
 grant select on Diagnostics to patient_role;
 grant select on Assists to patient_role;
 grant select on NurseInfo to patient_role;
-
-
