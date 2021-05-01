@@ -15,7 +15,6 @@ import { DoctorHomeComponent } from './components/doctor-home/doctor-home.compon
 import { TableComponent } from './components/shared/table/table.component';
 import { AdminUsersComponent } from './components/admin-users/admin-users.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { PatientHomeComponent } from './components/patient-home/patient-home.component';
 import { DriverHomeComponent } from './components/driver-home/driver-home.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
@@ -30,8 +29,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
         TableComponent,
         AdminUsersComponent,
         ProfileComponent,
-        PatientHomeComponent,
-        DriverHomeComponent
+        DriverHomeComponent,
         DashboardComponent
     ],
     imports: [
