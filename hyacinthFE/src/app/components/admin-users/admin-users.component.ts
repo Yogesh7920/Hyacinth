@@ -43,8 +43,8 @@ export class AdminUsersComponent implements OnInit, OnDestroy {
                 this.getUsers().subscribe(result => {
                     this.dataSource.data = result as Array<Object>;
                     this.displayedColumns = Object.keys(result[0]);
-                })
-            })
+                });
+            });
     }
 
     ngOnDestroy() {
