@@ -33,7 +33,7 @@ begin
         set @password = (select password from Employee where email=email_);
         if (password(password_)=@password) then
             set role=employee_role(email_);
-            set id = (select id from employee where email=email_);
+            set id = (select id from Employee where email=email_);
         else
             set role='None';
             set id = -1;
@@ -44,7 +44,7 @@ begin
         set @create_user = concat('create user \'', substring_index(email_, '@', 1), '\'@\'localhost\' identified by \'', password_, '\';');
         call exec_query(@create_user);
         set role=employee_role(email_);
-        set id = (select id from employee where email=email_);
+        set id = (select id from Employee where email=email_);
     -- If the admin has not added the Employee, don't allow registration.
     else
         set role='None';
@@ -54,12 +54,12 @@ end; //
 
 create procedure PatientRegistration(name_ varchar(45), email_ varchar(20), password_ varchar(255),
                                     phone varchar(20), address_ varchar(20), sex varchar(20),
-                                    medicalHistory varchar(300), marital bool, out registered bool
+                                    medicalHistory varchar(300), marital bool, out id int
                                     )
 begin
     if user_exists(email_)
     then
-        set registered=false;
+        set id=-1;
     else
         set @email = substring_index(email_, '@', 1);
         set @create_user = concat('create user \'', @email, '\'@\'localhost\' identified by \'', password_, '\';');
@@ -77,23 +77,21 @@ begin
         );
         select @insert_user;
         call exec_query(@insert_user);
-        grant patient_role to @email;
-        set registered=true;
+#         grant patient_role to @email; # TODO: Error because of this !.
+        set id = (select id from Patient where email=email_);
     end if;
 end; //
 
 
-create procedure PatientLogin(in email_ varchar(20), in password_ varchar(255), out valid bool, out id int)
+create procedure PatientLogin(in email_ varchar(20), in password_ varchar(255), out id int)
 begin
     if user_exists(email_)
     then
         set @password = (select password from patient where email=email_);
         if (password(password_)=@password) then
-            set valid=true;
             set id = (select id from patient where email=email_);
         end if;
     else
-        set valid=false;
         set id = -1;
     end if;
 end //

@@ -11,6 +11,7 @@ drop view if exists DriverJourneyInfo;
 drop view if exists NurseDiagnosticsInfo;
 drop view if exists DoctorPatientInfo;
 drop view if exists PatientDoctorInfo;
+drop view if exists PatientConsultInfo;
 
 create view DoctorInfo as (
     select d.*, name as doctorName,
@@ -88,4 +89,9 @@ create view PatientDoctorInfo as (
         inner join Prescription as P using (prescriptionID)
         inner join Drugs as D using (prescriptionID)
         inner join Pharmacy as Ph using (pharmacyID)
+);
+
+create view PatientConsultInfo as (
+    select * from Consultation
+    inner join Doctor using (doctorID)
 );
