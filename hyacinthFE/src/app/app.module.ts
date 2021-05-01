@@ -15,7 +15,7 @@ import { DoctorHomeComponent } from './components/doctor-home/doctor-home.compon
 import { TableComponent } from './components/shared/table/table.component';
 import { AdminUsersComponent } from './components/admin-users/admin-users.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { PatientHomeComponent } from './components/patient-home/patient-home.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 @NgModule({
     declarations: [
@@ -28,7 +28,7 @@ import { PatientHomeComponent } from './components/patient-home/patient-home.com
         TableComponent,
         AdminUsersComponent,
         ProfileComponent,
-        PatientHomeComponent
+        DashboardComponent
     ],
     imports: [
         BrowserModule,

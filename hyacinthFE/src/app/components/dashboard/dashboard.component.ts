@@ -7,11 +7,11 @@ import {environment} from "../../../environments/environment";
 import {takeUntil} from "rxjs/operators";
 
 @Component({
-  selector: 'app-patient-home',
-  templateUrl: './patient-home.component.html',
-  styleUrls: ['./patient-home.component.scss']
+  selector: 'app-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.component.scss']
 })
-export class PatientHomeComponent implements OnInit {
+export class DashboardComponent implements OnInit {
 
     role: string = "";
     head: string = "";
