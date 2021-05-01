@@ -11,9 +11,9 @@ export class AppComponent implements OnInit {
     constructor(private router: Router) { }
 
     ngOnInit() {
-        if (!!localStorage.getItem("isLoggedIn")) {
-            this.router.navigate([localStorage.getItem("role")]);
-        }
+        // if (!!localStorage.getItem("isLoggedIn")) {
+        //     this.router.navigate([localStorage.getItem("role")]);
+        // }
     }
 
     fillerNav = Array.from({ length: 50 }, (_, i) => `Nav Item ${i + 1}`);
