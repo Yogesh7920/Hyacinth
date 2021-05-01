@@ -18,7 +18,7 @@ export class AdminUsersComponent implements OnInit, OnDestroy {
 
     constructor(
         private http: HttpClient,
-        private activatedRoute: ActivatedRoute
+        private route: ActivatedRoute
     ) { }
 
     displayedColumns: string[] = [];
@@ -35,12 +35,16 @@ export class AdminUsersComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
-        this.activatedRoute.url
+        this.route.params
             .pipe(takeUntil(this.ngUnsubscribe))
-            .subscribe(route => {
-                this.role = route[1].path;
+            .subscribe(params => {
+                this.role = params['role']
                 this.head = this.capitalizeFirstLetter(this.role) + "s";
                 this.getUsers().subscribe(result => {
+                    for (const res of result as Array<Object>) {
+                        res['link'] = this.role + "/" + res['id'];
+                    }
+                    console.log(result);
                     this.dataSource.data = result as Array<Object>;
                     this.displayedColumns = Object.keys(result[0]);
                 });

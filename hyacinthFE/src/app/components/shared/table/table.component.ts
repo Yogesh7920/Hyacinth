@@ -12,4 +12,8 @@ export class TableComponent {
     @Input('cols') displayedColumns;
     @Input('head') heading;
 
+    onRowClick(event) {
+        console.log(event);
+    }
+
 }
