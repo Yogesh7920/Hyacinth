@@ -62,6 +62,7 @@ create view DriverJourneyInfo as (
         inner join Journey using (driverID)
         inner join Ambulance using (ambulanceId)
 );
+
 create view NurseDiagnosticsInfo as (
 	select
 	       NurseInfo.*,
