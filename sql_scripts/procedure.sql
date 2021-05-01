@@ -54,12 +54,12 @@ end; //
 
 create procedure PatientRegistration(name_ varchar(45), email_ varchar(20), password_ varchar(255),
                                     phone varchar(20), address_ varchar(20), sex varchar(20),
-                                    medicalHistory varchar(300), marital bool, out registered bool
+                                    medicalHistory varchar(300), marital bool, out id int
                                     )
 begin
     if user_exists(email_)
     then
-        set registered=false;
+        set id=-1;
     else
         set @create_user = concat('create user \'', substring_index(email_, '@', 1), '\'@\'localhost\' identified by \'', password_, '\';');
         call exec_query(@create_user);
@@ -77,22 +77,20 @@ begin
         select @insert_user;
         call exec_query(@insert_user);
         grant patient_role to email;
-        set registered=true;
+        set id = (select id from patient where email=email_);
     end if;
 end; //
 
 
-create procedure PatientLogin(in email_ varchar(20), in password_ varchar(255), out valid bool, out id int)
+create procedure PatientLogin(in email_ varchar(20), in password_ varchar(255), out id int)
 begin
     if user_exists(email_)
     then
         set @password = (select password from patient where email=email_);
         if (password(password_)=@password) then
-            set valid=true;
             set id = (select id from patient where email=email_);
         end if;
     else
-        set valid=false;
         set id = -1;
     end if;
 end //

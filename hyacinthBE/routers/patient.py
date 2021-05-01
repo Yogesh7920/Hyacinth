@@ -45,9 +45,13 @@ def get_patient_info(pk):
 
 @router.post('/login')
 def patient_login(email, password):
-    pass
+    res = cur.callproc('PatientLogin', (email, password, True))
+    pk = cur.fetchone()[0]
+    return {'id': pk}
 
 
 @router.post('/registration')
-def patient_registration():
-    pass
+def patient_registration(name, email, password, phone, address, sex, marital, medical_history=None):
+    res = cur.callproc('PatientRegistration', (name, email, password, phone, address, sex, medical_history, marital, True))
+    pk = cur.fetchone()[0]
+    return {'id': pk}
