@@ -43,3 +43,16 @@ def get_nurse_info(pk):
         }
 
     return d
+
+
+@router.get('/dashboard/{pk}')
+def nurse_dashboard(pk):
+    res = []
+    cur.execute(f"call DiagnosticsHistory({pk})")
+    for _, dID, cat, diag in cur:
+        res.append({
+            'diagnosticsID': dID,
+            'category': cat,
+            'diagnostics': diag,
+        })
+    return res

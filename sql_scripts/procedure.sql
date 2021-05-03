@@ -101,9 +101,9 @@ begin
     select * from NurseInfo where nurseID = ID;    
 end; //
 
-create procedure DiagnosticsHistory(ID int(11),cat varchar(20))
+create procedure DiagnosticsHistory(ID int(11))
 begin
-    select * from NurseDiagnosticsInfo where nurseID = ID and category = cat;    
+    select * from NurseDiagnosticsInfo where nurseID = ID;
 end; //
 
 create procedure DoctorProfile(ID int(11))

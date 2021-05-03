@@ -44,7 +44,7 @@ def get_driver_info(pk):
 
 
 @router.get('/dashboard/{pk}')
-def patient_dashboard(pk):
+def driver_dashboard(pk):
     res = []
     cur.execute(f"call DriveRecords({pk})")
     for _, AID, maintenance, dist, start, end, address in cur:

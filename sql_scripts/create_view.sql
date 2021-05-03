@@ -65,7 +65,7 @@ create view DriverJourneyInfo as (
 
 create view NurseDiagnosticsInfo as (
 	select
-	       NurseInfo.*,
+	       NurseInfo.nurseID as nurseID,
 	       Diagnostics.diagnosticsID, Diagnostics.category,
 	       Diagnostics.name as diagnostics
     from NurseInfo
