@@ -1,11 +1,11 @@
 FROM node:14.16
 
-RUN mkdir -p /code
-WORKDIR /code
+RUN mkdir -p /cache
+WORKDIR /cache
 COPY package*.json ./
-RUN npm install -g @angular/cli
 RUN npm install
 
-EXPOSE 4200
+RUN mkdir -p /code
+WORKDIR /code/
 
-CMD ng serve --host 0.0.0.0 --disableHostCheck --poll 500
+EXPOSE 4200

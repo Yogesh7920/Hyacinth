@@ -1,0 +1,56 @@
+version: '3.9'
+
+services: 
+  angular:
+    container_name: hyacinthFE
+    build:
+      context: ./hyacinthFE
+      dockerfile: Dockerfile
+    ports:
+      - 4200:4200
+    volumes:
+      - ./hyacinthFE:/code
+    command: /code/entrypoint.sh
+
+  fastapi:
+    build:
+      context: ./hyacinthBE
+    container_name: hyacinthBE
+    environment:
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_HOST: ${DB_HOST}
+      DB_PORT: 3306
+      DB: ${DB}
+    volumes:
+      - ./hyacinthBE:/code
+    ports:
+      - "8000:80"
+    depends_on:
+      - db
+
+  db:
+    container_name: hyacinthDB
+    image: mariadb
+    environment:
+      MYSQL_DATABASE: "${DB}"
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_ROOT_PASSWORD: "${DB_PASSWORD}"
+    volumes:
+      - ./sql_scripts:/scripts
+      - db:/var/lib/mysql
+    ports:
+      - ${DB_PORT}:3306
+
+  phpmyadmin:
+    container_name: hyacinthDE
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: "${DB_HOST}"
+      PMA_USER: "${DB_USER}"
+      PMA_PASSWORD: "${DB_PASSWORD}"
+    ports:
+      - "5000:80"
+
+volumes: 
+  db: {}
