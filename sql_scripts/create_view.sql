@@ -56,7 +56,7 @@ create view VendorDrugInfo as (
 
 create view DriverJourneyInfo as (
     select
-           DriverInfo.*, Ambulance.*, Journey.startTime,
+           DriverInfo.driverID as driverID, Ambulance.*, Journey.startTime,
            Journey.endTime, Journey.address as journeyAddress
     from DriverInfo
         inner join Journey using (driverID)

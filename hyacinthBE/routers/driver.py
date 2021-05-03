@@ -41,3 +41,21 @@ def get_driver_info(pk):
         }
 
     return d
+
+
+@router.get('/dashboard/{pk}')
+def patient_dashboard(pk):
+    res = []
+    cur.execute(f"call DriveRecords({pk})")
+    for _, AID, maintenance, dist, start, end, address in cur:
+        res.append({
+            'ambulanceID': AID,
+            'lastMaintenance': maintenance,
+            'totalDistance': dist,
+            'startTime': start,
+            'endTime': end,
+            'address': address,
+        })
+    return res
+
+
