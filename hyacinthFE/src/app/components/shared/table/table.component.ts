@@ -11,6 +11,7 @@ export class TableComponent {
     @Input('data') dataSource;
     @Input('cols') displayedColumns;
     @Input('head') heading;
+    @Input() links;
 
     onRowClick(event) {
         console.log(event);

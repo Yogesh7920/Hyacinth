@@ -15,6 +15,7 @@ export class AdminUsersComponent implements OnInit, OnDestroy {
 
     role: string = "";
     head: string = "";
+    links: Array<String> = [];
 
     constructor(
         private http: HttpClient,
@@ -42,9 +43,8 @@ export class AdminUsersComponent implements OnInit, OnDestroy {
                 this.head = this.capitalizeFirstLetter(this.role) + "s";
                 this.getUsers().subscribe(result => {
                     for (const res of result as Array<Object>) {
-                        res['link'] = this.role + "/" + res['id'];
+                        this.links.push(`/${this.role}/${res['ID']}`);
                     }
-                    console.log(result);
                     this.dataSource.data = result as Array<Object>;
                     this.displayedColumns = Object.keys(result[0]);
                 });

@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {ActivatedRoute} from "@angular/router";
-import {MatTableDataSource} from "@angular/material/table";
-import {Subject} from "rxjs";
-import {environment} from "../../../environments/environment";
-import {takeUntil} from "rxjs/operators";
+import { HttpClient } from "@angular/common/http";
+import { ActivatedRoute } from "@angular/router";
+import { MatTableDataSource } from "@angular/material/table";
+import { combineLatest, forkJoin, Subject } from "rxjs";
+import { environment } from "../../../environments/environment";
+import { takeUntil } from "rxjs/operators";
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+    selector: 'app-dashboard',
+    templateUrl: './dashboard.component.html',
+    styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
 
@@ -27,7 +27,7 @@ export class DashboardComponent implements OnInit {
     private ngUnsubscribe: Subject<any> = new Subject();
 
     getUsers() {
-        let url = environment.apiUrl + this.role + '/dashboard' + '/' + this.id;
+        let url = `${environment.apiUrl + this.role}/dashboard/${this.id}`;
         return this.http.get(url);
     }
 
@@ -36,17 +36,19 @@ export class DashboardComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.activatedRoute.url
-            .pipe(takeUntil(this.ngUnsubscribe))
-            .subscribe(route => {
-                this.id = route[2].path;
-                this.role = route[0].path;
-                this.head = this.capitalizeFirstLetter(this.role) + "s";
-                this.getUsers().subscribe(result => {
-                    this.dataSource.data = result as Array<Object>;
-                    this.displayedColumns = Object.keys(result[0]);
-                });
+
+        combineLatest([
+            this.activatedRoute.params,
+            this.activatedRoute.url
+        ]).subscribe(result => {
+            this.id = result[0]['id'];
+            this.role = result[1][0].path;
+            this.head = this.capitalizeFirstLetter(this.role) + "s";
+            this.getUsers().subscribe(result => {
+                this.dataSource.data = result as Array<Object>;
+                this.displayedColumns = Object.keys(result[0]);
             });
+        });
     }
 
     ngOnDestroy() {

@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AdminHomeComponent } from './components/admin-home/admin-home.component';
-import { AdminUsersComponent } from './components/admin-users/admin-users.component';
+import { AdminHomeComponent } from './components/admin/admin-home/admin-home.component';
+import { AdminUsersComponent } from './components/admin/admin-users/admin-users.component';
 import { PatientRegistrationComponent } from './components/patient-registration/patient-registration.component';
 import { DashboardComponent } from "./components/dashboard/dashboard.component";
 import { LoginComponent } from './components/login/login.component';
+import { DoctorHomeComponent } from './components/doctor-home/doctor-home.component';
 
 const routes: Routes = [
     {
@@ -24,19 +25,19 @@ const routes: Routes = [
         component: PatientRegistrationComponent
     },
     {
-        path: 'patient/home/:id',
+        path: 'doctor/:id',
         component: DashboardComponent
     },
     {
-        path: 'doctor/home/:id',
+        path: 'patient/:id',
         component: DashboardComponent
     },
     {
-        path: 'nurse/home/:id',
+        path: 'nurse/:id',
         component: DashboardComponent
     },
     {
-        path: 'driver/home/:id',
+        path: 'driver/:id',
         component: DashboardComponent
     },
 ];
