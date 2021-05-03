@@ -46,7 +46,11 @@ export class DashboardComponent implements OnInit {
             this.head = this.capitalizeFirstLetter(this.role) + "s";
             this.getUsers().subscribe(result => {
                 this.dataSource.data = result as Array<Object>;
-                this.displayedColumns = Object.keys(result[0]);
+                // @ts-ignore
+                if (result.length) {
+                    this.displayedColumns = Object.keys(result[0]);
+                }
+                
             });
         });
     }

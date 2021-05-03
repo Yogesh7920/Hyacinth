@@ -8,38 +8,14 @@ import { LoginComponent } from './components/login/login.component';
 import { DoctorHomeComponent } from './components/doctor-home/doctor-home.component';
 
 const routes: Routes = [
-    {
-        path: 'login',
-        component: LoginComponent
-    },
-    {
-        path: 'admin',
-        component: AdminHomeComponent
-    },
-    {
-        path: 'admin/:role',
-        component: AdminUsersComponent
-    },
-    {
-        path: 'register/patient',
-        component: PatientRegistrationComponent
-    },
-    {
-        path: 'doctor/:id',
-        component: DashboardComponent
-    },
-    {
-        path: 'patient/:id',
-        component: DashboardComponent
-    },
-    {
-        path: 'nurse/:id',
-        component: DashboardComponent
-    },
-    {
-        path: 'driver/:id',
-        component: DashboardComponent
-    },
+    {path: 'login', component: LoginComponent },
+    {path: 'admin', component: AdminHomeComponent},
+    {path: 'admin/:role', component: AdminUsersComponent},
+    {path: 'register/patient', component: PatientRegistrationComponent},
+    {path: 'patient/:id', component: DashboardComponent},
+    {path: 'doctor/:id',component: DashboardComponent},
+    {path: 'nurse/:id',component: DashboardComponent},
+    {path: 'driver/:id',component: DashboardComponent},
 ];
 
 

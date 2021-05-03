@@ -7,7 +7,7 @@
             </ng-container>
             <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
             <tr class="table-row" mat-row *matRowDef="let row;  let i = index; columns: displayedColumns;" 
-                [routerLink]="links[i]">
+                [routerLink]="links ? links[i] : '#'">
             </tr>
         </table>
     </div>
