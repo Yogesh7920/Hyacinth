@@ -28,6 +28,11 @@ export class DashboardComponent implements OnInit {
     dataSource = new MatTableDataSource([]);
     private ngUnsubscribe: Subject<any> = new Subject();
 
+    getUser() {
+        let url = `${environment.apiUrl + this.role}/${this.id}`;
+        return this.http.get(url);
+    }
+
     getUsers() {
         let url = `${environment.apiUrl + this.role}/dashboard/${this.id}`;
         return this.http.get(url);
@@ -46,16 +51,20 @@ export class DashboardComponent implements OnInit {
                 role: this.role,
                 id: this.id
             });
-            this.head = this.capitalizeFirstLetter(this.role) + "s";
-            this.getUsers().subscribe(result => {
-                console.log(result)
-                this.dataSource.data = result as Array<Object>;
-                // @ts-ignore
-                if (result.length) {
-                    this.displayedColumns = Object.keys(result[0]);
+            forkJoin([
+                this.getUsers(),
+                this.getUser()
+            ]).subscribe(result => {
+                let users = result[0] as Array<Object>;
+                this.dataSource.data = users;
+                if (users.length) {
+                    this.displayedColumns = Object.keys(users[0]);
                 }
+                let user = result[1] as Object;
+                this.head = user['name'];
 
-            });
+            })
+            this.head = this.capitalizeFirstLetter(this.role) + "s";
         });
     }
 

@@ -22,7 +22,7 @@ def get_employees():
     return res
 
 
-@router.post('/registration')
+@router.post('/login')
 def employee_registration(email, password):
     res = cur.callproc('EmployeeRegistration', (email, password, True, True))
     role, pk = cur.fetchall()[0]
