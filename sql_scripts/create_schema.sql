@@ -19,7 +19,7 @@ create table Employee
 create table Nurse
 (
     nurseID            int primary key,
-    qualification varchar(30) not null,
+    qualification varchar(255) not null,
     license       varchar(30) not null,
     constraint FK_Employee_Nurse foreign key (nurseID)
         references Employee (employeeID)
@@ -37,9 +37,9 @@ create table Admin
 create table Doctor
 (
     doctorID             int primary key,
-    qualification  varchar(30)  not null,
+    qualification  varchar(255)  not null,
     license        varchar(30)  not null,
-    bio            varchar(300) not null,
+    bio            varchar(255) not null,
     available      bool         not null,
     specialization varchar(30)  not null,
     constraint FK_Employee_Doctor foreign key (doctorID)
@@ -64,10 +64,10 @@ create table Patient
     name           varchar(45) not null,
     password       longtext    not null,
     phone          varchar(20) not null unique,
-    email          varchar(20) not null unique,
-    address        varchar(20) not null,
+    email          varchar(255) not null unique,
+    address        varchar(255) not null,
     sex            varchar(20) not null,
-    medicalHistory varchar(300),
+    medicalHistory varchar(255),
     marital        bool,
     constraint SexCheck check ( sex in ('Male', 'Female', 'Other') ),
     constraint PhoneCheck check ( phone regexp '^[\+]91 [6-9][[:digit:]]{9}$' )
@@ -91,8 +91,8 @@ create table Vendor
     vendorID    int primary key auto_increment,
     name        varchar(45)  not null,
     phone       varchar(20)  not null,
-    address     varchar(100) not null,
-    email       varchar(20)  not null,
+    address     varchar(255) not null,
+    email       varchar(255)  not null,
     constraint PhoneCheck check ( phone regexp '^[\+]91 [6-9][[:digit:]]{9}$' )
 );
 
@@ -120,7 +120,7 @@ create table Ambulance
 create table Consultation
 (
     consultationID  int primary key auto_increment,
-    problem         varchar(40),
+    problem         varchar(255),
     doctorID        int,
     patientID       int,
     constraint FK_Doctor_Consultation foreign key (doctorID)
@@ -136,7 +136,7 @@ create table Appointment
     appointmentID  int primary key auto_increment,
     startTime      timestamp,
     endTime        timestamp,
-    remarks        varchar(40),
+    remarks        varchar(255),
     invoiceId      int unique not null,
     prescriptionId int unique not null,
     consultationId int not null,

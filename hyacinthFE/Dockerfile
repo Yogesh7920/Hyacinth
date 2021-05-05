@@ -4,7 +4,7 @@ RUN mkdir -p /cache
 WORKDIR /cache
 COPY package*.json ./
 RUN npm install
-RUN ngcc
+RUN npm run compile
 
 
 RUN mkdir -p /code

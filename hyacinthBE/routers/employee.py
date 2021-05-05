@@ -33,6 +33,8 @@ class Login(BaseModel):
 def employee_registration(data: Login):
     email = data.email
     password = data.password
-    res = cur.callproc('EmployeeRegistration', (email, password, True, True))
-    role, pk = cur.fetchall()[0]
+    res = cur.callproc('EmployeeRegistration', (email, password, "", -1))
+    result = cur.fetchall()[0]
+    print(result)
+    role, pk = result
     return {'role': role, 'id': pk}
