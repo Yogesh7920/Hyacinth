@@ -22,10 +22,7 @@ export class NavbarComponent implements OnInit {
 
     ngOnInit() {
 
-        // this.roleService.watchRole().subscribe(data => {
-        //     this.profileRole = data.role;
-        //     this.profileId = data.id;
-        // })
+        console.log(this.role, this.id);
 
         this.storageService.watchStorage().subscribe(event => {
             if (!event) {
@@ -33,6 +30,8 @@ export class NavbarComponent implements OnInit {
             } else {
                 if (event == "isLoggedIn") {
                     this.isLoggedIn = !!this.storageService.getItem("isLoggedIn");
+                    this.role = localStorage.getItem("role");
+                    this.id = localStorage.getItem("id");
                 }
             }
         })
@@ -42,7 +41,7 @@ export class NavbarComponent implements OnInit {
         if (!this.role) {
             return "login";
         }
-        return this.role;
+        return `/${this.role}/dashboard/${this.id}`;
     }
 
     logout() {

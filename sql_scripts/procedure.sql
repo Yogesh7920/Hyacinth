@@ -66,7 +66,9 @@ begin
         set id=-1;
     else
         set @email = substring_index(email_, '@', 1);
+        select @email;
         set @create_user = concat('create user \'', @email, '\'@\'localhost\' identified by \'', password_, '\';');
+        select @create_user;
         call exec_query(@create_user);
         set @insert_user = concat(
             'insert into Patient set',
@@ -80,8 +82,6 @@ begin
             ', marital = ', marital
         );
         call exec_query(@insert_user);
-        set @grant_role = concat('grant patient_role to ', @email);
-        call exec_query(@grant_role);
         set id = (select id from Patient where email=email_);
     end if;
 end; //
@@ -93,7 +93,9 @@ begin
     then
         set @password = (select password from Patient where email=email_);
         if (password(password_)=@password) then
-            set id = (select id from Patient where email=email_);
+            set id = (select patientID from Patient where email=email_);
+        else
+            set id = -1;
         end if;
     else
         set id = -1;

@@ -55,9 +55,11 @@ class Login(BaseModel):
 def patient_login(data: Login):
     email = data.email
     password = data.password
-    res = cur.callproc('PatientLogin', (email, password, True))
-    pk = cur.fetchone()[0]
-    return {'id': pk}
+    cur.callproc('PatientLogin', (email, password, -1))
+    result = cur.fetchall()
+    pk = result[0][0]
+    cur.nextset()
+    return {'id': pk, 'role': 'patient'}
 
 
 class Register(BaseModel):
@@ -81,8 +83,10 @@ def patient_registration(data: Register):
     res = cur.callproc('PatientRegistration',
                        (data.name, data.email, data.password, data.phone, data.address,
                         data.sex, data.medicalHistory, marital, True))
-    pk = cur.fetchone()[0]
-    return {'id': pk}
+    result = cur.fetchall()
+    print(result)
+    cur.nextset()
+    return {'id': result[0]}
 
 
 @router.get('/dashboard/{pk}')

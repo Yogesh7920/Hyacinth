@@ -1,44 +1,46 @@
 <div class="container">
-    <div>
-        <mat-form-field style="width:20vw" appearance="fill">
-            <mat-label>I am a/an.</mat-label>
-            <mat-select [(value)]="role">
-                <mat-option *ngFor="let role of roles" [value]="role">
-                    {{role}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-    </div>
-    <div style="height: 60px;"></div>
-    <form [formGroup]="loginForm">
-        <div>
-            <mat-form-field style="width:30vw" appearance="fill">
-                <mat-label>Enter your email</mat-label>
-                <input matInput placeholder="pat@example.com" formControlName="email" required>
-                <mat-icon matSuffix>email</mat-icon>
+    <mat-card style="background-color: whitesmoke;" class="mat-elevation-z12">
+        <mat-card-header style="height: 100px; display: flex; justify-content: center; align-items: center;">
+            <mat-form-field style="width:20vw" appearance="fill">
+                <mat-label>I am a/an.</mat-label>
+                <mat-select [(value)]="role">
+                    <mat-option *ngFor="let role of roles" [value]="role">
+                        {{role}}
+                    </mat-option>
+                </mat-select>
             </mat-form-field>
+        </mat-card-header>
+        <div style="height: 60px;"></div>
+        <form [formGroup]="loginForm">
+            <div>
+                <mat-form-field style="width:30vw" appearance="fill">
+                    <mat-label>Enter your email</mat-label>
+                    <input matInput placeholder="pat@example.com" formControlName="email" required>
+                    <mat-icon matSuffix>email</mat-icon>
+                </mat-form-field>
+            </div>
+            <div style="height: 20px;"></div>
+            <div>
+                <mat-form-field style="width:30vw" appearance="fill">
+                    <mat-label>Enter your password</mat-label>
+                    <input matInput formControlName="password" [type]="hide ? 'password' : 'text'" required>
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                        [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field>
+            </div>
+        </form>
+        <div style="height: 20px;"></div>
+        <div style="display: flex; justify-content: center;">
+            <button style="width: 10vw;" color="primary" [disabled]="!this.loginForm.valid" mat-raised-button
+                (click)="onSubmit()">
+                Login
+            </button>
         </div>
         <div style="height: 20px;"></div>
-        <div>
-            <mat-form-field style="width:30vw" appearance="fill">
-                <mat-label>Enter your password</mat-label>
-                <input matInput formControlName="password" [type]="hide ? 'password' : 'text'" required>
-                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-                    [attr.aria-pressed]="hide">
-                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                </button>
-            </mat-form-field>
+        <div style="display: flex; justify-content: center;" *ngIf="role == 'Patient'">
+            New user ? &nbsp;<a class="register" [routerLink]="'/register/patient'">Register</a>
         </div>
-    </form>
-    <div style="height: 20px;"></div>
-    <div>
-        <button style="width: 10vw;" color="primary" [disabled]="!this.loginForm.valid" mat-raised-button
-            (click)="onSubmit()">
-            Login
-        </button>
-    </div>
-    <div style="height: 20px;"></div>
-    <div *ngIf="role == 'Patient'">
-        New user ? <a class="register" [routerLink]="'/register/patient'">Register</a>
-    </div>
+    </mat-card>
 </div>
