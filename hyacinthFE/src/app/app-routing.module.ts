@@ -6,16 +6,15 @@ import { PatientRegistrationComponent } from './components/patient-registration/
 import { DashboardComponent } from "./components/dashboard/dashboard.component";
 import { LoginComponent } from './components/login/login.component';
 import { DoctorHomeComponent } from './components/doctor-home/doctor-home.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 const routes: Routes = [
-    {path: 'login', component: LoginComponent },
-    {path: 'admin', component: AdminHomeComponent},
-    {path: 'admin/:role', component: AdminUsersComponent},
-    {path: 'register/patient', component: PatientRegistrationComponent},
-    {path: 'patient/:id', component: DashboardComponent},
-    {path: 'doctor/:id',component: DashboardComponent},
-    {path: 'nurse/:id',component: DashboardComponent},
-    {path: 'driver/:id',component: DashboardComponent},
+    { path: 'login', component: LoginComponent },
+    { path: 'admin', component: AdminHomeComponent },
+    { path: 'admin/:role', component: AdminUsersComponent },
+    { path: 'register/patient', component: PatientRegistrationComponent },
+    { path: ':role/dashboard/:id', component: DashboardComponent },
+    { path: ':role/:id', component: ProfileComponent }
 ];
 
 

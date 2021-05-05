@@ -43,10 +43,11 @@ export class AdminUsersComponent implements OnInit, OnDestroy {
                 this.head = this.capitalizeFirstLetter(this.role) + "s";
                 this.getUsers().subscribe(result => {
                     for (const res of result as Array<Object>) {
-                        this.links.push(`/${this.role}/${res['ID']}`);
+                        this.links.push(`/${this.role}/dashboard/${res['id']}`);
                     }
                     this.dataSource.data = result as Array<Object>;
                     this.displayedColumns = Object.keys(result[0]);
+                    this.displayedColumns.push("Actions");
                 });
             });
     }

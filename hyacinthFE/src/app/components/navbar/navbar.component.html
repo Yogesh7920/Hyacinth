@@ -9,6 +9,10 @@
         </a>
     </h1>
     <div style="flex: 1;"></div>
+    <button [routerLink]="[role, id]" *ngIf="isLoggedIn" mat-icon-button>
+        <mat-icon>person</mat-icon>
+    </button>
+    <div style="width: 20px;"></div>
     <a *ngIf="!isLoggedIn; else loggedIn" [routerLink]="'/login'" style="margin-right: 5px;" mat-icon-button>
         <mat-icon>login</mat-icon>
     </a>
