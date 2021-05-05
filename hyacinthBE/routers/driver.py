@@ -17,7 +17,7 @@ def get_driver():
     cur.execute(" select * from DriverInfo")
     for ID, name, phone, email, _, sex in cur:
         res.append({
-            'ID': ID,
+            'id': ID,
             'name': name,
             'phone': phone,
             'email': email,
