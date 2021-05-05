@@ -17,6 +17,7 @@ import { AdminUsersComponent } from './components/admin/admin-users/admin-users.
 import { ProfileComponent } from './components/profile/profile.component';
 import { DriverHomeComponent } from './components/driver-home/driver-home.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
     declarations: [
@@ -30,7 +31,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
         AdminUsersComponent,
         ProfileComponent,
         DriverHomeComponent,
-        DashboardComponent
+        DashboardComponent,
+        HomeComponent
     ],
     imports: [
         BrowserModule,

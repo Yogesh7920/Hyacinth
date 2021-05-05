@@ -1,3 +1,4 @@
+import { HomeComponent } from './components/home/home.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminHomeComponent } from './components/admin/admin-home/admin-home.component';
@@ -9,7 +10,8 @@ import { DoctorHomeComponent } from './components/doctor-home/doctor-home.compon
 import { ProfileComponent } from './components/profile/profile.component';
 
 const routes: Routes = [
-    { path: 'login', component: LoginComponent },
+    {path: '', component: HomeComponent, data: {animation: 'HomePage'}},
+    { path: 'login', component: LoginComponent, data: {animation: 'LoginPage'}},
     { path: 'admin', component: AdminHomeComponent },
     { path: 'admin/:role', component: AdminUsersComponent },
     { path: 'register/patient', component: PatientRegistrationComponent },

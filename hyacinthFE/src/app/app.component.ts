@@ -1,11 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
+import { slider } from './route-animations'
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss']
+    styleUrls: ['./app.component.scss'],
+    animations: [slider]
 })
+
 export class AppComponent implements OnInit {
 
     constructor(private router: Router) { }
@@ -14,6 +18,11 @@ export class AppComponent implements OnInit {
         // if (!!localStorage.getItem("isLoggedIn")) {
         //     this.router.navigate([localStorage.getItem("role")]);
         // }
+    }
+
+    prepareRoute(outlet: RouterOutlet) {
+        
+        return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
     }
 
     fillerNav = Array.from({ length: 50 }, (_, i) => `Nav Item ${i + 1}`);
