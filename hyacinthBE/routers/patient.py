@@ -68,14 +68,19 @@ class Register(BaseModel):
     address: str
     sex: str
     marital: str
-    medical_history: Optional[str] = None
+    medicalHistory: Optional[str] = None
 
 
 @router.post('/registration/')
 def patient_registration(data: Register):
+    if data.marital:
+        marital = 1
+    else:
+        marital = 0
+    print(data)
     res = cur.callproc('PatientRegistration',
                        (data.name, data.email, data.password, data.phone, data.address,
-                        data.sex, data.medical_history, data.marital, True))
+                        data.sex, data.medicalHistory, marital, True))
     pk = cur.fetchone()[0]
     return {'id': pk}
 

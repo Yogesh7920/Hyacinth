@@ -10,7 +10,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 
 const routes: Routes = [
     { path: 'login', component: LoginComponent },
-    { path: 'admin', component: AdminHomeComponent },
+    { path: 'admin/dashboard/:id', component: AdminHomeComponent },
     { path: 'admin/:role', component: AdminUsersComponent },
     { path: 'register/patient', component: PatientRegistrationComponent },
     { path: ':role/dashboard/:id', component: DashboardComponent },

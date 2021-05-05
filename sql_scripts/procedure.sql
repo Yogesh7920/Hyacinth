@@ -10,9 +10,11 @@ drop procedure if exists PatientRecords;
 drop procedure if exists DriverProfile;
 drop procedure if exists DriveRecords;
 drop procedure if exists PatientProfile;
+drop procedure if exists PatientLogin;
 drop procedure if exists HospitalRecords;
 drop procedure if exists AdminProfile;
 drop procedure if exists PharmacyRecords;
+drop procedure if exists addNurse;
 
 
 delimiter //
@@ -25,15 +27,15 @@ begin
     deallocate prepare stmt;
 end; //
 
-create procedure EmployeeRegistration(in email_ varchar(20), in password_ varchar(255), out role varchar(11), out id int)
+create procedure EmployeeRegistration(in email_ varchar(255), in password_ varchar(255), out role varchar(11), out id int)
 begin
     -- If user exists, then check password
     if user_exists(email_)
     then
         set @password = (select password from Employee where email=email_);
-        if (password(password_)=@password) then
+        if (PASSWORD(password_)=@password) then
             set role=employee_role(email_);
-            set id = (select id from Employee where email=email_);
+            set id = (select employeeID from Employee where email=email_);
         else
             set role='None';
             set id = -1;
@@ -43,8 +45,10 @@ begin
     then
         set @create_user = concat('create user \'', substring_index(email_, '@', 1), '\'@\'localhost\' identified by \'', password_, '\';');
         call exec_query(@create_user);
+        set @update_user = concat('update Employee set password=\'', PASSWORD(password_), '\' where email=\'', email_, '\'');
+        call exec_query(@update_user);
         set role=employee_role(email_);
-        set id = (select id from Employee where email=email_);
+        set id = (select employeeID from Employee where email=email_);
     -- If the admin has not added the Employee, don't allow registration.
     else
         set role='None';
@@ -52,9 +56,9 @@ begin
     end if;
 end; //
 
-create procedure PatientRegistration(name_ varchar(45), email_ varchar(20), password_ varchar(255),
-                                    phone varchar(20), address_ varchar(20), sex varchar(20),
-                                    medicalHistory varchar(300), marital bool, out id int
+create procedure PatientRegistration(name_ varchar(45), email_ varchar(255), password_ varchar(255),
+                                    phone varchar(20), address_ varchar(255), sex varchar(20),
+                                    medicalHistory varchar(255), marital bool, out id int
                                     )
 begin
     if user_exists(email_)
@@ -75,21 +79,21 @@ begin
             ', medicalHistory = \'', medicalHistory, '\'',
             ', marital = ', marital
         );
-        select @insert_user;
         call exec_query(@insert_user);
-#         grant patient_role to @email; # TODO: Error because of this !.
+        set @grant_role = concat('grant patient_role to ', @email);
+        call exec_query(@grant_role);
         set id = (select id from Patient where email=email_);
     end if;
 end; //
 
 
-create procedure PatientLogin(in email_ varchar(20), in password_ varchar(255), out id int)
+create procedure PatientLogin(in email_ varchar(255), in password_ varchar(255), out id int)
 begin
     if user_exists(email_)
     then
-        set @password = (select password from patient where email=email_);
+        set @password = (select password from Patient where email=email_);
         if (password(password_)=@password) then
-            set id = (select id from patient where email=email_);
+            set id = (select id from Patient where email=email_);
         end if;
     else
         set id = -1;
