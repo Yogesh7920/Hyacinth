@@ -45,3 +45,19 @@ def get_doctor_info(pk):
         }
 
     return d
+
+@router.get('/dashboard/{pk}')
+def get_dashboard(pk):
+    cur.execute(f"select * from PatientConsultInfo where doctorID={pk}")
+    res = []
+    for patientID, _ , consultationID, problem, specialization in cur:
+        res.append({
+                "patientID": patientID,
+                "consultationID": consultationID,
+                "specialization": specialization,
+                "problem":problem,
+                "patientID": patientID,
+            })
+
+    print(res)
+    return res
