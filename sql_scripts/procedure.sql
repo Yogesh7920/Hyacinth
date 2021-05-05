@@ -146,5 +146,10 @@ begin
     select * from VendorDrugInfo where drugName = drug;    
 end; //
 
+create procedure addNurse(name varchar(45), password varchar(256),
+ phone varchar(45), email varchar(45), address varchar(45), sex varchar(45), salary varchar(45))
+ begin
+
+ end //
 delimiter ;
 

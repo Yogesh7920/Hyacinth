@@ -1,4 +1,6 @@
 from fastapi import APIRouter
+from pydantic import BaseModel
+
 from database import Global
 
 router = APIRouter(
@@ -22,8 +24,15 @@ def get_employees():
     return res
 
 
-@router.post('/login')
-def employee_registration(email, password):
+class Login(BaseModel):
+    email: str
+    password: str
+
+
+@router.post('/login/')
+def employee_registration(data: Login):
+    email = data.email
+    password = data.password
     res = cur.callproc('EmployeeRegistration', (email, password, True, True))
     role, pk = cur.fetchall()[0]
     return {'role': role, 'id': pk}
