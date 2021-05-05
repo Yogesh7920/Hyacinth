@@ -42,7 +42,6 @@ export class TableComponent implements OnInit {
     }
 
     getProfileLink(user) {
-        event.stopPropagation();
         return `/${this.role}/${user['id']}`;
     }
 
