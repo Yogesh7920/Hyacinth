@@ -5,6 +5,7 @@ import { MatTableDataSource } from "@angular/material/table";
 import { combineLatest, forkJoin, Subject } from "rxjs";
 import { environment } from "../../../environments/environment";
 import { takeUntil } from "rxjs/operators";
+import { RoleService } from 'src/app/services/role.service';
 
 @Component({
     selector: 'app-dashboard',
@@ -19,7 +20,8 @@ export class DashboardComponent implements OnInit {
 
     constructor(
         private http: HttpClient,
-        private activatedRoute: ActivatedRoute
+        private activatedRoute: ActivatedRoute,
+        private roleService: RoleService
     ) { }
 
     displayedColumns: string[] = [];
@@ -37,12 +39,13 @@ export class DashboardComponent implements OnInit {
 
     ngOnInit(): void {
 
-        combineLatest([
-            this.activatedRoute.params,
-            this.activatedRoute.url
-        ]).subscribe(result => {
-            this.id = result[0]['id'];
-            this.role = result[1][0].path;
+        this.activatedRoute.params.subscribe(params => {
+            this.id = params['id'];
+            this.role = params['role'];
+            this.roleService.setData({
+                role: this.role,
+                id: this.id
+            });
             this.head = this.capitalizeFirstLetter(this.role) + "s";
             this.getUsers().subscribe(result => {
                 console.log(result)
@@ -51,7 +54,7 @@ export class DashboardComponent implements OnInit {
                 if (result.length) {
                     this.displayedColumns = Object.keys(result[0]);
                 }
-                
+
             });
         });
     }

@@ -16,7 +16,7 @@ def get_patient():
     cur.execute(" select * from PatientInfo")
     for patientID, patientName, phone, email, _, sex, _, marital in cur:
         res.append({
-            'ID': patientID,
+            'id': patientID,
             'name': patientName,
             'phone': phone,
             'email': email,
@@ -37,7 +37,8 @@ def get_patient_info(pk):
             'email': email,
             'address': address,
             'sex': sex,
-            'medicalHistory': medicalHistory
+            'medicalHistory': medicalHistory,
+            'marital': marital
         }
     return d
 
@@ -71,23 +72,3 @@ def patient_dashboard(pk):
         })
     return res
 
-# @router.post('/dashboard')
-# def patient_dashboard(pk):
-#     cur.execute(f"call HospitalRecords({pk})")
-#     d = dict()
-#     for pharmacyID, prescriptionID, invoiceID, consulationID, patientID, \
-#         patientName, phone, email, address, sex, medicalHistory, marital, problem, \
-#             doctorID, appointmentID, startTime, endTime, remarks, amount, isPaid,\
-#             timeStamp, medName, medCategory in cur:
-#         d = {
-#             'pharmacyID': pharmacyID,
-#             'prescriptionID': prescriptionID,
-#             'invoiceID': invoiceID,
-#             'consulationID': consulationID,
-#             'patientID': patientID,
-#             'problem': problem,
-#             'doctorID': doctorID,
-#             'appointmentID': appointmentID,
-#             'startTime': startTime,
-#         }
-#     return d

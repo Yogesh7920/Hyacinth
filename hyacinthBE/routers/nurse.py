@@ -17,7 +17,7 @@ def get_nurses():
     cur.execute(" select * from NurseInfo")
     for ID, _, _, name, phone, email, _, sex in cur:
         res.append({
-            'ID': ID,
+            'id': ID,
             'name': name,
             'phone': phone,
             'email': email,

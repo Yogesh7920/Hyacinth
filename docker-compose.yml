@@ -1,16 +1,16 @@
 version: '3.9'
 
 services: 
-  angular:
-    container_name: hyacinthFE
-    build:
-      context: ./hyacinthFE
-      dockerfile: Dockerfile
-    ports:
-      - 4200:4200
-    volumes:
-      - ./hyacinthFE:/code
-    command: /code/entrypoint.sh
+ angular:
+   container_name: hyacinthFE
+   build:
+     context: ./hyacinthFE
+     dockerfile: Dockerfile
+   ports:
+     - 4200:4200
+   volumes:
+     - ./hyacinthFE:/code
+   command: /code/entrypoint.sh
 
   fastapi:
     build:
@@ -26,6 +26,7 @@ services:
       - ./hyacinthBE:/code
     ports:
       - "8000:80"
+    entrypoint: /start-reload.sh
     depends_on:
       - db
 

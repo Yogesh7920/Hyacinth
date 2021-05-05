@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { RoleService } from 'src/app/services/role.service';
 import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
@@ -11,10 +12,21 @@ export class NavbarComponent implements OnInit {
     @Input() snav;
 
     isLoggedIn = !!localStorage.getItem("isLoggedIn");
-    role = localStorage.getItem("role");
-    constructor(private storageService: StorageService, private router: Router) { }
+    role: string = localStorage.getItem("role");
+    id: string = localStorage.getItem("id");
+    // profileRole: string = this.role;
+    // profileId: string = "";
+    constructor(private storageService: StorageService,
+        private router: Router,
+        private roleService: RoleService) { }
 
     ngOnInit() {
+
+        // this.roleService.watchRole().subscribe(data => {
+        //     this.profileRole = data.role;
+        //     this.profileId = data.id;
+        // })
+
         this.storageService.watchStorage().subscribe(event => {
             if (!event) {
                 this.isLoggedIn = false;
