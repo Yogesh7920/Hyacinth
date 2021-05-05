@@ -27,9 +27,10 @@ def get_doctors():
 
 @router.get('/{pk}')
 def get_doctor_info(pk):
-    cur.execute(f"call DoctorProfile({pk})")
+    cur.callproc('DoctorProfile', (pk, ))
+    result = cur.fetchall()
     d = dict()
-    for ID, qual, lic, bio, available, special, name, phone, email, address, sex in cur:
+    for ID, qual, lic, bio, available, special, name, phone, email, address, sex in result:
         d = {
             'id': ID,
             'name': name,
@@ -43,7 +44,7 @@ def get_doctor_info(pk):
             'available': available,
             'specialization': special
         }
-
+    cur.nextset()
     return d
 
 @router.get('/dashboard/{pk}')
