@@ -49,7 +49,7 @@ create table Doctor
 
 create table Driver
 (
-    driverID          int primary key,
+    driverID          int primary key auto_increment,
     experience  int(5)      not null,
     licenseNo   varchar(10) not null,
     successRate float,

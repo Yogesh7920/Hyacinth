@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from database import Global
-
+from routers.employee import Employee
 
 router = APIRouter(
     prefix="/driver",
@@ -9,6 +9,12 @@ router = APIRouter(
 )
 
 cur = Global.cur
+
+
+class Driver(Employee):
+    experience: int
+    licenseNo: str
+    successRate: float
 
 
 @router.get('/')
@@ -59,3 +65,12 @@ def driver_dashboard(pk):
     return res
 
 
+@router.post('/add', status_code=201)
+def new_nurse(data: Driver):
+    cur.callproc('addDriver', (data.name, data.password, data.phone,
+                               data.email, data.address, data.sex, data.salary,
+                               data.experience, data.licenseNo, data.successRate, -1))
+    result = cur.fetchall()
+    cur.nextset()
+    pk = result[0]
+    return {'id': pk}
