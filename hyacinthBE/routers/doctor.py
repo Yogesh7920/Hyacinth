@@ -27,7 +27,7 @@ def get_doctors():
 
 @router.get('/{pk}')
 def get_doctor_info(pk):
-    cur.callproc('DoctorProfile', (pk, ))
+    cur.callproc('DoctorProfile', (pk,))
     result = cur.fetchall()
     d = dict()
     for ID, qual, lic, bio, available, special, name, phone, email, address, sex in result:
@@ -47,18 +47,18 @@ def get_doctor_info(pk):
     cur.nextset()
     return d
 
+
 @router.get('/dashboard/{pk}')
 def get_dashboard(pk):
     cur.execute(f"select * from PatientConsultInfo where doctorID={pk}")
     res = []
-    for patientID, _ , consultationID, problem, specialization in cur:
+    for patientID, _, consultationID, problem, specialization in cur:
         res.append({
-                "patientID": patientID,
-                "consultationID": consultationID,
-                "specialization": specialization,
-                "problem":problem,
-                "patientID": patientID,
-            })
+            "Patient ID": patientID,
+            "Consultation ID": consultationID,
+            "Specialization": specialization,
+            "Problem": problem,
+        })
 
-    print(res)
     return res
+

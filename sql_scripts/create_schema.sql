@@ -18,7 +18,7 @@ create table Employee
 
 create table Nurse
 (
-    nurseID            int primary key,
+    nurseID            int primary key auto_increment,
     qualification varchar(255) not null,
     license       varchar(30) not null,
     constraint FK_Employee_Nurse foreign key (nurseID)

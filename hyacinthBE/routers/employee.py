@@ -1,3 +1,5 @@
+from typing import Optional
+
 from fastapi import APIRouter
 from pydantic import BaseModel
 
@@ -10,6 +12,17 @@ router = APIRouter(
 )
 
 cur = Global.cur
+
+
+class Employee(BaseModel):
+    ID: Optional[int]
+    name: str
+    password: str
+    phone: str
+    email: str
+    address: str
+    sex: str
+    salary: str
 
 
 @router.get('/')

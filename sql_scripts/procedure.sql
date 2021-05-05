@@ -152,10 +152,15 @@ begin
     select * from VendorDrugInfo where drugName = drug;    
 end; //
 
-create procedure addNurse(name varchar(45), password varchar(256),
- phone varchar(45), email varchar(45), address varchar(45), sex varchar(45), salary varchar(45))
+create procedure addNurse(name_ varchar(45), password_ varchar(256), phone_ varchar(45),
+                    email_ varchar(45), address_ varchar(45), sex_ varchar(45),
+                    salary_ varchar(45), qualification_ varchar(50), license_ varchar(50), out id int)
  begin
-
+    insert into Employee (name, password, phone, email, address, sex, salary)
+    values (name_, password_, phone_, email_, address_, sex_, salary_);
+    set id = last_insert_id();
+    insert into Nurse (nurseID, qualification, license)
+    values (id, qualification_, license_);
  end //
 delimiter ;
 
