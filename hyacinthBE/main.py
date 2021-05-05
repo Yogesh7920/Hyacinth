@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from hyacinthBE.internal import admin
+from internal import admin
 from routers import employee, doctor, nurse, driver, patient
 
 app = FastAPI()
