@@ -50,7 +50,6 @@ export class LoginComponent {
                 this._snackBar.open("Are you registered? Check your email-id and password", "Ok");
             }
         })
-        // this.router.navigate([localStorage.getItem("role")]);
     }
 
 }

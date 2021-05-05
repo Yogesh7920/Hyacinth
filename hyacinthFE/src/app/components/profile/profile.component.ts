@@ -55,7 +55,6 @@ export class ProfileComponent implements OnInit {
             this.role = params['role'];
             this.id = params['id'];
             this.getProfile().subscribe((result: any) => {
-                console.log(result);
                 let { name, email, phone, address, sex,
                     medicalHistory = "", marital = false,
                     password = "", confPassword = "" } = result;
@@ -69,8 +68,7 @@ export class ProfileComponent implements OnInit {
                     marital,
                     password,
                     confPassword
-                })
-                // this.profile.setValue(result)
+                });
             })
         });
     }

@@ -15,6 +15,7 @@ export class TableComponent implements OnInit {
     @Input('cols') displayedColumns;
     @Input('head') heading;
     @Input() links;
+    curRoute: string = "";
 
     constructor(
         private route: ActivatedRoute,
@@ -24,6 +25,12 @@ export class TableComponent implements OnInit {
     role: string = "";
 
     ngOnInit() {
+        this.route.url.subscribe(route => {
+            this.curRoute = "/";
+            for (const path of route) {
+                this.curRoute += path.path + "/";
+            }
+        })
         this.route.params.subscribe(params => {
             this.role = params['role'];
         })
