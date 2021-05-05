@@ -45,6 +45,8 @@ export class PatientRegistrationComponent {
             ...this.registrationForm.value,
             phone: `+91 ${phone}`
         };
-        this.authService.register(result);
+        this.authService.register(result).subscribe(result => {
+            console.log(result);
+        })
     }
 }

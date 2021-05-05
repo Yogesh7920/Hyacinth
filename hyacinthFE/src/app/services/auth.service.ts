@@ -23,9 +23,7 @@ export class AuthService {
 
     register(patientDetails) {
         let url = `${environment.apiUrl}patient/registration/`;
-        this.http.post(url, patientDetails).subscribe(result => {
-            console.log(result);
-        })
+        return this.http.post(url, patientDetails);
     }
 
     logout() {
