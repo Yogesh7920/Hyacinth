@@ -82,7 +82,7 @@ begin
             ', marital = ', marital
         );
         call exec_query(@insert_user);
-        set id = (select id from Patient where email=email_);
+        set id = (select patientID from Patient where email=email_);
     end if;
 end; //
 
