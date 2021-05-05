@@ -14,18 +14,11 @@ export class NavbarComponent implements OnInit {
     isLoggedIn = !!localStorage.getItem("isLoggedIn");
     role: string = localStorage.getItem("role");
     id: string = localStorage.getItem("id");
-    // profileRole: string = this.role;
-    // profileId: string = "";
+
     constructor(private storageService: StorageService,
-        private router: Router,
-        private roleService: RoleService) { }
+        private router: Router) { }
 
     ngOnInit() {
-
-        // this.roleService.watchRole().subscribe(data => {
-        //     this.profileRole = data.role;
-        //     this.profileId = data.id;
-        // })
 
         this.storageService.watchStorage().subscribe(event => {
             if (!event) {
@@ -34,15 +27,21 @@ export class NavbarComponent implements OnInit {
                 if (event == "isLoggedIn") {
                     this.isLoggedIn = !!this.storageService.getItem("isLoggedIn");
                 }
+                if (event == "role") {
+                    this.role = localStorage.getItem("role");
+                }
+                if (event == "id") {
+                    this.id = localStorage.getItem("id");
+                }
             }
         })
     }
 
     getHomeLink() {
         if (!this.role) {
-            return "login";
+            return "";
         }
-        return this.role;
+        return `/${this.role}/dashboard/${this.id}`;
     }
 
     logout() {

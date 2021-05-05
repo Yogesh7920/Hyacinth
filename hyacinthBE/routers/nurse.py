@@ -1,6 +1,7 @@
 from fastapi import APIRouter
-from database import Global
+from routers.employee import Employee
 
+from database import Global
 
 router = APIRouter(
     prefix="/nurse",
@@ -9,6 +10,11 @@ router = APIRouter(
 )
 
 cur = Global.cur
+
+
+class Nurse(Employee):
+    qualification: str
+    license: str
 
 
 @router.get('/')
@@ -59,7 +65,11 @@ def nurse_dashboard(pk):
 
 
 @router.post('/add', status_code=201)
-def new_nurse(name, password, phone, email, address, sex, salary):
-    # cur.execute(f"insert DiagnosticsHistory({pk})")
-    pass
-
+def new_nurse(data: Nurse):
+    cur.callproc('addNurse', (data.name, data.password, data.phone,
+                              data.email, data.address, data.sex,
+                              data.salary, data.qualification, data.license, -1))
+    result = cur.fetchall()
+    cur.nextset()
+    pk = result[0]
+    return {'id': pk}

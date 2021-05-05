@@ -56,7 +56,7 @@ begin
     );
 end //
 
-create function user_exists(email varchar(20))
+create function user_exists(email varchar(255))
     returns bool
 begin
     return (

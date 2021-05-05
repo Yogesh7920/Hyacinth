@@ -18,7 +18,7 @@
                                 <mat-label>Address</mat-label>
                                 <textarea formControlName="address" matInput [matTextareaAutosize]="true"
                                     [matAutosizeMinRows]="1" [matAutosizeMaxRows]="5" required></textarea>
-                                    <mat-icon matSuffix>my_location</mat-icon>
+                                <mat-icon matSuffix>my_location</mat-icon>
                             </mat-form-field>
                         </td>
                     </tr>
@@ -38,7 +38,7 @@
                                 <mat-label>Medical History</mat-label>
                                 <textarea formControlName="medicalHistory" matInput [matTextareaAutosize]="true"
                                     [matAutosizeMinRows]="1" [matAutosizeMaxRows]="5"></textarea>
-                                    <mat-icon matSuffix>medical_services</mat-icon>
+                                <mat-icon matSuffix>medical_services</mat-icon>
                             </mat-form-field>
                         </td>
                     </tr>
@@ -55,9 +55,7 @@
                             </mat-radio-group>
                         </td>
                         <td colspan="1">
-                            <mat-checkbox
-                                formControlName="marital"
-                            >
+                            <mat-checkbox formControlName="marital">
                                 I'm married
                             </mat-checkbox>
                         </td>
@@ -77,8 +75,8 @@
                             <mat-form-field appearance="fill" class="demo-full-width">
                                 <mat-label>Password</mat-label>
                                 <input formControlName="password" matInput [type]="hide ? 'password' : 'text'" required>
-                                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-                                    [attr.aria-pressed]="hide">
+                                <button mat-icon-button matSuffix (click)="hide = !hide"
+                                    [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                                     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                                 </button>
                             </mat-form-field>
@@ -88,9 +86,10 @@
                         <td colspan="2">
                             <mat-form-field appearance="fill" class="demo-full-width">
                                 <mat-label>Confirm Password</mat-label>
-                                <input formControlName="confPassword" matInput [type]="hide ? 'password' : 'text'" required>
-                                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-                                    [attr.aria-pressed]="hide">
+                                <input formControlName="confPassword" matInput [type]="hide ? 'password' : 'text'"
+                                    required>
+                                <button mat-icon-button matSuffix (click)="hide = !hide"
+                                    [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                                     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                                 </button>
                             </mat-form-field>
@@ -98,11 +97,15 @@
                     </tr>
                 </table>
             </form>
-        </mat-card-content>     
+        </mat-card-content>
         <mat-card-actions>
             <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
             &nbsp;
-            <button mat-raised-button color="primary" [disabled]="!this.registrationForm.valid" (click)="onSubmit()">Submit</button>
+            <button mat-raised-button color="primary" [disabled]="!this.registrationForm.valid"
+                (click)="onSubmit()">Submit</button>
         </mat-card-actions>
+        <div style="display: flex; justify-content: center;">
+            Already registered ? &nbsp; <a [routerLink]="'/login'">Login</a>
+        </div>
     </mat-card>
 </div>

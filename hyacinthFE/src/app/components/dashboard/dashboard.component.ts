@@ -34,7 +34,7 @@ export class DashboardComponent implements OnInit {
     }
 
     getUsers() {
-        let url = `${environment.apiUrl + this.role}/dashboard/${this.id}`;
+        let url = `${environment.apiUrl + this.role}/dashboard/${this.id}/`;
         return this.http.get(url);
     }
 

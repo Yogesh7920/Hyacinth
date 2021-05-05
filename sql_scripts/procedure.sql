@@ -15,6 +15,8 @@ drop procedure if exists HospitalRecords;
 drop procedure if exists AdminProfile;
 drop procedure if exists PharmacyRecords;
 drop procedure if exists addNurse;
+drop procedure if exists addDoctor;
+drop procedure if exists addDriver;
 
 
 delimiter //
@@ -66,7 +68,9 @@ begin
         set id=-1;
     else
         set @email = substring_index(email_, '@', 1);
+        select @email;
         set @create_user = concat('create user \'', @email, '\'@\'localhost\' identified by \'', password_, '\';');
+        select @create_user;
         call exec_query(@create_user);
         set @insert_user = concat(
             'insert into Patient set',
@@ -80,9 +84,7 @@ begin
             ', marital = ', marital
         );
         call exec_query(@insert_user);
-        set @grant_role = concat('grant patient_role to ', @email);
-        call exec_query(@grant_role);
-        set id = (select id from Patient where email=email_);
+        set id = (select patientID from Patient where email=email_);
     end if;
 end; //
 
@@ -93,7 +95,9 @@ begin
     then
         set @password = (select password from Patient where email=email_);
         if (password(password_)=@password) then
-            set id = (select id from Patient where email=email_);
+            set id = (select patientID from Patient where email=email_);
+        else
+            set id = -1;
         end if;
     else
         set id = -1;
@@ -150,10 +154,40 @@ begin
     select * from VendorDrugInfo where drugName = drug;    
 end; //
 
-create procedure addNurse(name varchar(45), password varchar(256),
- phone varchar(45), email varchar(45), address varchar(45), sex varchar(45), salary varchar(45))
+create procedure addNurse(name_ varchar(45), password_ varchar(256), phone_ varchar(45),
+                    email_ varchar(45), address_ varchar(45), sex_ varchar(45),
+                    salary_ varchar(45), qualification_ varchar(50), license_ varchar(50), out id int)
  begin
-
+    insert into Employee (name, password, phone, email, address, sex, salary)
+    values (name_, password_, phone_, email_, address_, sex_, salary_);
+    set id = last_insert_id();
+    insert into Nurse (nurseID, qualification, license)
+    values (id, qualification_, license_);
  end //
+
+create procedure addDoctor(name_ varchar(45), password_ varchar(256), phone_ varchar(45),
+                          email_ varchar(45), address_ varchar(45), sex_ varchar(45),
+                          salary_ varchar(45), qualification_ varchar(50), license_ varchar(50),
+                           bio_ varchar(255), available_ bool, specialization_ varchar(255), id int)
+begin
+    insert into Employee (name, password, phone, email, address, sex, salary)
+    values (name_, password_, phone_, email_, address_, sex_, salary_);
+    set id = last_insert_id();
+    insert into Doctor (doctorID, qualification, license, bio, available, specialization)
+    values (id, qualification_, license_, bio_, available_, specialization_);
+end //
+
+create procedure addDriver(name_ varchar(45), password_ varchar(256), phone_ varchar(45),
+                           email_ varchar(45), address_ varchar(45), sex_ varchar(45),
+                           salary_ varchar(45), experience_ varchar(50), license_ varchar(50),
+                           successRate_ varchar(255), id int)
+begin
+    insert into Employee (name, password, phone, email, address, sex, salary)
+    values (name_, password_, phone_, email_, address_, sex_, salary_);
+    set id = last_insert_id();
+    insert into Driver (experience, licenseNo, successRate)
+    values (experience_, licenseNo, successRate_);
+end //
+
 delimiter ;
 
