@@ -33,7 +33,7 @@ export class LoginComponent {
     hide = true;
 
     onSubmit() {
-        this.authService.login(this.loginForm.value);
+        this.authService.login(this.loginForm.value, this.role);
         this.router.navigate([localStorage.getItem("role")]);
     }
 

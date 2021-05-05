@@ -6,6 +6,7 @@ COPY package*.json ./
 RUN npm install
 RUN ngcc
 
+
 RUN mkdir -p /code
 WORKDIR /code/
 
