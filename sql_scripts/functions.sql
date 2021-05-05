@@ -15,7 +15,7 @@ begin
         inner join Appointment a on Invoice.invoiceID = a.invoiceId
         where (isPaid=1) and (startTime > date_sub(curdate(), interval dayofmonth(curdate()) - 1 day ))
     );
-end //
+end; //
 
 create function employee_role(email_ varchar(20))
 returns varchar(20)
@@ -50,7 +50,7 @@ create function total_monthly_expenditure()
 begin
     return (
         select sum(price), temp.total from Hyacinth.Supplies, (
-              select sum(salary) as total from employee
+              select sum(salary) as total from Employee
             ) as temp
         where (orderTime > date_sub(curdate(), interval dayofmonth(curdate()) - 1 day ))
     );
@@ -60,7 +60,7 @@ create function user_exists(email varchar(20))
     returns bool
 begin
     return (
-        exists(select User from mysql.user where User=email)
+        exists(select User from mysql.user where User=substring_index(email, '@', 1))
     );
 end //
 
