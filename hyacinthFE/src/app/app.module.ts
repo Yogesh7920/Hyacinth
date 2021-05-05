@@ -44,6 +44,6 @@ import { DialogComponent } from './components/dialog/dialog.component';
     ],
     providers: [],
     bootstrap: [AppComponent],
-    entryComponents: [DialogComponent]
+
 })
 export class AppModule { }
