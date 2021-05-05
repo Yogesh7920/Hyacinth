@@ -6,7 +6,6 @@ import { AdminUsersComponent } from './components/admin/admin-users/admin-users.
 import { PatientRegistrationComponent } from './components/patient-registration/patient-registration.component';
 import { DashboardComponent } from "./components/dashboard/dashboard.component";
 import { LoginComponent } from './components/login/login.component';
-import { DoctorHomeComponent } from './components/doctor-home/doctor-home.component';
 import { ProfileComponent } from './components/profile/profile.component';
 
 const routes: Routes = [
