@@ -1,10 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { DialogComponent } from '../../dialog/dialog.component';
 
 @Component({
     selector: 'app-admin-users',
@@ -19,8 +21,14 @@ export class AdminUsersComponent implements OnInit, OnDestroy {
 
     constructor(
         private http: HttpClient,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private matDialog: MatDialog
     ) { }
+
+    openDialog() {
+        const dialogConfig = new MatDialogConfig();
+        this.matDialog.open(DialogComponent, dialogConfig);
+        }
 
     displayedColumns: string[] = [];
     dataSource = new MatTableDataSource([]);
