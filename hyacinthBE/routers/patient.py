@@ -37,7 +37,8 @@ def get_patient_info(pk):
             'email': email,
             'address': address,
             'sex': sex,
-            'medicalHistory': medicalHistory
+            'medicalHistory': medicalHistory,
+            'marital': marital
         }
     return d
 
