@@ -1,5 +1,8 @@
-from fastapi import APIRouter
+from typing import Optional
+
+from fastapi import APIRouter, Request
 from database import Global
+from pydantic import BaseModel
 
 router = APIRouter(
     prefix="/patient",
@@ -43,17 +46,36 @@ def get_patient_info(pk):
     return d
 
 
-@router.post('/login')
-def patient_login(email, password):
+class Login(BaseModel):
+    email: str
+    password: str
+
+
+@router.post('/login/')
+def patient_login(data: Login):
+    email = data.email
+    password = data.password
     res = cur.callproc('PatientLogin', (email, password, True))
     pk = cur.fetchone()[0]
     return {'id': pk}
 
 
-@router.post('/registration')
-def patient_registration(name, email, password, phone, address, sex, marital, medical_history=None):
+class Register(BaseModel):
+    name: str
+    email: str
+    password: str
+    phone: str
+    address: str
+    sex: str
+    marital: str
+    medical_history: Optional[str] = None
+
+
+@router.post('/registration/')
+def patient_registration(data: Register):
     res = cur.callproc('PatientRegistration',
-                       (name, email, password, phone, address, sex, medical_history, marital, True))
+                       (data.name, data.email, data.password, data.phone, data.address,
+                        data.sex, data.medical_history, data.marital, True))
     pk = cur.fetchone()[0]
     return {'id': pk}
 
@@ -71,4 +93,3 @@ def patient_dashboard(pk):
             'specialization': special
         })
     return res
-

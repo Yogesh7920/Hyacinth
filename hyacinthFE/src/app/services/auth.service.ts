@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { StorageService } from './storage.service';
 
 @Injectable({
@@ -6,14 +8,23 @@ import { StorageService } from './storage.service';
 })
 export class AuthService {
 
-    constructor(private storageService: StorageService) { }
+    constructor(
+        private storageService: StorageService,
+        private http: HttpClient
+    ) { }
 
-    login({ email, password }) {
+    login({ email, password }, role: string) {
         this.storageService.setItem("email", email);
         this.storageService.setItem("password", password);
-        this.storageService.setItem("role", "admin");
         this.storageService.setItem("isLoggedIn", "true");
-        // login with backend
+        role = role.toLowerCase();
+        let url = `${environment.apiUrl}${role}/login`;
+        this.http.post(url, {
+            email,
+            password
+        }).subscribe(result => {
+            console.log(result);
+        })
     }
 
     register(patientDetails) {
