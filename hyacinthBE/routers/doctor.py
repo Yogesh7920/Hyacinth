@@ -16,7 +16,7 @@ def get_doctors():
     cur.execute(" select * from DoctorInfo")
     for ID, _, _, _, _, _, name, phone, email, _, sex in cur:
         res.append({
-            'ID': ID,
+            'id': ID,
             'name': name,
             'phone': phone,
             'email': email,
