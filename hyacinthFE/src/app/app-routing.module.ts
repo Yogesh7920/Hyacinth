@@ -13,7 +13,7 @@ const routes: Routes = [
     {path: 'admin/:role', component: AdminUsersComponent},
     {path: 'register/patient', component: PatientRegistrationComponent},
     {path: 'patient/:id', component: DashboardComponent},
-    {path: 'doctor/:id',component: DoctorHomeComponent},
+    {path: 'doctor/:id',component: DashboardComponent},
     {path: 'nurse/:id',component: DashboardComponent},
     {path: 'driver/:id',component: DashboardComponent},
 ];

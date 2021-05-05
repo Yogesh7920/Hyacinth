@@ -46,36 +46,18 @@ def get_doctor_info(pk):
 
     return d
 
-@router.get('/records/{pk}')
-def get_patient_records(pk):
-    cur.execute(f"call PatientRecords({pk})")
+@router.get('/dashboard/{pk}')
+def get_dashboard(pk):
+    cur.execute(f"select * from PatientConsultInfo where doctorID={pk}")
     res = []
-    for pharmacyID, prescriptionId, consultationID, doctorID, qualification, license, bio, available, specialization, doctorName, phone, email, address, sex, problem, patientID, appointmentID, startTime, endTime, remarks, invoiceId, timestamp, name, category in cur:
+    for patientID, _ , consultationID, problem, specialization in cur:
         res.append({
-                "pharmacyID": pharmacyID,
-                "prescriptionId": prescriptionId,
+                "patientID": patientID,
                 "consultationID": consultationID,
-                "doctorID": doctorID,
-                "qualification": qualification,
-                "license": license,
-                "bio": bio,
-                "available": available,
                 "specialization": specialization,
-                "doctorName": doctorName, 
-                "phone": phone,
-                "email": email,
-                "address": address,
-                "sex": sex,
                 "problem":problem,
                 "patientID": patientID,
-                "appointmentID":appointmentID,
-                "startTime":startTime,
-                "endTime": endTime,
-                "remarks":remarks,
-                "invoiceId":invoiceId, 
-                "timestamp":timestamp,
-                "name":name, 
-                "category": category
             })
 
+    print(res)
     return res

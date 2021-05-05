@@ -45,6 +45,7 @@ export class DashboardComponent implements OnInit {
             this.role = result[1][0].path;
             this.head = this.capitalizeFirstLetter(this.role) + "s";
             this.getUsers().subscribe(result => {
+                console.log(result)
                 this.dataSource.data = result as Array<Object>;
                 // @ts-ignore
                 if (result.length) {
