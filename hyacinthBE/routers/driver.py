@@ -49,12 +49,12 @@ def driver_dashboard(pk):
     cur.execute(f"call DriveRecords({pk})")
     for _, AID, maintenance, dist, start, end, address in cur:
         res.append({
-            'ambulanceID': AID,
-            'lastMaintenance': maintenance,
-            'totalDistance': dist,
-            'startTime': start,
-            'endTime': end,
-            'address': address,
+            'Ambulance ID': AID,
+            'Last Maintenance': maintenance,
+            'Total distance': dist,
+            'Start time': start,
+            'End time': end,
+            'Address': address,
         })
     return res
 
