@@ -20,6 +20,7 @@ import { DialogComponent } from './components/dialog/dialog.component';
 import { ConsultComponent } from './components/consult/consult.component';
 import { AdminProfileComponent } from './components/admin-profile/admin-profile.component';
 import { PrescriptionComponent } from './components/prescription/prescription.component';
+import { NavigationComponent } from './components/navigation/navigation.component';
 
 @NgModule({
     declarations: [
@@ -37,7 +38,8 @@ import { PrescriptionComponent } from './components/prescription/prescription.co
         DialogComponent,
         ConsultComponent,
         AdminProfileComponent,
-        PrescriptionComponent
+        PrescriptionComponent,
+        NavigationComponent
     ],
     imports: [
         BrowserModule,
