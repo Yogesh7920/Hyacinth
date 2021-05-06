@@ -45,3 +45,13 @@ def get_doctor_info(pk):
         'data': res,
         'key': ['ID', 'Price', 'Order Time', 'Supply Time', 'Drug Name', 'Category']
     }
+
+
+@router.get('/{pk}')
+def vendor_profile(pk):
+    cur.execute(f"select name from Vendor where vendorID={pk}")
+    for name in cur:
+        return {
+            'id': pk,
+            'name': name
+        }
