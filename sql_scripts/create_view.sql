@@ -105,3 +105,17 @@ create view AppointmentInvoice as (
     from Appointment
     inner join Invoice using (invoiceId)
 );
+
+
+create view PrescriptionDrug as (
+    select * from Prescription
+    inner join Drugs using (prescriptionID)
+    inner join Pharmacy using (pharmacyID)
+);
+
+
+create view PrescriptionDiagnostic as (
+    select * from Prescription
+    inner join Contains using (prescriptionID)
+    inner join Diagnostics using (diagnosticsID)
+);

@@ -52,3 +52,31 @@ def consultation(pk):
         'data': res,
         'key': ['ID', 'Start Time', 'End Time', 'Remarks', 'Invoice ID', 'Prescription ID', 'Amount', 'isPaid']
     }
+
+
+@app.get('/prescription/{pk}')
+def prescription_detail(pk):
+    cur.execute(f"select * from PrescriptionDrug where prescriptionID={pk}")
+    res1 = []
+    for pharmID, _, timeStamp, name, cat in cur:
+        res1.append({
+            'pharmacyID': pharmID,
+            'timeStamp': timeStamp,
+            'name': name,
+            'category': cat
+        })
+
+    cur.execute(f"select * from PrescriptionDiagnostic where prescriptionID={pk}")
+    res2 = []
+    for diagID, _, timeStamp, cat, name in cur:
+        res2.append({
+            'diagnosticsID': diagID,
+            'timeStamp': timeStamp,
+            'name': name,
+            'category': cat
+        })
+
+    return {
+        'drugs': res1,
+        'diagnostics': res2
+    }

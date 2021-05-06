@@ -79,3 +79,5 @@ def new_nurse(data: Nurse):
     cur.nextset()
     pk = result[0]
     return {'id': pk}
+
+
