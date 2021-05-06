@@ -40,13 +40,24 @@ export class ConsultComponent implements OnInit {
         console.log(result)
         let { data, key } = result as any;
         console.log(data)
+
+        for(const entry of data) {
+          if(entry["isPaid"] == 1) {
+            entry["isPaid"] = "Yes"
+          }
+          else {
+            entry["isPaid"] = "No"
+          }
+        }  
+
         this.dataSource.data = data;
         this.colHeads = [
           "ID",
           "Start Time",
           "End Time",
           "Remarks",
-          "Invoice ID",
+          "Amount",
+          "IsPaid",
           "Prescription ID"
         ]
         this.displayedColumns = [
@@ -54,7 +65,8 @@ export class ConsultComponent implements OnInit {
           "startTime",
           "endTime",
           "remarks",
-          "invoiceID",
+          "amount",
+          "isPaid",
           "presID"
         ]
 

@@ -38,25 +38,21 @@ export class PrescriptionComponent implements OnInit {
       this.getPrescription().subscribe(result => {
 
         console.log(result)
-        let { data, key } = result as any;
-        console.log(data)
-        this.dataSource.data = data;
-        this.colHeads = [
-          "ID",
-          "Start Time",
-          "End Time",
-          "Remarks",
-          "Invoice ID",
-          "Prescription ID"
-        ]
-        this.displayedColumns = [
-          "id",
-          "startTime",
-          "endTime",
-          "remarks",
-          "invoiceID",
-          "presID"
-        ]
+        // let { drugs, diagnostics } = result as any;
+        // console.log(data)
+        // this.dataSource.data = data;
+        // this.colHeads = [
+        //   "Drugs",
+        //   "Diagnostics"
+        // ]
+        // this.displayedColumns = [
+        //   "id",
+        //   "startTime",
+        //   "endTime",
+        //   "remarks",
+        //   "invoiceID",
+        //   "presID"
+        // ]
 
       })
 
