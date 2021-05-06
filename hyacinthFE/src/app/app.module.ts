@@ -18,6 +18,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HomeComponent } from './components/home/home.component';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { ConsultComponent } from './components/consult/consult.component';
+import { AdminProfileComponent } from './components/admin-profile/admin-profile.component';
 import { PrescriptionComponent } from './components/prescription/prescription.component';
 
 @NgModule({
@@ -35,6 +36,7 @@ import { PrescriptionComponent } from './components/prescription/prescription.co
         HomeLinkPipe,
         DialogComponent,
         ConsultComponent,
+        AdminProfileComponent,
         PrescriptionComponent
     ],
     imports: [
@@ -47,6 +49,6 @@ import { PrescriptionComponent } from './components/prescription/prescription.co
     ],
     providers: [],
     bootstrap: [AppComponent],
-    entryComponents:[DialogComponent]
+    entryComponents: [DialogComponent]
 })
 export class AppModule { }

@@ -41,6 +41,7 @@ export class AdminUsersComponent implements OnInit, OnDestroy {
         dialogRef.afterClosed().subscribe((result) => {
 
             if (result["msg"] == "submit") {
+                console.log(result);
                 this.addUser(result["formData"]).subscribe(data => {
                     this.ngOnInit()
                 })

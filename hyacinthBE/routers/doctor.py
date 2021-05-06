@@ -1,6 +1,7 @@
 from fastapi import APIRouter
+from typing import Optional
 from database import Global
-from routers.nurse import Nurse
+from routers.employee import Employee
 
 router = APIRouter(
     prefix="/doctor",
@@ -11,9 +12,11 @@ router = APIRouter(
 cur = Global.cur
 
 
-class Doctor(Nurse):
+class Doctor(Employee):
+    qualification: str
+    license: str
     bio: str
-    available: bool
+    available: Optional[int]
     specialization: str
 
 
