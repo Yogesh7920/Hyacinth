@@ -35,9 +35,9 @@ def read_root():
 
 @app.get("/consultation/{pk}")
 def consultation(pk):
-    cur.execute(f"select * from Appointment where consultationId={pk}")
+    cur.execute(f"select * from AppointmentInvoice where consultationId={pk}")
     res = []
-    for appID, startTime, endTime, remarks, invoiceID, presID, consID in cur:
+    for _, appID, startTime, endTime, remarks, invoiceID, presID, amount, isPaid in cur:
         res.append({
             'id': appID,
             'startTime': startTime,
@@ -45,9 +45,10 @@ def consultation(pk):
             'remarks': remarks,
             'invoiceID': invoiceID,
             'presID': presID,
-            'consID': consID
+            'amount': amount,
+            'isPaid': isPaid,
         })
     return {
         'data': res,
-        'key': ['ID', 'Start Time', 'End Time', 'Remarks', 'Invoice ID', 'Prescription ID', 'Consultation ID']
+        'key': ['ID', 'Start Time', 'End Time', 'Remarks', 'Invoice ID', 'Prescription ID', 'Amount', 'isPaid']
     }
