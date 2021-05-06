@@ -16,8 +16,9 @@ const routes: Routes = [
     { path: 'admin/:role', component: AdminUsersComponent },
     { path: 'register/patient', component: PatientRegistrationComponent },
     { path: ':role/dashboard/:id', component: DashboardComponent },
+    { path: 'consultation/:id', component: ConsultComponent},
     { path: ':role/:id', component: ProfileComponent },
-    { path: 'consult/:id', component: ConsultComponent}
+    
 ];
 
 
