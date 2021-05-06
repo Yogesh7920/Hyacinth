@@ -1,5 +1,24 @@
 <div class="container">
-    <mat-grid-list cols="2" rowHeight="45vh">
+    <div style="display: flex; flex-direction: column; 
+        justify-content: center; align-items: center; 
+        height: 100%; width: 100%;">
+        <a style="text-decoration: none;" [routerLink]="'/admin/patient'">
+            Patients
+        </a>
+        <a style="text-decoration: none;" [routerLink]="'/admin/doctor'">
+            Doctors
+        </a>
+        <a style="text-decoration: none;" [routerLink]="'/admin/nurse'">
+            Nurses
+        </a>
+        <a style="text-decoration: none;" [routerLink]="'/admin/driver'">
+            Drivers
+        </a>
+        <a style="text-decoration: none;" [routerLink]="'/admin/vendor'">
+            Vendors
+        </a>
+    </div>
+    <!-- <mat-grid-list cols="2" rowHeight="45vh">
         <mat-grid-tile>
             <div class="grid-container">
                 <p>
@@ -40,7 +59,7 @@
                 </a>
             </div>
         </mat-grid-tile>
-    </mat-grid-list>
+    </mat-grid-list> -->
 </div>
 
 <router-outlet></router-outlet>

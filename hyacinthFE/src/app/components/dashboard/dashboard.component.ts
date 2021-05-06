@@ -59,7 +59,6 @@ export class DashboardComponent implements OnInit {
             ]).subscribe(result => {
                 let { data, key } = result[0] as any;
                 this.dataSource.data = data;
-                console.log(data);
                 for (const row of data) {
                     let url = ""
                     if (this.role == "patient") {
@@ -78,6 +77,7 @@ export class DashboardComponent implements OnInit {
                             'patientID',
                             'specialization'
                         ]
+                        this.links.push(url);
                     } else if (this.role == "doctor") {
                         url = `/consultation/${row['id']}`;
                         this.colHeads = [
@@ -89,9 +89,10 @@ export class DashboardComponent implements OnInit {
                         this.displayedColumns = [
                             "id",
                             "patientID",
-                            "specialization",
+                            "name",
                             "problem",
                         ]
+                        this.links.push(url);
                     } else if (this.role == "nurse") {
                         url = `/diagnostics/${row['id']}`;
                         this.colHeads = [
@@ -103,7 +104,8 @@ export class DashboardComponent implements OnInit {
                             "id",
                             "diagnostics",
                             "category"
-                        ]
+                        ];
+                        // this.links.push(url);
                     } else if (this.role == "driver") {
                         url = `/diagnostics/${row['id']}`;
                         this.colHeads = [
@@ -119,9 +121,25 @@ export class DashboardComponent implements OnInit {
                             "startTime",
                             "endTime",
                             "totalDistance"
-                        ]
+                        ];
+                        // this.links.push(url);
+                    } else if (this.role == "vendor") {
+                        console.log(data);
+                        this.colHeads = [
+                            "Drug ID",
+                            "Drug Name",
+                            "Price",
+                            "Order Time",
+                            "Supply Time",
+                        ];
+                        this.displayedColumns = [
+                            "id",
+                            "drugName",
+                            "price",
+                            "orderTime",
+                            "supplyTime"
+                        ];
                     }
-                    this.links.push(url);
                 }
                 this.head = result[1]['name'];
             })
