@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NavbarComponent } from './components/navbar/navbar.component';
+import { HomeLinkPipe, NavbarComponent } from './components/navbar/navbar.component';
 import { MaterialModule } from './material/material.module';
 import { PatientRegistrationComponent } from './components/patient-registration/patient-registration.component';
 import { LoginComponent } from './components/login/login.component';
@@ -32,7 +32,8 @@ import { HomeComponent } from './components/home/home.component';
         ProfileComponent,
         DriverHomeComponent,
         DashboardComponent,
-        HomeComponent
+        HomeComponent,
+        HomeLinkPipe
     ],
     imports: [
         BrowserModule,

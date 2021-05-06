@@ -30,9 +30,11 @@ def get_patient():
 
 @router.get('/{pk}')
 def get_patient_info(pk):
-    cur.execute(f"call PatientProfile({pk})")
+    cur.callproc('PatientProfile', (pk, ))
+    result = cur.fetchall()
+    print(result)
     d = dict()
-    for patientID, patientName, phone, email, address, sex, medicalHistory, marital in cur:
+    for patientID, patientName, phone, email, address, sex, medicalHistory, marital in result:
         d = {
             'id': patientID,
             'name': patientName,
@@ -43,6 +45,7 @@ def get_patient_info(pk):
             'medicalHistory': medicalHistory,
             'marital': marital
         }
+    cur.nextset()
     return d
 
 
@@ -79,14 +82,13 @@ def patient_registration(data: Register):
         marital = 1
     else:
         marital = 0
-    print(data)
     res = cur.callproc('PatientRegistration',
                        (data.name, data.email, data.password, data.phone, data.address,
-                        data.sex, data.medicalHistory, marital, True))
+                        data.sex, data.medicalHistory, marital, -1))
     result = cur.fetchall()
-    print(result)
+    id = result[0][0]
     cur.nextset()
-    return {'id': result[0]}
+    return {'id': id}
 
 
 @router.get('/dashboard/{pk}')

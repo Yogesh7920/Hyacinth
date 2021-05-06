@@ -68,20 +68,18 @@ begin
         set id=-1;
     else
         set @email = substring_index(email_, '@', 1);
-        select @email;
         set @create_user = concat('create user \'', @email, '\'@\'localhost\' identified by \'', password_, '\';');
-        select @create_user;
         call exec_query(@create_user);
         set @insert_user = concat(
-            'insert into Patient set',
-            ' name = \'', name_, '\'',
-            ', email = \'', email_, '\'',
-            ', phone = \'', phone, '\'',
-            ', password = \'', PASSWORD(password_), '\'',
-            ', address = \'', address_, '\'',
-            ', sex = \'', sex, '\'',
-            ', medicalHistory = \'', medicalHistory, '\'',
-            ', marital = ', marital
+            'insert into Patient (name, email, phone, password, address, sex, medicalHistory, marital) values (',
+            '\'', name_, '\'',
+            ', \'', email_, '\'',
+            ', \'', phone, '\'',
+            ', \'', PASSWORD(password_), '\'',
+            ', \'', address_, '\'',
+            ', \'', sex, '\'',
+            ', \'', medicalHistory, '\'',
+            ', ', marital, ')'
         );
         call exec_query(@insert_user);
         set id = (select patientID from Patient where email=email_);
