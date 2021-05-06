@@ -32,19 +32,19 @@ def get_patient():
 def get_patient_info(pk):
     cur.callproc('PatientProfile', (pk, ))
     result = cur.fetchall()
-    print(result)
+    result = result[0]
     d = dict()
-    for patientID, patientName, phone, email, address, sex, medicalHistory, marital in result:
-        d = {
-            'id': patientID,
-            'name': patientName,
-            'phone': phone,
-            'email': email,
-            'address': address,
-            'sex': sex,
-            'medicalHistory': medicalHistory,
-            'marital': marital
-        }
+    patientID, patientName, phone, email, address, sex, medicalHistory, marital = result
+    d = {
+        'id': patientID,
+        'name': patientName,
+        'phone': phone,
+        'email': email,
+        'address': address,
+        'sex': sex,
+        'medicalHistory': medicalHistory,
+        'marital': marital
+    }
     cur.nextset()
     return d
 

@@ -68,14 +68,14 @@ export const slider =
       })
     ], { optional: true }),
     query(':enter', [
-      style({ right: '-0%'})
+      style({ right: '-50%'})
     ]),
     group([
       query(':leave', [
         animate('800ms ease', style({ right: '0%'}))
       ], { optional: true }),
       query(':enter', [
-        animate('800ms ease', style({ right: '100%'}))
+        animate('800ms ease', style({ right: '0%'}))
       ])
     ]),
   ]

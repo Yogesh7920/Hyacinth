@@ -11,13 +11,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { AdminHomeComponent } from './components/admin/admin-home/admin-home.component';
 import { HttpClientModule } from '@angular/common/http';
-import { DoctorHomeComponent } from './components/doctor-home/doctor-home.component';
 import { TableComponent } from './components/shared/table/table.component';
 import { AdminUsersComponent } from './components/admin/admin-users/admin-users.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { DriverHomeComponent } from './components/driver-home/driver-home.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HomeComponent } from './components/home/home.component';
+import { DialogComponent } from './components/dialog/dialog.component';
 
 @NgModule({
     declarations: [
@@ -26,14 +26,14 @@ import { HomeComponent } from './components/home/home.component';
         PatientRegistrationComponent,
         LoginComponent,
         AdminHomeComponent,
-        DoctorHomeComponent,
         TableComponent,
         AdminUsersComponent,
         ProfileComponent,
         DriverHomeComponent,
         DashboardComponent,
         HomeComponent,
-        HomeLinkPipe
+        HomeLinkPipe,
+        DialogComponent
     ],
     imports: [
         BrowserModule,
@@ -44,6 +44,7 @@ import { HomeComponent } from './components/home/home.component';
         HttpClientModule
     ],
     providers: [],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
+
 })
 export class AppModule { }

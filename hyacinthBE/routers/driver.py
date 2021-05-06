@@ -66,7 +66,7 @@ def driver_dashboard(pk):
 
 
 @router.post('/add', status_code=201)
-def new_nurse(data: Driver):
+def new_driver(data: Driver):
     cur.callproc('addDriver', (data.name, data.password, data.phone,
                                data.email, data.address, data.sex, data.salary,
                                data.experience, data.licenseNo, data.successRate, -1))
