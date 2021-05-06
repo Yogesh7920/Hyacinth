@@ -20,6 +20,10 @@ export class StorageService {
         this.nav.next(arr);
     }
     
+    popNavAll() {
+        this.nav.next([]);
+    }
+    
     navOper(name) {
         const arr = this.nav.getValue();
         const ind = arr.findIndex(obj => obj.name == name);

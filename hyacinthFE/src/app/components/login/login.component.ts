@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -12,7 +12,7 @@ import { StorageService } from 'src/app/services/storage.service';
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
 
     constructor(
         public dialog: MatDialog,
@@ -21,6 +21,10 @@ export class LoginComponent {
         private router: Router,
         private _snackBar: MatSnackBar
     ) { }
+
+    ngOnInit() {
+        this.storageService.popNavAll();
+    }
 
     loginForm = new FormGroup({
         email: new FormControl('', [Validators.required, Validators.email]),
