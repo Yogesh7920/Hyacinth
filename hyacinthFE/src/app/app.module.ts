@@ -36,7 +36,7 @@ import { PrescriptionComponent } from './components/prescription/prescription.co
         HomeLinkPipe,
         DialogComponent,
         ConsultComponent,
-        AdminProfileComponent
+        AdminProfileComponent,
         PrescriptionComponent
     ],
     imports: [
