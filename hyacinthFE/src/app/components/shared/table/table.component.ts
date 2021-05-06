@@ -14,6 +14,7 @@ export class TableComponent implements OnInit {
     @Input('data') dataSource;
     @Input('cols') displayedColumns;
     @Input('head') heading;
+    @Input('colhead') colHeads;
     @Input() links;
     curRoute: string = "";
 
@@ -42,8 +43,7 @@ export class TableComponent implements OnInit {
 
     removeUser(event, user) {
         event.stopPropagation();
-        let id = Object.keys(user)[0]
-        let url = `${environment.apiUrl + this.role}/${user[id]}`;
+        let url = `${environment.apiUrl + this.role}/${user['id']}`;
         this.http.delete(url).subscribe(result => {
             console.log(result);
         });

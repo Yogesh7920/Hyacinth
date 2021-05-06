@@ -31,28 +31,29 @@ export class AdminUsersComponent implements OnInit, OnDestroy {
     }
 
     openDialog() {
-       
+
         const dialogRef = this.dialog.open(DialogComponent, {
             width: '700px',
             height: '800px',
-            data: {role: this.head }
-          });
+            data: { role: this.head }
+        });
 
-          dialogRef.afterClosed().subscribe((result)=>{
-              
-            if(result["msg"] == "submit") {
-                this.addUser(result["formData"]).subscribe(data =>{
+        dialogRef.afterClosed().subscribe((result) => {
+
+            if (result["msg"] == "submit") {
+                this.addUser(result["formData"]).subscribe(data => {
                     this.ngOnInit()
                 })
             }
             else {
                 dialogRef.close()
             }
-          })
+        })
     }
 
     displayedColumns: string[] = [];
     dataSource = new MatTableDataSource([]);
+    colHeads = [];
     private ngUnsubscribe: Subject<any> = new Subject();
 
     getUsers() {
@@ -71,12 +72,30 @@ export class AdminUsersComponent implements OnInit, OnDestroy {
                 this.role = params['role']
                 this.head = this.capitalizeFirstLetter(this.role) + "s";
                 this.getUsers().subscribe(result => {
-                    for (const res of result as Array<Object>) {
+                    let { data, key } = result as any;
+                    for (const res of data as Array<Object>) {
                         this.links.push(`/${this.role}/dashboard/${res['id']}`);
                     }
-                    this.dataSource.data = result as Array<Object>;
-                    this.displayedColumns = Object.keys(result[0]);
+                    this.dataSource.data = data as Array<Object>;
+                    console.log(data);
+                    this.displayedColumns = Object.keys(data[0]);
                     this.displayedColumns.push("Actions");
+                    this.colHeads = [
+                        "Employee ID",
+                        "Name",
+                        "Phone",
+                        "Email",
+                        "Sex",
+                        "Actions"
+                    ];
+                    this.displayedColumns = [
+                        "id",
+                        "name",
+                        "phone",
+                        "email",
+                        "sex",
+                        "Actions"
+                    ]
                 });
             });
     }

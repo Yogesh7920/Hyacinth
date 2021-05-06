@@ -14,10 +14,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { TableComponent } from './components/shared/table/table.component';
 import { AdminUsersComponent } from './components/admin/admin-users/admin-users.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { DriverHomeComponent } from './components/driver-home/driver-home.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HomeComponent } from './components/home/home.component';
 import { DialogComponent } from './components/dialog/dialog.component';
+import { ConsultComponent } from './components/consult/consult.component';
 
 @NgModule({
     declarations: [
@@ -29,11 +29,11 @@ import { DialogComponent } from './components/dialog/dialog.component';
         TableComponent,
         AdminUsersComponent,
         ProfileComponent,
-        DriverHomeComponent,
         DashboardComponent,
         HomeComponent,
         HomeLinkPipe,
-        DialogComponent
+        DialogComponent,
+        ConsultComponent
     ],
     imports: [
         BrowserModule,

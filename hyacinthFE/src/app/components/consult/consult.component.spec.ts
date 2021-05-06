@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DriverHomeComponent } from './driver-home.component';
+import { ConsultComponent } from './consult.component';
 
-describe('DriverHomeComponent', () => {
-  let component: DriverHomeComponent;
-  let fixture: ComponentFixture<DriverHomeComponent>;
+describe('ConsultComponent', () => {
+  let component: ConsultComponent;
+  let fixture: ComponentFixture<ConsultComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DriverHomeComponent ]
+      declarations: [ ConsultComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DriverHomeComponent);
+    fixture = TestBed.createComponent(ConsultComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

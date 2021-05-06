@@ -25,15 +25,17 @@ export class DashboardComponent implements OnInit {
     ) { }
 
     displayedColumns: string[] = [];
+    colHeads: string[] = [];
     dataSource = new MatTableDataSource([]);
+    links = [];
     private ngUnsubscribe: Subject<any> = new Subject();
 
-    getUser() {
+    getProfile() {
         let url = `${environment.apiUrl + this.role}/${this.id}`;
         return this.http.get(url);
     }
 
-    getUsers() {
+    getDashboard() {
         let url = `${environment.apiUrl + this.role}/dashboard/${this.id}/`;
         return this.http.get(url);
     }
@@ -52,17 +54,76 @@ export class DashboardComponent implements OnInit {
                 id: this.id
             });
             forkJoin([
-                this.getUsers(),
-                this.getUser()
+                this.getDashboard(),
+                this.getProfile()
             ]).subscribe(result => {
-                let users = result[0] as Array<Object>;
-                this.dataSource.data = users;
-                if (users.length) {
-                    this.displayedColumns = Object.keys(users[0]);
+                let { data, key } = result[0] as any;
+                this.dataSource.data = data;
+                console.log(data);
+                for (const row of data) {
+                    let url = ""
+                    if (this.role == "patient") {
+                        url = `/consultation/${row['id']}`;
+                        this.colHeads = [
+                            'Consultation ID',
+                            'Problem',
+                            'Doctor ID',
+                            'Patient ID',
+                            'Specialization'
+                        ];
+                        this.displayedColumns = [
+                            'id',
+                            'problem',
+                            'doctorID',
+                            'patientID',
+                            'specialization'
+                        ]
+                    } else if (this.role == "doctor") {
+                        url = `/consultation/${row['id']}`;
+                        this.colHeads = [
+                            'Consultation ID',
+                            'Patient ID',
+                            'Patient',
+                            'Problem',
+                        ];
+                        this.displayedColumns = [
+                            "id",
+                            "patientID",
+                            "specialization",
+                            "problem",
+                        ]
+                    } else if (this.role == "nurse") {
+                        url = `/diagnostics/${row['id']}`;
+                        this.colHeads = [
+                            "Diagnostics ID",
+                            "Diagnostics Name",
+                            "Category"
+                        ];
+                        this.displayedColumns = [
+                            "id",
+                            "diagnostics",
+                            "category"
+                        ]
+                    } else if (this.role == "driver") {
+                        url = `/diagnostics/${row['id']}`;
+                        this.colHeads = [
+                            "Journey ID",
+                            "Address",
+                            "Start Time",
+                            "End Time",
+                            "Total Distance"
+                        ];
+                        this.displayedColumns = [
+                            "id",
+                            "address",
+                            "startTime",
+                            "endTime",
+                            "totalDistance"
+                        ]
+                    }
+                    this.links.push(url);
                 }
-                let user = result[1] as Object;
-                this.head = user['name'];
-
+                this.head = result[1]['name'];
             })
             this.head = this.capitalizeFirstLetter(this.role) + "s";
         });

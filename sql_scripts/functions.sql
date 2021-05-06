@@ -17,7 +17,7 @@ begin
     );
 end; //
 
-create function employee_role(email_ varchar(20))
+create function employee_role(email_ varchar(255))
 returns varchar(20)
 begin
     if exists(
