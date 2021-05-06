@@ -28,22 +28,20 @@ def get_vendors():
     }
 
 
-# @router.get('/{pk}')
-# def get_doctor_info(pk):
-#     cur.execute(f"select * from VendorDrugInfo where vendorID={pk}")
-#     res = []
-#     for ID, qual, lic, bio, available, special, name, phone, email, address, sex in cur:
-#         res.append({
-#             'id': ID,
-#             'name': name,
-#             'phone': phone,
-#             'email': email,
-#             'address': address,
-#             'sex': sex,
-#             'qualification': qual,
-#             'license': lic,
-#             'bio': bio,
-#             'available': available,
-#             'specialization': special
-#         })
-#     return res
+@router.get('/dashboard/{pk}')
+def get_doctor_info(pk):
+    cur.execute(f"select * from VendorDrugInfo where vendorID={pk}")
+    res = []
+    for venID, price, orderTime, supplyTime, drugName, category in cur:
+        res.append({
+            'id': venID,
+            'price': price,
+            'orderTime': orderTime,
+            'supplyTime': supplyTime,
+            'drugName': drugName,
+            'category': category,
+        })
+    return {
+        'data': res,
+        'key': ['ID', 'Price', 'Order Time', 'Supply Time', 'Drug Name', 'Category']
+    }
