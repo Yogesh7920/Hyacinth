@@ -1,9 +1,11 @@
 <div style="display: flex; justify-content: space-evenly; align-items: center; height: 10%;">
     <h2>{{head}}</h2>
 
-    <button *ngIf="head != 'Patients'" mat-raised-button color="primary" (click)="openDialog()">
-        Add
-    </button>
+    <ng-template *ngIf="head != 'Vendors'">
+        <button *ngIf="head != 'Patients'" mat-raised-button color="primary" (click)="openDialog()">
+            Add
+        </button>
+    </ng-template>
 </div>
 
 <app-table [links]="links" [cols]="displayedColumns" [data]="dataSource" [colhead]="colHeads"></app-table>

@@ -77,25 +77,39 @@ export class AdminUsersComponent implements OnInit, OnDestroy {
                         this.links.push(`/${this.role}/dashboard/${res['id']}`);
                     }
                     this.dataSource.data = data as Array<Object>;
-                    console.log(data);
-                    this.displayedColumns = Object.keys(data[0]);
-                    this.displayedColumns.push("Actions");
-                    this.colHeads = [
-                        "Employee ID",
-                        "Name",
-                        "Phone",
-                        "Email",
-                        "Sex",
-                        "Actions"
-                    ];
-                    this.displayedColumns = [
-                        "id",
-                        "name",
-                        "phone",
-                        "email",
-                        "sex",
-                        "Actions"
-                    ]
+                    if (this.role == "vendor") {
+                        this.colHeads = [
+                            "Vendor ID",
+                            "Vendor",
+                            "Phone",
+                            "Email",
+                            "Address"
+                        ];
+                        this.displayedColumns = [
+                            "id",
+                            "name",
+                            "phone",
+                            "email",
+                            "address"
+                        ];
+                    } else {
+                        this.colHeads = [
+                            "Employee ID",
+                            "Name",
+                            "Phone",
+                            "Email",
+                            "Sex",
+                            "Actions"
+                        ];
+                        this.displayedColumns = [
+                            "id",
+                            "name",
+                            "phone",
+                            "email",
+                            "sex",
+                            "Actions"
+                        ]
+                    }
                 });
             });
     }
