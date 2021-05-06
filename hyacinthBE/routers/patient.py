@@ -88,6 +88,7 @@ def patient_registration(data: Register):
     result = cur.fetchall()
     id = result[0][0]
     cur.nextset()
+    Global.conn.commit()
     return {'id': id}
 
 
