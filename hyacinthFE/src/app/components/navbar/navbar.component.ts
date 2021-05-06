@@ -1,7 +1,17 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Pipe, PipeTransform } from '@angular/core';
 import { Router } from '@angular/router';
 import { RoleService } from 'src/app/services/role.service';
 import { StorageService } from 'src/app/services/storage.service';
+
+@Pipe({ name: 'homeLink' })
+export class HomeLinkPipe implements PipeTransform {
+    transform(role: string, id: string): string {
+        if (!role) {
+            return "";
+        }
+        return `/${role}/dashboard/${id}`;
+    }
+}
 
 @Component({
     selector: 'app-navbar',
@@ -23,6 +33,8 @@ export class NavbarComponent implements OnInit {
         this.storageService.watchStorage().subscribe(event => {
             if (!event) {
                 this.isLoggedIn = false;
+                this.role = null;
+                this.id = null;
             } else {
                 if (event == "isLoggedIn") {
                     this.isLoggedIn = !!this.storageService.getItem("isLoggedIn");
@@ -46,6 +58,6 @@ export class NavbarComponent implements OnInit {
 
     logout() {
         this.storageService.clear();
-        this.router.navigate(["login"]);
+        this.router.navigate([""]);
     }
 }

@@ -29,7 +29,10 @@ def get_nurses():
             'email': email,
             'sex': sex
         })
-    return res
+    return {
+        'data': res,
+        'key': ['ID', 'Name', 'Phone', 'Email', 'Sex']
+    }
 
 
 @router.get('/{pk}')
@@ -57,11 +60,14 @@ def nurse_dashboard(pk):
     cur.execute(f"call DiagnosticsHistory({pk})")
     for _, dID, cat, diag in cur:
         res.append({
-            'diagnosticsID': dID,
+            'id': dID,
             'category': cat,
             'diagnostics': diag,
         })
-    return res
+    return {
+        'data': res,
+        'key': ['Diagnostics ID', 'Category', 'Diagnostics']
+    }
 
 
 @router.post('/add', status_code=201)

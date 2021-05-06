@@ -17,6 +17,7 @@ drop procedure if exists PharmacyRecords;
 drop procedure if exists addNurse;
 drop procedure if exists addDoctor;
 drop procedure if exists addDriver;
+drop procedure if exists addAdmin;
 
 
 delimiter //
@@ -68,20 +69,18 @@ begin
         set id=-1;
     else
         set @email = substring_index(email_, '@', 1);
-        select @email;
         set @create_user = concat('create user \'', @email, '\'@\'localhost\' identified by \'', password_, '\';');
-        select @create_user;
         call exec_query(@create_user);
         set @insert_user = concat(
-            'insert into Patient set',
-            ' name = \'', name_, '\'',
-            ', email = \'', email_, '\'',
-            ', phone = \'', phone, '\'',
-            ', password = \'', PASSWORD(password_), '\'',
-            ', address = \'', address_, '\'',
-            ', sex = \'', sex, '\'',
-            ', medicalHistory = \'', medicalHistory, '\'',
-            ', marital = ', marital
+            'insert into Patient (name, email, phone, password, address, sex, medicalHistory, marital) values (',
+            '\'', name_, '\'',
+            ', \'', email_, '\'',
+            ', \'', phone, '\'',
+            ', \'', PASSWORD(password_), '\'',
+            ', \'', address_, '\'',
+            ', \'', sex, '\'',
+            ', \'', medicalHistory, '\'',
+            ', ', marital, ')'
         );
         call exec_query(@insert_user);
         set id = (select patientID from Patient where email=email_);
@@ -159,7 +158,7 @@ create procedure addNurse(name_ varchar(45), password_ varchar(256), phone_ varc
                     salary_ varchar(45), qualification_ varchar(50), license_ varchar(50), out id int)
  begin
     insert into Employee (name, password, phone, email, address, sex, salary)
-    values (name_, password_, phone_, email_, address_, sex_, salary_);
+    values (name_, password(password_), phone_, email_, address_, sex_, salary_);
     set id = last_insert_id();
     insert into Nurse (nurseID, qualification, license)
     values (id, qualification_, license_);
@@ -168,10 +167,10 @@ create procedure addNurse(name_ varchar(45), password_ varchar(256), phone_ varc
 create procedure addDoctor(name_ varchar(45), password_ varchar(256), phone_ varchar(45),
                           email_ varchar(45), address_ varchar(45), sex_ varchar(45),
                           salary_ varchar(45), qualification_ varchar(50), license_ varchar(50),
-                           bio_ varchar(255), available_ bool, specialization_ varchar(255), id int)
+                           bio_ varchar(255), available_ bool, specialization_ varchar(255), out id int)
 begin
     insert into Employee (name, password, phone, email, address, sex, salary)
-    values (name_, password_, phone_, email_, address_, sex_, salary_);
+    values (name_, password(password_), phone_, email_, address_, sex_, salary_);
     set id = last_insert_id();
     insert into Doctor (doctorID, qualification, license, bio, available, specialization)
     values (id, qualification_, license_, bio_, available_, specialization_);
@@ -180,13 +179,24 @@ end //
 create procedure addDriver(name_ varchar(45), password_ varchar(256), phone_ varchar(45),
                            email_ varchar(45), address_ varchar(45), sex_ varchar(45),
                            salary_ varchar(45), experience_ varchar(50), license_ varchar(50),
-                           successRate_ varchar(255), id int)
+                           successRate_ varchar(255), out id int)
 begin
     insert into Employee (name, password, phone, email, address, sex, salary)
-    values (name_, password_, phone_, email_, address_, sex_, salary_);
+    values (name_, password(password_), phone_, email_, address_, sex_, salary_);
     set id = last_insert_id();
-    insert into Driver (experience, licenseNo, successRate)
-    values (experience_, licenseNo, successRate_);
+    insert into Driver (driverID, experience, licenseNo, successRate)
+    values (id, experience_, license_, successRate_);
+end //
+
+create procedure addAdmin(name_ varchar(45), password_ varchar(256), phone_ varchar(45),
+                           email_ varchar(45), address_ varchar(45), sex_ varchar(45),
+                           salary_ varchar(45), out id int)
+begin
+    insert into Employee (name, password, phone, email, address, sex, salary)
+    values (name_, password(password_), phone_, email_, address_, sex_, salary_);
+    set id = last_insert_id();
+    insert into Admin (adminID)
+    values (id);
 end //
 
 delimiter ;

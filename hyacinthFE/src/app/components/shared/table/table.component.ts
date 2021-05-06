@@ -42,7 +42,8 @@ export class TableComponent implements OnInit {
 
     removeUser(event, user) {
         event.stopPropagation();
-        let url = `${environment.apiUrl + this.role}/${user['id']}`;
+        let id = Object.keys(user)[0]
+        let url = `${environment.apiUrl + this.role}/${user[id]}`;
         this.http.delete(url).subscribe(result => {
             console.log(result);
         });

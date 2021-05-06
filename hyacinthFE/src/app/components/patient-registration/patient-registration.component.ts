@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
     selector: 'app-patient-registration',
@@ -10,7 +13,10 @@ import { AuthService } from 'src/app/services/auth.service';
 export class PatientRegistrationComponent {
 
     constructor(
-        private authService: AuthService
+        private authService: AuthService,
+        private storageService: StorageService,
+        private snackBar: MatSnackBar,
+        private router: Router
     ) { }
 
     hide = true;
@@ -46,7 +52,16 @@ export class PatientRegistrationComponent {
             phone: `+91 ${phone}`
         };
         this.authService.register(result).subscribe(result => {
-            console.log(result);
+            if (result['id'] == -1) {
+                let sbref = this.snackBar.open("User already exists with this email-id, Please login.", "Ok");
+                sbref.afterDismissed().subscribe(() => {
+                    this.router.navigate(["login"]);
+                })
+            }
+            this.storageService.setItem("isLoggedIn", "true");
+            this.storageService.setItem("role", "patient");
+            this.storageService.setItem("id", result['id']);
+            this.router.navigate(["patient", "dashboard", result['id']]);
         })
     }
 }

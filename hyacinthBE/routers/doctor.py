@@ -29,7 +29,10 @@ def get_doctors():
             'email': email,
             'sex': sex
         })
-    return res
+    return {
+        'data': res,
+        'key': ['ID', 'Name', 'Phone', 'Email', 'Sex']
+    }
 
 
 @router.get('/{pk}')
@@ -59,19 +62,22 @@ def get_doctor_info(pk):
 def get_dashboard(pk):
     cur.execute(f"select * from PatientConsultInfo where doctorID={pk}")
     res = []
-    for patientID, _, consultationID, problem, specialization in cur:
+    for patientID, name,  _, _, consultationID, problem, specialization in cur:
         res.append({
-            "Patient ID": patientID,
-            "Consultation ID": consultationID,
-            "Specialization": specialization,
-            "Problem": problem,
+            "id": consultationID,
+            "patientID": patientID,
+            "name": name,
+            "problem": problem,
         })
 
-    return res
+    return {
+        'data': res,
+        'key': ['Consultation ID', 'Patient ID', 'Patient Name', 'Problem']
+    }
 
 
 @router.post('/add', status_code=201)
-def new_nurse(data: Doctor):
+def new_doctor(data: Doctor):
     cur.callproc('addDoctor', (data.name, data.password, data.phone,
                               data.email, data.address, data.sex,
                               data.salary, data.qualification, data.license,
