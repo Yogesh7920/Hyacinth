@@ -1,4 +1,30 @@
-<div style="display: flex; justify-content: center; align-items: center; height: 10%;">
+ <div style="display: flex; justify-content: center; align-items: center; height: 10%;">
     <h2>Prescription</h2>
 </div>
-<app-table [cols]="displayedColumns" [data]="dataSource" [colhead]="colHeads"></app-table>
+
+
+
+
+
+
+<div class="split left">
+    
+     
+      <div style="display: flex; justify-content: space-around; align-items: center; height: 10%;">
+        <h2>Drugs</h2>
+    </div>
+    
+    <app-table [cols]="displayedColumns" [data]="dataSource" [colhead]="colHeads"></app-table>
+   
+  </div>
+  
+  <div class="split right">
+ 
+      
+      <div style="display: flex; justify-content: space-around; align-items: center; height: 10%;">
+        <h2>Diagnostics</h2>
+        </div>
+    
+        <app-table [cols]="displayedColumns1" [data]="dataSource1" [colhead]="colHeads1"></app-table> 
+   
+  </div>
