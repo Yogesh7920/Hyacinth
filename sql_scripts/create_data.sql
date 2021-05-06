@@ -544,7 +544,7 @@ INSERT INTO Consultation(consultationID, problem, doctorID, patientID) VALUES
 -- Inserting data into table Admin
 --
 INSERT INTO Admin(adminID) VALUES
-(30);
+(1);
 
 --
 -- Inserting data into table Appointment

@@ -25,6 +25,7 @@ export class DashboardComponent implements OnInit {
     ) { }
 
     displayedColumns: string[] = [];
+    colHeads: string[] = [];
     dataSource = new MatTableDataSource([]);
     links = [];
     private ngUnsubscribe: Subject<any> = new Subject();
@@ -58,13 +59,67 @@ export class DashboardComponent implements OnInit {
             ]).subscribe(result => {
                 let { data, key } = result[0] as any;
                 this.dataSource.data = data;
-                this.displayedColumns = key;
+                console.log(data);
                 for (const row of data) {
                     let url = ""
-                    if (this.role == "patient" || this.role == "doctor") {
+                    if (this.role == "patient") {
                         url = `/consultation/${row['id']}`;
+                        this.colHeads = [
+                            'Consultation ID',
+                            'Problem',
+                            'Doctor ID',
+                            'Patient ID',
+                            'Specialization'
+                        ];
+                        this.displayedColumns = [
+                            'id',
+                            'problem',
+                            'doctorID',
+                            'patientID',
+                            'specialization'
+                        ]
+                    } else if (this.role == "doctor") {
+                        url = `/consultation/${row['id']}`;
+                        this.colHeads = [
+                            'Consultation ID',
+                            'Patient ID',
+                            'Patient',
+                            'Problem',
+                        ];
+                        this.displayedColumns = [
+                            "id",
+                            "patientID",
+                            "specialization",
+                            "problem",
+                        ]
                     } else if (this.role == "nurse") {
                         url = `/diagnostics/${row['id']}`;
+                        this.colHeads = [
+                            "Diagnostics ID",
+                            "Diagnostics Name",
+                            "Category"
+                        ];
+                        this.displayedColumns = [
+                            "id",
+                            "diagnostics",
+                            "category"
+                        ]
+                    } else if (this.role == "driver") {
+                        url = `/diagnostics/${row['id']}`;
+                        this.colHeads = [
+                            "Journey ID",
+                            "Address",
+                            "Start Time",
+                            "End Time",
+                            "Total Distance"
+                        ];
+                        this.displayedColumns = [
+                            "id",
+                            "address",
+                            "startTime",
+                            "endTime",
+                            "totalDistance"
+                        ]
                     }
                     this.links.push(url);
                 }

@@ -14,6 +14,7 @@ export class TableComponent implements OnInit {
     @Input('data') dataSource;
     @Input('cols') displayedColumns;
     @Input('head') heading;
+    @Input('colhead') colHeads;
     @Input() links;
     curRoute: string = "";
 

@@ -9,9 +9,9 @@ import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
 
 const routes: Routes = [
-    {path: '', component: HomeComponent, data: {animation: 'HomePage'}},
-    { path: 'login', component: LoginComponent, data: {animation: 'LoginPage'}},
-    { path: 'admin', component: AdminHomeComponent },
+    { path: '', component: HomeComponent, data: { animation: 'HomePage' } },
+    { path: 'login', component: LoginComponent, data: { animation: 'LoginPage' } },
+    { path: 'admin/dashboard/:id', component: AdminHomeComponent },
     { path: 'admin/:role', component: AdminUsersComponent },
     { path: 'register/patient', component: PatientRegistrationComponent },
     { path: ':role/dashboard/:id', component: DashboardComponent },

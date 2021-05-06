@@ -36,6 +36,7 @@ export class AdminUsersComponent implements OnInit, OnDestroy {
 
     displayedColumns: string[] = [];
     dataSource = new MatTableDataSource([]);
+    colHeads = [];
     private ngUnsubscribe: Subject<any> = new Subject();
 
     getUsers() {
@@ -59,8 +60,25 @@ export class AdminUsersComponent implements OnInit, OnDestroy {
                         this.links.push(`/${this.role}/dashboard/${res['id']}`);
                     }
                     this.dataSource.data = data as Array<Object>;
-                    this.displayedColumns = key;
+                    console.log(data);
+                    this.displayedColumns = Object.keys(data[0]);
                     this.displayedColumns.push("Actions");
+                    this.colHeads = [
+                        "Employee ID",
+                        "Name",
+                        "Phone",
+                        "Email",
+                        "Sex",
+                        "Actions"
+                    ];
+                    this.displayedColumns = [
+                        "id",
+                        "name",
+                        "phone",
+                        "email",
+                        "sex",
+                        "Actions"
+                    ]
                 });
             });
     }
