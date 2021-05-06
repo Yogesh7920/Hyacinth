@@ -26,14 +26,15 @@ export class DashboardComponent implements OnInit {
 
     displayedColumns: string[] = [];
     dataSource = new MatTableDataSource([]);
+    links = [];
     private ngUnsubscribe: Subject<any> = new Subject();
 
-    getUser() {
+    getProfile() {
         let url = `${environment.apiUrl + this.role}/${this.id}`;
         return this.http.get(url);
     }
 
-    getUsers() {
+    getDashboard() {
         let url = `${environment.apiUrl + this.role}/dashboard/${this.id}/`;
         return this.http.get(url);
     }
@@ -52,17 +53,22 @@ export class DashboardComponent implements OnInit {
                 id: this.id
             });
             forkJoin([
-                this.getUsers(),
-                this.getUser()
+                this.getDashboard(),
+                this.getProfile()
             ]).subscribe(result => {
-                let users = result[0] as Array<Object>;
-                this.dataSource.data = users;
-                if (users.length) {
-                    this.displayedColumns = Object.keys(users[0]);
+                let { data, key } = result[0] as any;
+                this.dataSource.data = data;
+                this.displayedColumns = key;
+                for (const row of data) {
+                    let url = ""
+                    if (this.role == "patient" || this.role == "doctor") {
+                        url = `/consultation/${row['id']}`;
+                    } else if (this.role == "nurse") {
+                        url = `/diagnostics/${row['id']}`;
+                    }
+                    this.links.push(url);
                 }
-                let user = result[1] as Object;
-                this.head = user['name'];
-
+                this.head = result[1]['name'];
             })
             this.head = this.capitalizeFirstLetter(this.role) + "s";
         });

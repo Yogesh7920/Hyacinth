@@ -27,11 +27,11 @@ export class AdminUsersComponent implements OnInit, OnDestroy {
 
 
     openDialog() {
-       
+
         const dialogRef = this.dialog.open(DialogComponent, {
             width: '250px',
-            data: {role: this.head }
-          });
+            data: { role: this.head }
+        });
     }
 
     displayedColumns: string[] = [];
@@ -54,11 +54,12 @@ export class AdminUsersComponent implements OnInit, OnDestroy {
                 this.role = params['role']
                 this.head = this.capitalizeFirstLetter(this.role) + "s";
                 this.getUsers().subscribe(result => {
-                    for (const res of result as Array<Object>) {
+                    let { data, key } = result as any;
+                    for (const res of data as Array<Object>) {
                         this.links.push(`/${this.role}/dashboard/${res['id']}`);
                     }
-                    this.dataSource.data = result as Array<Object>;
-                    this.displayedColumns = Object.keys(result[0]);
+                    this.dataSource.data = data as Array<Object>;
+                    this.displayedColumns = key;
                     this.displayedColumns.push("Actions");
                 });
             });
