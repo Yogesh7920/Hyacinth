@@ -50,3 +50,8 @@ def consultation(pk):
         'data': res,
         'key': ['ID', 'Start Time', 'End Time', 'Remarks', 'Invoice ID', 'Prescription ID', 'Consultation ID']
     }
+
+
+@app.get('/vendor/{pk}')
+def vendors(pk):
+    pass
