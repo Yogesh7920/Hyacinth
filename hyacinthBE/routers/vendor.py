@@ -30,11 +30,10 @@ def get_vendors():
 
 # @router.get('/{pk}')
 # def get_doctor_info(pk):
-#     cur.callproc('DoctorProfile', (pk,))
-#     result = cur.fetchall()
-#     d = dict()
-#     for ID, qual, lic, bio, available, special, name, phone, email, address, sex in result:
-#         d = {
+#     cur.execute(f"select * from VendorDrugInfo where vendorID={pk}")
+#     res = []
+#     for ID, qual, lic, bio, available, special, name, phone, email, address, sex in cur:
+#         res.append({
 #             'id': ID,
 #             'name': name,
 #             'phone': phone,
@@ -46,6 +45,5 @@ def get_vendors():
 #             'bio': bio,
 #             'available': available,
 #             'specialization': special
-#         }
-#     cur.nextset()
-#     return d
+#         })
+#     return res
