@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {StorageService} from "../../../services/storage.service";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
     selector: 'app-admin-home',
@@ -7,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminHomeComponent implements OnInit {
 
-    constructor() { }
+    constructor(private ss: StorageService, private router: Router) { }
 
     ngOnInit(): void {
+        this.ss.navOper('Dashboard');
+        this.ss.pushNav({name: 'Dashboard', url: this.router.url});
     }
 
 }

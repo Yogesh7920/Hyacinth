@@ -22,7 +22,6 @@ const routes: Routes = [
     { path: 'prescription/:id', component: PrescriptionComponent },
     { path: 'consultation/:id', component: ConsultComponent },
     { path: ':role/:id', component: ProfileComponent },
-
 ];
 
 

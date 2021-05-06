@@ -4,9 +4,6 @@ ul{
     list-style: none;
   }
 
-
-
-
  #breadcrumbs-two{
     overflow: hidden;
     width: 100%;
@@ -18,7 +15,7 @@ ul{
   }
 
   #breadcrumbs-two a{
-    background: #ddd;
+    background: #1DE9B6;
     padding: .7em 1em;
     float: left;
     text-decoration: none;
@@ -38,7 +35,7 @@ ul{
     margin-top: -1.5em;
     border-width: 1.5em 0 1.5em 1em;
     border-style: solid;
-    border-color: #ddd #ddd #ddd transparent;
+    border-color: #1DE9B6 #1DE9B6 #1DE9B6 transparent;
     left: -1em;
   }
 
@@ -53,7 +50,7 @@ ul{
     margin-top: -1.5em;
     border-top: 1.5em solid transparent;
     border-bottom: 1.5em solid transparent;
-    border-left: 1em solid #ddd;
+    border-left: 1em solid #1DE9B6;
     right: -1em;
   }
 

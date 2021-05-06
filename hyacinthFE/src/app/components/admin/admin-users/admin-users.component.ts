@@ -7,6 +7,7 @@ import { Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { DialogComponent } from '../../dialog/dialog.component';
+import {StorageService} from "../../../services/storage.service";
 
 @Component({
     selector: 'app-admin-users',
@@ -22,7 +23,9 @@ export class AdminUsersComponent implements OnInit, OnDestroy {
     constructor(
         private http: HttpClient,
         private route: ActivatedRoute,
-        private dialog: MatDialog
+        private dialog: MatDialog,
+        private ss: StorageService,
+        private router: Router
     ) { }
 
     addUser(data) {
@@ -67,10 +70,15 @@ export class AdminUsersComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
+        
         this.route.params
             .pipe(takeUntil(this.ngUnsubscribe))
             .subscribe(params => {
                 this.role = params['role']
+                
+                this.ss.navOper(this.role);
+                this.ss.pushNav({name: this.role, url: this.router.url});
+                
                 this.head = this.capitalizeFirstLetter(this.role) + "s";
                 this.getUsers().subscribe(result => {
                     let { data, key } = result as any;

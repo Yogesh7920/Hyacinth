@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { environment } from 'src/environments/environment';
+import {StorageService} from "../../services/storage.service";
 
 @Component({
   selector: 'app-prescription',
@@ -14,6 +15,8 @@ export class PrescriptionComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private activatedRoute: ActivatedRoute,
+    private ss: StorageService,
+    private router: Router
   ) { }
   
   displayedColumns: string[] = [];
@@ -39,7 +42,8 @@ export class PrescriptionComponent implements OnInit {
 
     this.activatedRoute.params.subscribe(params => {
       this.id = params['id']
-
+        this.ss.navOper('Prescription');
+        this.ss.pushNav({name: 'Prescription', url: this.router.url});
 
       this.getPrescription().subscribe(result => {
 

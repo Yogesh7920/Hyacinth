@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { ActivatedRoute } from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import { MatTableDataSource } from "@angular/material/table";
 import { combineLatest, forkJoin, Subject } from "rxjs";
 import { environment } from "../../../environments/environment";
 import { takeUntil } from "rxjs/operators";
 import { RoleService } from 'src/app/services/role.service';
+import {StorageService} from "../../services/storage.service";
 
 @Component({
     selector: 'app-dashboard',
@@ -21,7 +22,9 @@ export class DashboardComponent implements OnInit {
     constructor(
         private http: HttpClient,
         private activatedRoute: ActivatedRoute,
-        private roleService: RoleService
+        private roleService: RoleService,
+        private ss: StorageService,
+        private router: Router
     ) { }
 
     displayedColumns: string[] = [];
@@ -49,6 +52,8 @@ export class DashboardComponent implements OnInit {
         this.activatedRoute.params.subscribe(params => {
             this.id = params['id'];
             this.role = params['role'];
+            this.ss.navOper(this.role + '-Dashboard');
+            this.ss.pushNav({name: this.role + '-Dashboard', url: this.router.url});
             this.roleService.setData({
                 role: this.role,
                 id: this.id

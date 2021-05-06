@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { environment } from 'src/environments/environment';
+import {StorageService} from "../../services/storage.service";
 
 @Component({
   selector: 'app-consult',
@@ -21,6 +22,8 @@ export class ConsultComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private activatedRoute: ActivatedRoute,
+    private ss: StorageService,
+    private router: Router
   ) { }
 
   getAppointment() {
@@ -34,7 +37,8 @@ export class ConsultComponent implements OnInit {
 
     this.activatedRoute.params.subscribe(params => {
       this.id = params['id']
-
+        this.ss.navOper('Consultation');
+        this.ss.pushNav({name: 'Consultation', url: this.router.url});
 
       this.getAppointment().subscribe(result => {
 
