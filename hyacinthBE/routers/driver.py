@@ -29,7 +29,10 @@ def get_driver():
             'email': email,
             'sex': sex
         })
-    return res
+    return {
+        'data': res,
+        'key': ['ID', 'Name', 'Phone', 'Email', 'Sex']
+    }
 
 
 @router.get('/{pk}')
@@ -55,14 +58,17 @@ def driver_dashboard(pk):
     cur.execute(f"call DriveRecords({pk})")
     for _, AID, maintenance, dist, start, end, address in cur:
         res.append({
-            'Ambulance ID': AID,
-            'Last Maintenance': maintenance,
-            'Total distance': dist,
-            'Start time': start,
-            'End time': end,
-            'Address': address,
+            'id': AID,
+            'lastMaintenance': maintenance,
+            'totalDistance': dist,
+            'startTime': start,
+            'endTime': end,
+            'address': address,
         })
-    return res
+    return {
+        'data': res,
+        'key': ['Ambulance ID', 'Last Maintenance', 'Total distance', 'Start time', 'End time', 'Address']
+    }
 
 
 @router.post('/add', status_code=201)
