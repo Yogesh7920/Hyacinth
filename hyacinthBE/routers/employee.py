@@ -51,3 +51,11 @@ def employee_login(data: Login):
     cur.nextset()
     role, pk = result[0]
     return {'role': role, 'id': pk}
+
+
+@router.delete('/{pk}')
+def del_employee(pk):
+    cur.callproc('delEmployee', (pk,))
+    result = cur.fetchall()
+    cur.nextset()
+    return True
