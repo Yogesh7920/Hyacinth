@@ -45,8 +45,7 @@ create view AdminInfo as (
 );
 
 create view VendorDrugInfo as (
-    select Vendor.vendorID, p.pharmacyID, Vendor.name,
-           Vendor.phone, Vendor.address, Vendor.email,
+    select Vendor.vendorID as vendorID,
          price, orderTime, supplyTime,
          p.name as drugName, category
     from Vendor
