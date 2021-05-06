@@ -16,6 +16,7 @@ export class ConsultComponent implements OnInit {
   colHeads: string[] = [];
   dataSource = new MatTableDataSource([]);
   id;
+  links: Array<String> = [];
 
   constructor(
     private http: HttpClient,
@@ -48,6 +49,9 @@ export class ConsultComponent implements OnInit {
           else {
             entry["isPaid"] = "No"
           }
+
+          this.links.push(`/prescription/${entry['presID']}`);
+
         }  
 
         this.dataSource.data = data;
