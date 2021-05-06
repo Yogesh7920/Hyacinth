@@ -5,37 +5,37 @@ import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-consult',
-  templateUrl: './consult.component.html',
-  styleUrls: ['./consult.component.scss']
+  selector: 'app-prescription',
+  templateUrl: './prescription.component.html',
+  styleUrls: ['./prescription.component.scss']
 })
-export class ConsultComponent implements OnInit {
-
-
-  displayedColumns: string[] = [];
-  colHeads: string[] = [];
-  dataSource = new MatTableDataSource([]);
-  id;
+export class PrescriptionComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
     private activatedRoute: ActivatedRoute,
   ) { }
+  
+  displayedColumns: string[] = [];
+  colHeads: string[] = [];
+  dataSource = new MatTableDataSource([]);
+  id;
 
-  getAppointment() {
 
-    let url = `${environment.apiUrl + "consultation"}/${this.id}/`;
+  getPrescription() {
+    let url = `${environment.apiUrl + "prescription"}/${this.id}/`;
     return this.http.get(url);
-
   }
 
+
   ngOnInit(): void {
+   
 
     this.activatedRoute.params.subscribe(params => {
       this.id = params['id']
 
 
-      this.getAppointment().subscribe(result => {
+      this.getPrescription().subscribe(result => {
 
         console.log(result)
         let { data, key } = result as any;
@@ -62,6 +62,7 @@ export class ConsultComponent implements OnInit {
 
     })
 
+  
   }
 
 }

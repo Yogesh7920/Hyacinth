@@ -18,6 +18,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HomeComponent } from './components/home/home.component';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { ConsultComponent } from './components/consult/consult.component';
+import { PrescriptionComponent } from './components/prescription/prescription.component';
 
 @NgModule({
     declarations: [
@@ -33,7 +34,8 @@ import { ConsultComponent } from './components/consult/consult.component';
         HomeComponent,
         HomeLinkPipe,
         DialogComponent,
-        ConsultComponent
+        ConsultComponent,
+        PrescriptionComponent
     ],
     imports: [
         BrowserModule,
