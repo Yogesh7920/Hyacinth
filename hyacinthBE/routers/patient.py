@@ -96,17 +96,18 @@ def patient_registration(data: Register):
 def patient_dashboard(pk):
     res = []
     cur.execute(f"select * from PatientConsultInfo where patientID={pk}")
-    for patID, docID, consID, problem, special in cur:
+    for _, _, docID, docName,  consID, problem, special in cur:
         r = {
             'id': consID,
             'problem': problem,
             'doctorID': docID,
-            'patientID': patID,
+            'doctorName': docName,
+            # 'patientID': patID,
             'specialization': special
         }
         res.append(r)
 
     return {
         'data': res,
-        'key': ['Consultation ID', 'Problem', 'Doctor ID', 'Patient ID', 'Specialization']
+        'key': ['Consultation ID', 'Problem', 'Doctor ID', 'Doctor Name', 'Specialization']
     }

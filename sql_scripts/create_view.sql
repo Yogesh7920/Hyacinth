@@ -93,6 +93,9 @@ create view PatientDoctorInfo as (
 );
 
 create view PatientConsultInfo as (
-    select patientID, doctorID, consultationID, problem, specialization from Consultation
+    select patientID, Patient.name as patientName, doctorID, Employee.name as doctorName,
+           consultationID, problem, specialization from Consultation
     inner join Doctor using (doctorID)
+    inner join Patient using (patientID)
+    inner join Employee on Doctor.doctorID = Employee.employeeID
 );

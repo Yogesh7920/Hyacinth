@@ -23,7 +23,12 @@ export class DialogComponent implements OnInit {
   ) { }
 
   close() {
-    this.dialogRef.close();
+    this.dialogRef.close({msg: "close"});
+  }
+
+  onSubmit(){
+    const formData = this.employeeForm.value
+    this.dialogRef.close({msg: "submit", formData: formData})
   }
 
 

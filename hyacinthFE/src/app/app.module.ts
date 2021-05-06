@@ -17,6 +17,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HomeComponent } from './components/home/home.component';
 import { DialogComponent } from './components/dialog/dialog.component';
+import { ConsultComponent } from './components/consult/consult.component';
 
 @NgModule({
     declarations: [
@@ -31,7 +32,8 @@ import { DialogComponent } from './components/dialog/dialog.component';
         DashboardComponent,
         HomeComponent,
         HomeLinkPipe,
-        DialogComponent
+        DialogComponent,
+        ConsultComponent
     ],
     imports: [
         BrowserModule,
@@ -43,6 +45,6 @@ import { DialogComponent } from './components/dialog/dialog.component';
     ],
     providers: [],
     bootstrap: [AppComponent],
-
+    entryComponents:[DialogComponent]
 })
 export class AppModule { }

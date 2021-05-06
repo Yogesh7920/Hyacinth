@@ -25,13 +25,30 @@ export class AdminUsersComponent implements OnInit, OnDestroy {
         private dialog: MatDialog
     ) { }
 
+    addUser(data) {
+        const url = `${environment.apiUrl + this.role}/add`
+        return this.http.post(url, data)
+    }
 
     openDialog() {
 
         const dialogRef = this.dialog.open(DialogComponent, {
-            width: '250px',
+            width: '700px',
+            height: '800px',
             data: { role: this.head }
         });
+
+        dialogRef.afterClosed().subscribe((result) => {
+
+            if (result["msg"] == "submit") {
+                this.addUser(result["formData"]).subscribe(data => {
+                    this.ngOnInit()
+                })
+            }
+            else {
+                dialogRef.close()
+            }
+        })
     }
 
     displayedColumns: string[] = [];

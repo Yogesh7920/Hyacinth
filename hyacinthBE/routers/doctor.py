@@ -62,17 +62,17 @@ def get_doctor_info(pk):
 def get_dashboard(pk):
     cur.execute(f"select * from PatientConsultInfo where doctorID={pk}")
     res = []
-    for patientID, _, consultationID, problem, specialization in cur:
+    for patientID, name,  _, _, consultationID, problem, specialization in cur:
         res.append({
-            "patientID": patientID,
             "id": consultationID,
-            "specialization": specialization,
+            "patientID": patientID,
+            "name": name,
             "problem": problem,
         })
 
     return {
         'data': res,
-        'key': ['Patient ID', 'Consultation ID', 'Specialization', 'Problem']
+        'key': ['Consultation ID', 'Patient ID', 'Patient Name', 'Problem']
     }
 
 
