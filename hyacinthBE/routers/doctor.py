@@ -71,7 +71,7 @@ def get_dashboard(pk):
 
 
 @router.post('/add', status_code=201)
-def new_nurse(data: Doctor):
+def new_doctor(data: Doctor):
     cur.callproc('addDoctor', (data.name, data.password, data.phone,
                               data.email, data.address, data.sex,
                               data.salary, data.qualification, data.license,

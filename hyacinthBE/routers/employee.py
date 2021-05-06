@@ -43,7 +43,7 @@ class Login(BaseModel):
 
 
 @router.post('/login/')
-def employee_registration(data: Login):
+def employee_login(data: Login):
     email = data.email
     password = data.password
     cur.callproc('EmployeeRegistration', (email, password, "", -1))

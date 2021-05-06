@@ -168,7 +168,7 @@ create procedure addNurse(name_ varchar(45), password_ varchar(256), phone_ varc
 create procedure addDoctor(name_ varchar(45), password_ varchar(256), phone_ varchar(45),
                           email_ varchar(45), address_ varchar(45), sex_ varchar(45),
                           salary_ varchar(45), qualification_ varchar(50), license_ varchar(50),
-                           bio_ varchar(255), available_ bool, specialization_ varchar(255), id int)
+                           bio_ varchar(255), available_ bool, specialization_ varchar(255), out id int)
 begin
     insert into Employee (name, password, phone, email, address, sex, salary)
     values (name_, password_, phone_, email_, address_, sex_, salary_);
@@ -180,13 +180,24 @@ end //
 create procedure addDriver(name_ varchar(45), password_ varchar(256), phone_ varchar(45),
                            email_ varchar(45), address_ varchar(45), sex_ varchar(45),
                            salary_ varchar(45), experience_ varchar(50), license_ varchar(50),
-                           successRate_ varchar(255), id int)
+                           successRate_ varchar(255), out id int)
 begin
     insert into Employee (name, password, phone, email, address, sex, salary)
     values (name_, password_, phone_, email_, address_, sex_, salary_);
     set id = last_insert_id();
-    insert into Driver (experience, licenseNo, successRate)
-    values (experience_, licenseNo, successRate_);
+    insert into Driver (driverID, experience, licenseNo, successRate)
+    values (id, experience_, license_, successRate_);
+end //
+
+create procedure addAdmin(name_ varchar(45), password_ varchar(256), phone_ varchar(45),
+                           email_ varchar(45), address_ varchar(45), sex_ varchar(45),
+                           salary_ varchar(45), out id int)
+begin
+    insert into Employee (name, password, phone, email, address, sex, salary)
+    values (name_, password_, phone_, email_, address_, sex_, salary_);
+    set id = last_insert_id();
+    insert into Admin (adminID)
+    values (id);
 end //
 
 delimiter ;
