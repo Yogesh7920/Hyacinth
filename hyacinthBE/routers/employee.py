@@ -56,6 +56,5 @@ def employee_login(data: Login):
 @router.delete('/{pk}')
 def del_employee(pk):
     cur.callproc('delEmployee', (pk,))
-    result = cur.fetchall()
     cur.nextset()
     return True
