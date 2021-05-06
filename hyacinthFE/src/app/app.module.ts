@@ -18,6 +18,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HomeComponent } from './components/home/home.component';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { ConsultComponent } from './components/consult/consult.component';
+import { AdminProfileComponent } from './components/admin-profile/admin-profile.component';
 
 @NgModule({
     declarations: [
@@ -33,7 +34,8 @@ import { ConsultComponent } from './components/consult/consult.component';
         HomeComponent,
         HomeLinkPipe,
         DialogComponent,
-        ConsultComponent
+        ConsultComponent,
+        AdminProfileComponent
     ],
     imports: [
         BrowserModule,

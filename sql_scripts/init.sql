@@ -7,3 +7,6 @@ alter table Pharmacy auto_increment=51;
 alter table Invoice auto_increment=51;
 alter table Ambulance auto_increment=31;
 alter table Consultation auto_increment=25;
+
+update Patient set password=PASSWORD('pass');
+update Employee set password=PASSWORD('pass');

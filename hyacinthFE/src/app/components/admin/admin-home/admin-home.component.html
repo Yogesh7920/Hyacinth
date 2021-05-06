@@ -1,22 +1,72 @@
 <div class="container">
-    <div style="display: flex; flex-direction: column; 
+    <!-- <div style="display: flex; flex-direction: column; 
         justify-content: center; align-items: center; 
         height: 100%; width: 100%;">
+        <button mat-raised-button color="primary" style="text-decoration: none;" [routerLink]="'/admin/patient'">
+            Patients
+        </button>
+        <div style="flex: 0.05"></div>
+        <button mat-raised-button color="primary" style="text-decoration: none;" [routerLink]="'/admin/doctor'">
+            Doctors
+        </button>
+        <div style="flex: 0.05"></div>
+        <button mat-raised-button color="primary" style="text-decoration: none;" [routerLink]="'/admin/nurse'">
+            Nurses
+        </button>
+        <div style="flex: 0.05"></div>
+        <button mat-raised-button color="primary" style="text-decoration: none;" [routerLink]="'/admin/driver'">
+            Drivers
+        </button>
+        <div style="flex: 0.05"></div>
+        <button mat-raised-button color="primary" style="text-decoration: none;" [routerLink]="'/admin/vendor'">
+            Vendors
+        </button>
+    </div> -->
+    <div style="display: flex; width: 33.33%; flex-direction: column; align-items: flex-end;">
+        <div class="grid-container">
+            <p>
+                <img width="216" height="233" src="assets/images/vendor.png" />
+            </p>
+            <a style="text-decoration: none;" [routerLink]="'/admin/vendor'">
+                Vendors
+            </a>
+        </div>
+        <div style="height: 50px;"></div>
+        <div class="grid-container">
+            <p>
+                <img width="216" height="233" src="assets/images/doctor.png" />
+            </p>
+            <a style="text-decoration: none;" [routerLink]="'/admin/doctor'">
+                Doctors
+            </a>
+        </div>
+    </div>
+    <div class="grid-container">
+        <p>
+            <img width="216" height="233" src="assets/images/patient.png" />
+        </p>
         <a style="text-decoration: none;" [routerLink]="'/admin/patient'">
             Patients
         </a>
-        <a style="text-decoration: none;" [routerLink]="'/admin/doctor'">
-            Doctors
-        </a>
-        <a style="text-decoration: none;" [routerLink]="'/admin/nurse'">
-            Nurses
-        </a>
-        <a style="text-decoration: none;" [routerLink]="'/admin/driver'">
-            Drivers
-        </a>
-        <a style="text-decoration: none;" [routerLink]="'/admin/vendor'">
-            Vendors
-        </a>
+    </div>
+    <div style="display: flex; width: 33.33%; flex-direction: column;">
+        <div class="grid-container">
+            <p>
+                <img width="250" height="250" src="assets/images/nurse.png" />
+            </p>
+            <a style="text-decoration: none;" [routerLink]="'/admin/nurse'">
+                Nurses
+            </a>
+        </div>
+        <div style="height: 50px;"></div>
+        <div class="grid-container">
+            <p>
+                <img width="216" height="233" src="assets/images/driver.png" />
+            </p>
+            <a style="text-decoration: none;" [routerLink]="'/admin/driver'">
+                Drivers
+            </a>
+        </div>
     </div>
     <!-- <mat-grid-list cols="2" rowHeight="45vh">
         <mat-grid-tile>
@@ -56,6 +106,16 @@
                 </p>
                 <a style="text-decoration: none;" [routerLink]="'/admin/driver'">
                     Drivers
+                </a>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <div class="grid-container">
+                <p>
+                    <img width="216" height="233" src="assets/driver.png" />
+                </p>
+                <a style="text-decoration: none;" [routerLink]="'/admin/vendor'">
+                    Vendors
                 </a>
             </div>
         </mat-grid-tile>
