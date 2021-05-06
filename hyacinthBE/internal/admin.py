@@ -22,7 +22,10 @@ def get_admin():
             'email': email,
             'sex': sex
         })
-    return res
+    return {
+        'data': res,
+        'key': ['ID', 'Name', 'Phone', 'Email', 'Sex']
+    }
 
 
 @router.get('/{pk}')

@@ -17,6 +17,7 @@ drop procedure if exists PharmacyRecords;
 drop procedure if exists addNurse;
 drop procedure if exists addDoctor;
 drop procedure if exists addDriver;
+drop procedure if exists addAdmin;
 
 
 delimiter //
@@ -157,7 +158,7 @@ create procedure addNurse(name_ varchar(45), password_ varchar(256), phone_ varc
                     salary_ varchar(45), qualification_ varchar(50), license_ varchar(50), out id int)
  begin
     insert into Employee (name, password, phone, email, address, sex, salary)
-    values (name_, password_, phone_, email_, address_, sex_, salary_);
+    values (name_, password(password_), phone_, email_, address_, sex_, salary_);
     set id = last_insert_id();
     insert into Nurse (nurseID, qualification, license)
     values (id, qualification_, license_);
@@ -169,7 +170,7 @@ create procedure addDoctor(name_ varchar(45), password_ varchar(256), phone_ var
                            bio_ varchar(255), available_ bool, specialization_ varchar(255), out id int)
 begin
     insert into Employee (name, password, phone, email, address, sex, salary)
-    values (name_, password_, phone_, email_, address_, sex_, salary_);
+    values (name_, password(password_), phone_, email_, address_, sex_, salary_);
     set id = last_insert_id();
     insert into Doctor (doctorID, qualification, license, bio, available, specialization)
     values (id, qualification_, license_, bio_, available_, specialization_);
@@ -181,7 +182,7 @@ create procedure addDriver(name_ varchar(45), password_ varchar(256), phone_ var
                            successRate_ varchar(255), out id int)
 begin
     insert into Employee (name, password, phone, email, address, sex, salary)
-    values (name_, password_, phone_, email_, address_, sex_, salary_);
+    values (name_, password(password_), phone_, email_, address_, sex_, salary_);
     set id = last_insert_id();
     insert into Driver (driverID, experience, licenseNo, successRate)
     values (id, experience_, license_, successRate_);
@@ -192,7 +193,7 @@ create procedure addAdmin(name_ varchar(45), password_ varchar(256), phone_ varc
                            salary_ varchar(45), out id int)
 begin
     insert into Employee (name, password, phone, email, address, sex, salary)
-    values (name_, password_, phone_, email_, address_, sex_, salary_);
+    values (name_, password(password_), phone_, email_, address_, sex_, salary_);
     set id = last_insert_id();
     insert into Admin (adminID)
     values (id);

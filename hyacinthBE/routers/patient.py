@@ -25,7 +25,10 @@ def get_patient():
             'email': email,
             'sex': sex
         })
-    return res
+    return {
+        'data': res,
+        'key': ['ID', 'Name', 'Phone', 'Email', 'Sex']
+    }
 
 
 @router.get('/{pk}')
@@ -78,10 +81,7 @@ class Register(BaseModel):
 
 @router.post('/registration/')
 def patient_registration(data: Register):
-    if data.marital:
-        marital = 1
-    else:
-        marital = 0
+    marital = 1 if data.marital == 1 else 0
     res = cur.callproc('PatientRegistration',
                        (data.name, data.email, data.password, data.phone, data.address,
                         data.sex, data.medicalHistory, marital, -1))
@@ -97,11 +97,16 @@ def patient_dashboard(pk):
     res = []
     cur.execute(f"select * from PatientConsultInfo where patientID={pk}")
     for patID, docID, consID, problem, special in cur:
-        res.append({
-            'consultationID': consID,
+        r = {
+            'id': consID,
             'problem': problem,
             'doctorID': docID,
             'patientID': patID,
             'specialization': special
-        })
-    return res
+        }
+        res.append(r)
+
+    return {
+        'data': res,
+        'key': ['Consultation ID', 'Problem', 'Doctor ID', 'Patient ID', 'Specialization']
+    }

@@ -29,7 +29,10 @@ def get_doctors():
             'email': email,
             'sex': sex
         })
-    return res
+    return {
+        'data': res,
+        'key': ['ID', 'Name', 'Phone', 'Email', 'Sex']
+    }
 
 
 @router.get('/{pk}')
@@ -61,13 +64,16 @@ def get_dashboard(pk):
     res = []
     for patientID, _, consultationID, problem, specialization in cur:
         res.append({
-            "Patient ID": patientID,
-            "Consultation ID": consultationID,
-            "Specialization": specialization,
-            "Problem": problem,
+            "patientID": patientID,
+            "id": consultationID,
+            "specialization": specialization,
+            "problem": problem,
         })
 
-    return res
+    return {
+        'data': res,
+        'key': ['Patient ID', 'Consultation ID', 'Specialization', 'Problem']
+    }
 
 
 @router.post('/add', status_code=201)
