@@ -80,3 +80,11 @@ def prescription_detail(pk):
         'drugs': res1,
         'diagnostics': res2
     }
+
+
+@app.delete('/{pk}')
+def del_employee(pk):
+    cur.callproc('delEmployee', (pk, ))
+    result = cur.fetchall()
+    cur.nextset()
+    return True

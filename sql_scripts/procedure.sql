@@ -18,6 +18,7 @@ drop procedure if exists addNurse;
 drop procedure if exists addDoctor;
 drop procedure if exists addDriver;
 drop procedure if exists addAdmin;
+drop procedure if exists delEmployee;
 
 
 delimiter //
@@ -197,6 +198,16 @@ begin
     set id = last_insert_id();
     insert into Admin (adminID)
     values (id);
+end //
+
+
+create procedure delEmployee(id int)
+begin
+    set @email = (select email from Employee where employeeID=id);
+    if user_exists(@email)
+        then delete from mysql.user where User=substring_index(@email, '@', 1);
+    end if ;
+    delete from Employee where employeeID=id;
 end //
 
 delimiter ;

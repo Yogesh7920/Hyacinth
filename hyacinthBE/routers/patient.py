@@ -102,7 +102,6 @@ def patient_dashboard(pk):
             'problem': problem,
             'doctorID': docID,
             'doctorName': docName,
-            # 'patientID': patID,
             'specialization': special
         }
         res.append(r)
