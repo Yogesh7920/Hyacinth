@@ -12,6 +12,7 @@ drop view if exists NurseDiagnosticsInfo;
 drop view if exists DoctorPatientInfo;
 drop view if exists PatientDoctorInfo;
 drop view if exists PatientConsultInfo;
+drop view if exists AppointmentInvoice;
 
 create view DoctorInfo as (
     select d.*, name as doctorName,
@@ -97,4 +98,24 @@ create view PatientConsultInfo as (
     inner join Doctor using (doctorID)
     inner join Patient using (patientID)
     inner join Employee on Doctor.doctorID = Employee.employeeID
+);
+
+create view AppointmentInvoice as (
+    select consultationId, appointmentID, startTime, endTime, remarks, invoiceID, prescriptionId, amount, isPaid
+    from Appointment
+    inner join Invoice using (invoiceId)
+);
+
+
+create view PrescriptionDrug as (
+    select * from Prescription
+    inner join Drugs using (prescriptionID)
+    inner join Pharmacy using (pharmacyID)
+);
+
+
+create view PrescriptionDiagnostic as (
+    select * from Prescription
+    inner join Contains using (prescriptionID)
+    inner join Diagnostics using (diagnosticsID)
 );

@@ -35,9 +35,9 @@ def read_root():
 
 @app.get("/consultation/{pk}")
 def consultation(pk):
-    cur.execute(f"select * from Appointment where consultationId={pk}")
+    cur.execute(f"select * from AppointmentInvoice where consultationId={pk}")
     res = []
-    for appID, startTime, endTime, remarks, invoiceID, presID, consID in cur:
+    for _, appID, startTime, endTime, remarks, invoiceID, presID, amount, isPaid in cur:
         res.append({
             'id': appID,
             'startTime': startTime,
@@ -45,9 +45,38 @@ def consultation(pk):
             'remarks': remarks,
             'invoiceID': invoiceID,
             'presID': presID,
-            'consID': consID
+            'amount': amount,
+            'isPaid': isPaid,
         })
     return {
         'data': res,
-        'key': ['ID', 'Start Time', 'End Time', 'Remarks', 'Invoice ID', 'Prescription ID', 'Consultation ID']
+        'key': ['ID', 'Start Time', 'End Time', 'Remarks', 'Invoice ID', 'Prescription ID', 'Amount', 'isPaid']
+    }
+
+
+@app.get('/prescription/{pk}')
+def prescription_detail(pk):
+    cur.execute(f"select * from PrescriptionDrug where prescriptionID={pk}")
+    res1 = []
+    for pharmID, _, timeStamp, name, cat in cur:
+        res1.append({
+            'pharmacyID': pharmID,
+            'timeStamp': timeStamp,
+            'name': name,
+            'category': cat
+        })
+
+    cur.execute(f"select * from PrescriptionDiagnostic where prescriptionID={pk}")
+    res2 = []
+    for diagID, _, timeStamp, cat, name in cur:
+        res2.append({
+            'diagnosticsID': diagID,
+            'timeStamp': timeStamp,
+            'name': name,
+            'category': cat
+        })
+
+    return {
+        'drugs': res1,
+        'diagnostics': res2
     }

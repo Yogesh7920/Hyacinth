@@ -1,3 +1,4 @@
+import { PrescriptionComponent } from './components/prescription/prescription.component';
 import { ConsultComponent } from './components/consult/consult.component';
 import { HomeComponent } from './components/home/home.component';
 import { NgModule } from '@angular/core';
@@ -18,6 +19,7 @@ const routes: Routes = [
     { path: 'admin/:role', component: AdminUsersComponent },
     { path: 'register/patient', component: PatientRegistrationComponent },
     { path: ':role/dashboard/:id', component: DashboardComponent },
+    { path: 'prescription/:id', component: PrescriptionComponent },
     { path: 'consultation/:id', component: ConsultComponent },
     { path: ':role/:id', component: ProfileComponent },
 

@@ -19,6 +19,7 @@ import { HomeComponent } from './components/home/home.component';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { ConsultComponent } from './components/consult/consult.component';
 import { AdminProfileComponent } from './components/admin-profile/admin-profile.component';
+import { PrescriptionComponent } from './components/prescription/prescription.component';
 
 @NgModule({
     declarations: [
@@ -36,6 +37,7 @@ import { AdminProfileComponent } from './components/admin-profile/admin-profile.
         DialogComponent,
         ConsultComponent,
         AdminProfileComponent
+        PrescriptionComponent
     ],
     imports: [
         BrowserModule,
@@ -47,6 +49,6 @@ import { AdminProfileComponent } from './components/admin-profile/admin-profile.
     ],
     providers: [],
     bootstrap: [AppComponent],
-    entryComponents:[DialogComponent]
+    entryComponents: [DialogComponent]
 })
 export class AppModule { }

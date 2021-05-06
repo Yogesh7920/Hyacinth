@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
-import { timeStamp } from 'node:console';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -17,6 +16,7 @@ export class ConsultComponent implements OnInit {
   colHeads: string[] = [];
   dataSource = new MatTableDataSource([]);
   id;
+  links: Array<String> = [];
 
   constructor(
     private http: HttpClient,
@@ -41,24 +41,37 @@ export class ConsultComponent implements OnInit {
         console.log(result)
         let { data, key } = result as any;
         console.log(data)
+
+        for(const entry of data) {
+          if(entry["isPaid"] == 1) {
+            entry["isPaid"] = "Yes"
+          }
+          else {
+            entry["isPaid"] = "No"
+          }
+
+          this.links.push(`/prescription/${entry['presID']}`);
+
+        }  
+
         this.dataSource.data = data;
         this.colHeads = [
           "ID",
           "Start Time",
           "End Time",
           "Remarks",
-          "Invoice ID",
-          "Prescription ID",
-          "Consulation ID"
+          "Amount",
+          "IsPaid",
+          "Prescription ID"
         ]
         this.displayedColumns = [
           "id",
           "startTime",
           "endTime",
           "remarks",
-          "invoiceID",
-          "presID",
-          "consID"
+          "amount",
+          "isPaid",
+          "presID"
         ]
 
       })
