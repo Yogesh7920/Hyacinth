@@ -31,7 +31,7 @@
         deallocate prepare stmt;
     end; //
 
-    create procedure EmployeeRegistration(in email_ varchar(255), in password_ varchar(255), out role varchar(11), out id int)
+    create procedure EmployeeLogin(in email_ varchar(255), in password_ varchar(255), out role varchar(11), out id int)
     begin
         -- If user exists, then check password
         if user_exists(email_)

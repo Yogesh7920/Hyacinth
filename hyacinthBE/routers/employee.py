@@ -46,7 +46,7 @@ class Login(BaseModel):
 def employee_login(data: Login):
     email = data.email
     password = data.password
-    cur.callproc('EmployeeRegistration', (email, password, "", -1))
+    cur.callproc('EmployeeLogin', (email, password, "", -1))
     result = cur.fetchall()
     cur.nextset()
     role, pk = result[0]
