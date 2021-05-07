@@ -1,4 +1,7 @@
 <div style="display: flex; justify-content: center; align-items: center; height: 10%;">
-    <h2>Welcome {{head}} to your dashboard</h2>
+    <h2 *ngIf="userRole == 'admin'; else elseBlock">{{head}}</h2>
+    <ng-template #elseBlock>
+        <h2>Welcome {{head}} to your dashboard</h2>
+    </ng-template>
 </div>
 <app-table [cols]="displayedColumns" [data]="dataSource" [colhead]="colHeads" [links]="links"></app-table>

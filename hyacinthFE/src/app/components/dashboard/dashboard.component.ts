@@ -16,6 +16,7 @@ import { StorageService } from "../../services/storage.service";
 export class DashboardComponent implements OnInit {
 
     role: string = "";
+    userRole = localStorage.getItem("role");
     head: string = "";
     id;
 

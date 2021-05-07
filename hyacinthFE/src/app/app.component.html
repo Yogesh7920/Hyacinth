@@ -1,5 +1,6 @@
 <div class="container">
     <app-navbar [snav]="snav"></app-navbar>
+    <div style="height: 10px; background-color: #fafafa;"></div>
     <app-navigation></app-navigation>
     <mat-sidenav-container class="sidenav-container">
         <mat-sidenav class="sidenav" #snav [mode]="'over'">
@@ -10,7 +11,7 @@
 
         <mat-sidenav-content [@routeAnimations]="prepareRoute(outlet)">
 
-                <router-outlet #outlet="outlet"></router-outlet>
+            <router-outlet #outlet="outlet"></router-outlet>
 
         </mat-sidenav-content>
     </mat-sidenav-container>
