@@ -73,14 +73,14 @@ export class DashboardComponent implements OnInit {
                             'Consultation ID',
                             'Problem',
                             'Doctor ID',
-                            'Patient ID',
+                            'Doctor Name',
                             'Specialization'
                         ];
                         this.displayedColumns = [
                             'id',
                             'problem',
                             'doctorID',
-                            'patientID',
+                            'doctorName',
                             'specialization'
                         ]
                         this.links.push(url);
