@@ -56,12 +56,15 @@ begin
     );
 end //
 
+
 create function user_exists(email varchar(255))
     returns bool
 begin
     return (
-        exists(select User from mysql.user where User=substring_index(email, '@', 1))
+        exists(select User from mysql.user
+        where User=substring_index(email, '@', 1))
     );
 end //
+
 
 DELIMITER ;

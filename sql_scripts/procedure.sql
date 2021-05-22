@@ -47,9 +47,11 @@
         -- If user does not exist, check if the admin has added him/her as an employee.
         elseif exists(select * from Employee where email=email_)
         then
-            set @create_user = concat('create user \'', substring_index(email_, '@', 1), '\'@\'localhost\' identified by \'', password_, '\';');
+            set @create_user = concat('create user \'', substring_index(email_, '@', 1),
+                '\'@\'localhost\' identified by \'', password_, '\';');
             call exec_query(@create_user);
-            set @update_user = concat('update Employee set password=\'', PASSWORD(password_), '\' where email=\'', email_, '\'');
+            set @update_user = concat('update Employee set password=\'',
+                PASSWORD(password_), '\' where email=\'', email_, '\'');
             call exec_query(@update_user);
             set role=employee_role(email_);
             set id = (select employeeID from Employee where email=email_);
@@ -70,18 +72,15 @@
             set id=-1;
         else
             set @email = substring_index(email_, '@', 1);
-            set @create_user = concat('create user \'', @email, '\'@\'localhost\' identified by \'', password_, '\';');
+            set @create_user = concat('create user \'', @email,
+                '\'@\'localhost\' identified by \'', password_, '\';');
             call exec_query(@create_user);
             set @insert_user = concat(
-                'insert into Patient (name, email, phone, password, address, sex, medicalHistory, marital) values (',
-                '\'', name_, '\'',
-                ', \'', email_, '\'',
-                ', \'', phone, '\'',
-                ', \'', PASSWORD(password_), '\'',
-                ', \'', address_, '\'',
-                ', \'', sex, '\'',
-                ', \'', medicalHistory, '\'',
-                ', ', marital, ')'
+                'insert into Patient (name, email, phone, password, ' ||
+                'address, sex, medicalHistory, marital) values (',
+                '\'', name_, '\'',', \'', email_, '\'',', \'', phone, '\'',
+                ', \'', PASSWORD(password_), '\'',', \'', address_, '\'',
+                ', \'', sex, '\'',', \'', medicalHistory, '\'',', ', marital, ')'
             );
             call exec_query(@insert_user);
             set id = (select patientID from Patient where email=email_);
@@ -101,9 +100,11 @@
             end if;
         elseif exists(select * from Patient where email=email_)
         then
-            set @create_user = concat('create user \'', substring_index(email_, '@', 1), '\'@\'localhost\' identified by \'', password_, '\';');
+            set @create_user = concat('create user \'', substring_index(email_, '@', 1),
+                '\'@\'localhost\' identified by \'', password_, '\';');
             call exec_query(@create_user);
-            set @update_user = concat('update Patient set password=\'', PASSWORD(password_), '\' where email=\'', email_, '\'');
+            set @update_user = concat('update Patient set password=\'', PASSWORD(password_),
+                '\' where email=\'', email_, '\'');
             call exec_query(@update_user);
             set id = (select patientID from Patient where email=email_);
         else
